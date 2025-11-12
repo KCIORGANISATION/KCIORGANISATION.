@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KCI — Coaching personnalisé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --card: #101214;
+      --text: #e7e9ea;
+      --muted: #9aa0a6;
+      --accent: #54a8ff;
+      --accent-2: #00e0ff;
+      --radius: 16px;
+      --shadow: 0 8px 40px rgba(0,0,0,.35);
+      --maxw: 1100px;
+    }
+    body {
+      margin: 0;
+      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    .ghost {
+      display: inline-block;
+      border: 1px solid var(--accent-2);
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: var(--accent-2);
+      margin: 24px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .ghost:hover { background: var(--accent-2); color: #041018; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid rgba(84,168,255,.15);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent-2);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .side {
+      border-left: 2px solid var(--accent);
+      padding-left: 22px;
+      margin-top: 32px;
+    }
+
+    .price-box {
+      margin-top: 48px;
+      text-align: right;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 20px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent-2);
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #0a0a0a;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 12px 20px;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="ghost">← Retour</a>
+
+  <section class="wrap">
+    <h1>Coaching KCI — Accompagnement personnalisé</h1>
+    <p>
+      Le coaching KCI, c’est un accompagnement **rapide, honnête et concret**.  
+      Pas de théorie inutile : on te pose les bonnes questions, on t’aide à poser un plan d’action,  
+      et on te suit pour que tu restes sur la trajectoire.
+    </p>
+
+    <div class="card">
+      <h3>💬 Coaching 1:1 (en visio)</h3>
+      <p>Une session complète avec un membre de l’équipe KCI.  
+      On analyse ta situation (routine, objectifs, business, mental), et on crée ensemble un plan clair pour les 30 prochains jours.</p>
+      <ul>
+        <li>Durée : 45–60 min</li>
+        <li>Support : Google Meet / Discord</li>
+        <li>Compte rendu + plan PDF inclus</li>
+      </ul>
+      <div class="price">30 €</div>
+    </div>
+
+    <div class="card">
+      <h3>📄 Coaching écrit</h3>
+      <p>Tu remplis un mini questionnaire, on t’analyse, et tu reçois une réponse complète écrite.  
+      Idéal si tu veux un avis détaillé mais pas de call.</p>
+      <ul>
+        <li>Délai de réponse : 24–48h</li>
+        <li>Format : message Discord ou mail</li>
+        <li>Document PDF de 1–2 pages avec ton plan</li>
+      </ul>
+      <div class="price">15 €</div>
+    </div>
+
+    <div class="card">
+      <h3>⚙️ Audit express</h3>
+      <p>Tu nous montres ton projet (business, Notion, routine, réseau, etc.)  
+      et on t’envoie une liste directe de ce qui va / ce qui bloque / ce qu’il faut changer.</p>
+      <ul>
+        <li>Format : message écrit ou vocal</li>
+        <li>Réponse courte, directe et actionable</li>
+      </ul>
+      <div class="price">10 €</div>
+    </div>
+
+    <div class="side">
+      <p><strong>Ce que tu gagnes avec le coaching :</strong><br>
+      • Un regard extérieur lucide, pas complaisant.<br>
+      • Une direction claire à suivre.<br>
+      • La motivation de continuer, parce que tu vois un vrai plan.<br>
+      • Et surtout : des résultats visibles, pas juste des mots.</p>
+    </div>
+
+    <d
 
