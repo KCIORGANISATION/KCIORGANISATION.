@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KCI — Package A : Développement personnel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --card: #101214;
+      --text: #e7e9ea;
+      --muted: #9aa0a6;
+      --accent: #54a8ff;
+      --accent-2: #00e0ff;
+      --radius: 16px;
+      --shadow: 0 8px 40px rgba(0,0,0,.35);
+      --maxw: 1100px;
+    }
+    body {
+      margin: 0;
+      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    .ghost {
+      display: inline-block;
+      border: 1px solid var(--accent-2);
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: var(--accent-2);
+      margin: 24px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .ghost:hover { background: var(--accent-2); color: #041018; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      border: 1px solid rgba(84,168,255,.15);
+      color: var(--text);
+    }
+
+    li strong {
+      color: var(--accent-2);
+    }
+
+    .side {
+      border-left: 2px solid var(--accent);
+      padding-left: 22px;
+      margin-top: 32px;
+    }
+
+    .price-box {
+      margin-top: 48px;
+      text-align: right;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 20px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent-2);
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #0a0a0a;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 12px 20px;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="ghost">← Retour</a>
+
+  <section class="wrap">
+    <h1>Package A — Développement personnel</h1>
+    <p>
+      Ce package complet est pensé pour transformer ta discipline et ton équilibre quotidien.  
+      Il rassemble toutes les bases du développement personnel **adaptées à notre génération**,  
+      pour t’aider à construire une vie stable, confiante et efficace.
+    </p>
+
+    <ul>
+      <li><strong>Routine :</strong> Crée une routine solide et réaliste adaptée à ton rythme.</li>
+      <li><strong>Sport :</strong> Programme d’entraînement simple et progressif pour garder la constance.</li>
+      <li><strong>Soin de soi :</strong> Sommeil, peau, cheveux, hygiène, mental — apprends à te gérer intelligemment.</li>
+      <li><strong>Travail & Études :</strong> Optimise ton organisation, ton focus, et ton apprentissage.</li>
+      <li><strong>Hacks de vie :</strong> Méthodes, outils et raccourcis utiles pour accélérer tes progrès.</li>
+    </ul>
+
+    <div class="side">
+      <p><strong>Ce que tu vas en tirer :</strong><br>
+      • Plus de stabilité et de discipline au quotidien.<br>
+      • Des bases solides pour tenir sur le long terme.<br>
+      • Un mental plus calme, plus structuré.<br>
+      • Les outils concrets pour avancer sans t’éparpiller.</p>
+    </div>
+
+    <div class="price-box">
+      <div class="price">25 €</div>
+      <p>Accès complet à toutes les formations du Package A.<br>Plus d’infos disponibles sur le Discord KCI.</p>
+      <a href="#" class="btn">Acheter (bientôt disponible)</a>
+    </div>
+  </section>
+
+</body>
+</html>
 
