@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KCI — On ne parle pas, on construit.</title>
+  <meta name="description" content="Formations KCI : méthode, discipline, compétences. Deviens bon pour de vrai." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --card: #111113;
+      --muted: #9aa0a6;
+      --text: #e7e9ea;
+      --accent: #5aa4ff; /* bleu discret */
+      --accent-2: #ffd166; /* doré pâle, optionnel */
+      --radius: 16px;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+      --maxw: 1080px;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: .1px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(150%) blur(8px); background: rgba(11,11,12,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .6px; }
+    .pill { padding: 10px 16px; background: #141416; border: 1px solid rgba(255,255,255,.06); border-radius: 999px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; border: 1px solid transparent; background: var(--accent); color: #06121f; font-weight: 700; transition: transform .12s ease, filter .12s ease; }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+    /* Hero */
+    .hero { padding: clamp(64px, 8vh, 120px) 0; }
+    .hero .hgrid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    @media (max-width: 900px){ .hero .hgrid { grid-template-columns: 1fr; } }
+    .kicker { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: .9rem; letter-spacing: .15em; }
+    h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; margin: 10px 0 16px; }
+    .lead { font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); max-width: 58ch; }
+    .hero-card { background: radial-gradient(80% 120% at 80% 0%, rgba(90,164,255,.12), transparent 60%), var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    .badge { display:inline-flex; align-items:center; gap:8px; color:#c7f0ff; background: rgba(90,164,255,.12); border:1px solid rgba(90,164,255,.3); padding:8px 12px; border-radius:999px; font-size:.85rem; font-weight:600; }
+
+    /* Sections */
+    section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,.06); }
+    h2 { font-size: clamp(24px, 3vw, 36px); margin: 0 0 8px; }
+    p.sub { color: var(--muted); margin: 0 0 24px; }
+
+    /* Cards grid */
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); display:flex; flex-direction:column; gap:12px; }
+    .card h3 { margin: 6px 0; font-size: 20px; }
+    .card p { color: var(--muted); margin: 0; }
+    .card .cta { margin-top: auto; display:flex; justify-content: space-between; align-items: center; }
+    .ghost { border:1px solid rgba(255,255,255,.1); border-radius:999px; padding:10px 14px; }
+
+    /* Testimonials (placeholder) */
+    .tlist { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    @media (max-width: 900px){ .tlist { grid-template-columns: 1fr; } }
+    .quote { background:#0e0f12; border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:16px; color: var(--muted); }
+
+    /* Footer */
+    footer { padding: 56px 0; color: var(--muted); }
+    .foot { display:flex; flex-wrap:wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    .tiny { font-size: 12px; opacity: .7; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="pill">KCI</span>
+        <span class="tiny">On ne parle pas, on construit.</span>
+      </div>
+      <nav style="display:flex; gap:10px; align-items:center;">
+        <a class="ghost" href="#vision">Vision</a>
+        <a class="ghost" href="#formations">Formations</a>
+        <a class="btn" href="#cta">Rejoindre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hgrid">
+        <div>
+          <div class="kicker">KCI • Discipline • Compétences</div>
+          <h1>Deviens bon <em>pour de vrai</em>.</h1>
+          <p class="lead">Des formations pour ceux qui veulent progresser sans blabla : méthode, plans d’action, et une vision long terme. Pas de promesses vides. Juste du travail qui paye.</p>
+          <div style="display:flex; gap:12px; margin-top:22px;">
+            <a class="btn" href="#formations">Voir les formations</a>
+            <a class="ghost" href="#vision">Notre approche</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="badge">⚡ Commence aujourd’hui</div>
+          <h3 style="margin:14px 0 8px;">Le Package B (starter)</h3>
+          <p class="lead" style="font-size:16px;">Crée un mini-business à partir de tes compétences. Simple, concret, vendable.</p>
+          <div style="margin-top:14px; display:flex; gap:10px;">
+            <a class="btn" href="#formations">Accéder</a>
+            <a class="ghost" href="#">Aperçu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION -->
+    <section id="vision">
+      <div class="wrap">
+        <h2>Notre vision</h2>
+        <p class="sub">On ne te promet pas 1000€ demain. On t’enseigne comment devenir quelqu’un que les autres ne rattraperont pas : méthode, constance, compétence.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>La méthode</h3>
+            <p>Apprendre en produisant. Des mini-projets, du feedback, et des boucles d’amélioration qui tiennent dans le temps.</p>
+          </div>
+          <div class="card">
+            <h3>Le concret</h3>
+            <p>Des plans d’action clairs, applicables dans la vraie vie : trading, vidéo, communication, développement, physique.</p>
+          </div>
+          <div class="card">
+            <h3>La maîtrise</h3>
+            <p>On vise la compétence durable, pas le buzz. Construire un niveau qui te suit partout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMATIONS -->
+    <section id="formations">
+      <div class="wrap">
+        <h2>Formations</h2>
+        <p class="sub">Commence simple. Continue sérieux. Grandis propre.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="kicker">Package A</div>
+            <h3>Discipline & Routines</h3>
+            <p>Base mentale, organisation, constance. Le socle qui rend tout le reste possible.</p>
+            <div class="cta">
+              <a class="ghost" href="#">En savoir plus</a>
+              <span class="tiny">Bientôt</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Package B</div>
+            <h3>Mini-Business sur tes Compétences</h3>
+            <p>Identifie une compétence, crée une offre simple, lance tes premières ventes.</p>
+            <div class="cta">
+              <a class="ghost" href="#">Aperçu</a>
+              <a class="btn" href="#">Accéder</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Master Module</div>
+            <h3>Devenir bon pour de vrai</h3>
+            <p>Le long terme : choisir une vraie compétence, l’apprendre, tenir, transformer.</p>
+            <div class="cta">
+              <a class="ghost" href="#">Programme</a>
+              <span class="tiny">Soon</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Témoignages / Social Proof (placeholder) -->
+    <section>
+      <div class="wrap">
+        <h2>Ce qu’on dit de KCI</h2>
+        <p class="sub">Des retours réels, pas du blabla. Ajoute ici des messages, progrès, screenshots.</p>
+        <div class="tlist">
+          <div class="quote">“J’ai enfin lancé mon premier service. Simple, propre. Merci.”</div>
+          <div class="quote">“La structure m’a tenu 6 semaines d’affilée. Résultats visibles.”</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section id="cta">
+      <div class="wrap" style="text-align:center;">
+        <h2>Prêt à construire ?</h2>
+        <p class="sub">Pas de promesses vides. Un plan. Du travail. Des progrès visibles.</p>
+        <a class="btn" href="#formations">Commencer</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="brand"><span class="pill">KCI</span><span class="tiny">© 2025. Tous droits réservés.</span></div>
+      <div class="tiny">Contact : insta @kci.org • discord / mail</div>
+    </div>
+  </footer>
+</body>
+</html>
