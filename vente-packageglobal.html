@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Acheter Package Global</title>
-  <meta name="description" content="Page de vente Package Global KCI : Package A + Package B à prix réduit." />
+  <meta name="description" content="Package Global KCI : Discipline + Business. Le socle + les revenus, sans t’éparpiller." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -14,89 +14,75 @@
       --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
       --maxw:1100px;
     }
+    *{ box-sizing:border-box; }
     body{
       margin:0;
       background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+
     .ghost{
       display:inline-flex; align-items:center; gap:10px;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
-      transition: background .2s ease, color .2s ease, transform .12s ease;
     }
-    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
+
     .pill{
       display:inline-flex; align-items:center; gap:8px;
-      color:#c7f0ff; background: rgba(90,164,255,.12);
+      background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
-      font-size:.85rem; font-weight:700; margin-bottom:12px;
+      font-size:.85rem; font-weight:700; color:#c7f0ff;
+      margin-bottom:12px;
     }
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
-    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:82ch; }
 
-    .grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; align-items:start; margin-top:16px; }
-    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
+    .lead{ font-size:18px; color:var(--muted); max-width:90ch; }
+
+    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; margin-top:18px; }
+    @media (max-width:900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
       background:var(--card); border-radius:var(--radius);
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
-      margin-bottom:18px;
+      margin-bottom:18px; overflow:hidden;
     }
-    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
-    .muted{ color:var(--muted); }
+    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); }
 
     .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
-    .list li span{ color:var(--muted); }
-
-    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
-
-    .save{
-      background:#0c1015; border:1px dashed rgba(0,224,255,.35);
-      padding:14px 16px; border-radius:12px; margin-top:12px;
-    }
-    .strike{ color:#6f7882; text-decoration: line-through; margin-right:8px; }
+    .list span{ color:var(--muted); }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+      display:flex; justify-content:space-between; align-items:flex-end;
       border-top:1px solid rgba(255,255,255,.08);
-      margin-top:14px; padding-top:14px;
+      padding-top:14px; margin-top:14px; gap:10px; flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
-    .mini{ font-size:14px; color:var(--muted); }
+    .price-wrap{ display:flex; gap:10px; align-items:baseline; }
+    .strike{ text-decoration:line-through; color:#6f7882; font-weight:700; }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      display:inline-flex; justify-content:center; align-items:center;
+      width:100%; padding:12px 18px; margin-top:12px;
+      border-radius:999px; font-weight:800;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800; border-radius:999px;
-      padding:12px 18px; width:100%;
-      transition: transform .12s ease, filter .12s ease;
+      color:#0a0a0a;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
-
     .btn-secondary{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      display:inline-flex; justify-content:center; align-items:center;
+      width:100%; padding:12px 18px; margin-top:10px;
+      border-radius:999px;
       border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; color:var(--accent-2);
-      width:100%; margin-top:10px;
+      color:var(--accent-2);
     }
 
-    details{
-      background:#0c1015; border:1px solid rgba(84,168,255,.18);
-      border-radius:14px; padding:14px; margin:10px 0;
-    }
-    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
-    summary::-webkit-details-marker{ display:none; }
-    details p{ margin:10px 0 0; color:var(--muted); }
+    .mini{ font-size:14px; color:var(--muted); }
   </style>
 </head>
 
@@ -104,72 +90,62 @@
   <a href="packageglobal.html" class="ghost">← Retour</a>
 
   <section class="wrap">
-    <span class="pill">🏷️ Achat — Package Global</span>
+    <span class="pill">🔥 Meilleur choix</span>
     <h1>Package Global — A + B</h1>
     <p class="lead">
-      Le bundle recommandé : tu poses la discipline (A) pendant que tu avances sur le business (B).
-      Base + action = progression stable ET résultats concrets.
+      Le <strong>socle complet</strong> + le <strong>business concret</strong>.  
+      Tu construis ta discipline, ton énergie et ta structure, **pendant** que tu poses
+      une compétence monétisable et tes premières ventes.  
+      👉 Le pack le plus logique si tu veux avancer sans te disperser.
     </p>
 
     <div class="grid">
       <div>
         <div class="card">
-          <h2>📦 Ce que tu obtiens</h2>
+          <h2>📦 Ce que tu reçois</h2>
           <ul class="list">
-            <li><strong>Package A</strong> <span>→ routine, sport, soin de soi, études, hacks</span></li>
-            <li><strong>Package B</strong> <span>→ compétence, offre, clients, 1ères ventes</span></li>
-            <li><strong>Mises à jour</strong> <span>→ incluses</span></li>
-            <li><strong>Structure</strong> <span>→ plan clair, moins d’éparpillement</span></li>
+            <li><strong>Package A</strong> <span>→ routine, sport, énergie, travail, stabilité</span></li>
+            <li><strong>Package B</strong> <span>→ compétence, offre, clients, premières ventes</span></li>
+            <li><strong>Systèmes KCI</strong> <span>→ organisation, méthodes, progression long terme</span></li>
+            <li><strong>Mises à jour incluses</strong> <span>→ tu progresses avec nous</span></li>
           </ul>
-
-          <div class="save">
-            A (25 €) + B (30 €) = <span class="strike">55 €</span> <strong>→ 45 € en Global</strong>
-          </div>
         </div>
 
         <div class="card">
-          <h2>❓ FAQ</h2>
-          <details>
-            <summary>Je dois prendre A avant B ?</summary>
-            <p>Non. Le Global te donne les deux. Tu avances sur les deux axes en parallèle.</p>
-          </details>
-          <details>
-            <summary>Et si je suis débutant ?</summary>
-            <p>C’est fait pour : base simple + exécution business progressive.</p>
-          </details>
-          <details>
-            <summary>Comment je reçois le contenu ?</summary>
-            <p>Quand le paiement sera activé, tu recevras l’accès automatiquement après achat.</p>
-          </details>
+          <h2>Pourquoi le Global ?</h2>
+          <ul class="list">
+            <li>Tu évites le piège <span>“discipline sans direction”</span></li>
+            <li>Tu évites le piège <span>“business sans structure”</span></li>
+            <li>Tu avances avec <span>un seul plan clair</span></li>
+            <li>Tu paies <span>moins cher que séparément</span></li>
+          </ul>
         </div>
       </div>
 
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
-          <p class="muted">Paiement par Stripe (bientôt). Préparé : tu n’auras qu’à remplacer le lien.</p>
+          <p class="mini">Paiement par Stripe (bientôt).</p>
 
           <div class="price-row">
-            <div class="mini">Prix</div>
-            <div class="price">45 €</div>
+            <div class="mini">Offre Global</div>
+            <div class="price-wrap">
+              <span class="strike">89,99 €</span>
+              <span class="price">69,99 €</span>
+            </div>
           </div>
 
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
-          <a class="btn-secondary" href="index.html#formations">Retour aux offres</a>
-          <a class="btn-secondary" href="packagea.html">Voir Package A</a>
-          <a class="btn-secondary" href="packageb.html">Voir Package B</a>
-
-          <p class="mini" style="margin-top:12px;">
-            Si problème d’accès : page <a href="merci.html">merci</a> + support.
-          </p>
+          <a class="btn-secondary" href="./index.html#formations">Retour aux offres</a>
         </div>
 
         <div class="card">
-          <h3>✅ Pour qui ?</h3>
+          <h3>🎯 Résultat attendu</h3>
           <ul class="list">
-            <li>Tu veux le plus rentable <span>(A+B)</span></li>
-            <li>Tu veux un plan <span>sans dispersion</span></li>
-            <li>Tu veux tenir <span>ET produire</span></li>
+            <li>Une routine stable <span>qui tient dans le temps</span></li>
+            <li>Une compétence claire <span>avec une valeur réelle</span></li>
+            <li>Des actions quotidiennes <span>alignées</span></li>
+            <li>Un système pour <span>progresser et gagner</span></li>
           </ul>
         </div>
       </div>
@@ -177,4 +153,5 @@
   </section>
 </body>
 </html>
+
 
