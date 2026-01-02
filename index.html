@@ -4,403 +4,191 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — On ne parle pas, on construit.</title>
-  <meta name="description" content="Formations KCI : méthode, discipline, compétences. Deviens bon pour de vrai." />
+  <meta name="description" content="Formations KCI : discipline, compétences, business. Construis pour de vrai." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #0b0b0c;
-      --card: #0f1115;
-      --muted: #a6b0bb;
-      --text: #e9eef2;
-      --accent: #54a8ff;
-      --accent-2: #00e0ff;
-      --radius: 16px;
-      --shadow: 0 10px 40px rgba(0,0,0,.35);
-      --maxw: 1120px;
+    :root{
+      --bg:#0b0b0c; --card:#0f1115; --text:#e9eef2; --muted:#a6b0bb;
+      --accent:#54a8ff; --accent-2:#00e0ff;
+      --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35);
+      --maxw:1120px;
     }
-    html, body { height: 100%; scroll-behavior:smooth; }
-    body {
-      margin: 0;
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
       background: radial-gradient(1200px 800px at 70% 0%, rgba(84,168,255,.08), transparent), var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      letter-spacing: .1px;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      color:var(--text);
+      font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing:.1px;
     }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
 
-    /* Header */
-    header {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(160%) blur(10px);
-      background: rgba(11,11,12,.6);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(11,11,12,.6);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .6px; }
-    .pill { padding: 10px 16px; background: linear-gradient(145deg, rgba(84,168,255,.15), rgba(0,224,255,.12)); border: 1px solid rgba(84,168,255,.35); border-radius: 999px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 12px 18px; border-radius: 999px;
-      border: 1px solid rgba(0,224,255,.35);
-      background: linear-gradient(180deg, var(--accent), var(--accent-2));
-      color: #06121f; font-weight: 800;
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-    .ghost { border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:10px 14px; }
-    .tiny { font-size: 12px; opacity: .7; }
-
-    /* Hero */
-    .hero { padding: clamp(64px, 8vh, 120px) 0; }
-    .hero .hgrid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
-    @media (max-width: 900px){ .hero .hgrid { grid-template-columns: 1fr; } }
-    .kicker { color: var(--accent-2); font-weight: 800; text-transform: uppercase; font-size: .9rem; letter-spacing: .15em; }
-    h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; margin: 10px 0 16px; }
-    .lead { font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); max-width: 62ch; }
-    .hero-card {
-      background: radial-gradient(80% 120% at 80% 0%, rgba(90,164,255,.16), transparent 60%), var(--card);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-    .badge {
-      display:inline-flex; align-items:center; gap:8px;
-      color:#c7f0ff; background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.3);
-      padding:8px 12px; border-radius:999px;
-      font-size:.85rem; font-weight:700;
+    .nav{ display:flex; justify-content:space-between; align-items:center; gap:16px; }
+    .brand{ display:flex; gap:10px; font-weight:800; }
+    .pill{ padding:10px 16px; border-radius:999px;
+      background:linear-gradient(145deg, rgba(84,168,255,.15), rgba(0,224,255,.12));
+      border:1px solid rgba(84,168,255,.35);
     }
 
-    /* Sections */
-    section { padding: 72px 0; border-top: 1px solid rgba(255,255,255,.06); }
-    h2 { font-size: clamp(24px, 3vw, 36px); margin: 0 0 8px; }
-    p.sub { color: var(--muted); margin: 0 0 24px; }
-
-    /* Cards grid */
-    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      display:flex; flex-direction:column; gap:12px;
+    .btn{
+      display:inline-flex; justify-content:center; align-items:center;
+      padding:12px 18px; border-radius:999px;
+      font-weight:800; color:#06121f;
+      background:linear-gradient(180deg, var(--accent), var(--accent-2));
     }
-    .card h3 { margin: 6px 0; font-size: 20px; }
-    .card p { color: var(--muted); margin: 0; }
-    .card .cta { margin-top: auto; display:flex; justify-content: space-between; align-items: center; }
+    .ghost{
+      padding:10px 14px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.15);
+    }
 
-    /* Package blocks */
-    .pkg {
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:24px;
-      align-items:center;
-      background: linear-gradient(180deg, rgba(84,168,255,.08), rgba(0,0,0,0));
+    /* HERO */
+    .hero{ padding:90px 0; }
+    .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:28px; }
+    @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+    h1{ font-size:clamp(36px,5vw,64px); margin:10px 0; }
+    .lead{ font-size:18px; color:var(--muted); max-width:60ch; }
+
+    section{ padding:72px 0; border-top:1px solid rgba(255,255,255,.06); }
+    h2{ font-size:clamp(26px,3vw,36px); margin-bottom:10px; }
+    .sub{ color:var(--muted); margin-bottom:26px; }
+
+    /* PACKAGES */
+    .pkg{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:24px; padding:24px;
+      background:linear-gradient(180deg, rgba(84,168,255,.08), transparent);
       border:1px solid rgba(84,168,255,.15);
-      padding:24px;
-      border-radius:20px;
-      box-shadow: var(--shadow);
+      border-radius:20px; box-shadow:var(--shadow);
+      margin-bottom:28px;
     }
-    .pkg h3 { font-size:28px; margin:0 0 8px; }
-    .pkg .desc { color: var(--muted); }
-    .pkg .actions { display:flex; gap:12px; flex-wrap:wrap; }
-    @media (max-width: 900px){ .pkg { grid-template-columns: 1fr; } }
+    @media(max-width:900px){ .pkg{ grid-template-columns:1fr; } }
 
-    /* Units grid */
-    .units { display:grid; grid-template-columns: repeat(5, 1fr); gap:16px; }
-    @media (max-width: 1200px){ .units { grid-template-columns: repeat(3, 1fr);} }
-    @media (max-width: 800px){ .units { grid-template-columns: 1fr; } }
-    .unit {
-      background:#0c0f14;
+    .price{ color:var(--accent-2); font-weight:800; }
+
+    /* UNITS */
+    .units{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+    @media(max-width:1200px){ .units{ grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:800px){ .units{ grid-template-columns:1fr; } }
+    .unit{
+      background:#0c0f14; border-radius:16px;
       border:1px solid rgba(84,168,255,.25);
-      border-radius:16px;
       padding:16px;
     }
-    .unit h4 { margin:0 0 6px; }
-    .price { color: var(--accent-2); font-weight:800; }
 
-    /* Socials */
-    .socials { display:flex; gap:10px; flex-wrap:wrap; }
-
-    /* Reveal animation */
-    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
-    .reveal.visible{ opacity:1; transform: translateY(0); }
-
-    /* Footer */
-    footer { padding: 64px 0; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06); }
-    .foot { display:flex; flex-wrap:wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    footer{
+      padding:64px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <span class="pill">KCI</span>
-        <span class="tiny">On ne parle pas, on construit.</span>
-      </div>
-      <nav style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <a class="ghost" href="#about">Qui sommes-nous ?</a>
-        <a class="ghost" href="#formations">Formations</a>
-        <a class="ghost" href="#reseaux">Nos réseaux</a>
-        <a class="btn" href="#formations">Voir les offres</a>
-      </nav>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <span class="pill">KCI</span>
+      <span>On ne parle pas, on construit.</span>
     </div>
-  </header>
+    <nav style="display:flex; gap:10px;">
+      <a class="ghost" href="#formations">Formations</a>
+      <a class="ghost" href="#about">Qui sommes-nous</a>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap hgrid">
-        <div>
-          <div class="kicker">Bienvenue chez KCI</div>
-          <h1>Tu n'es pas ici par hasard.</h1>
-          <p class="lead">
-            Si tu es là, c’est pour progresser et construire quelque chose de réel.
-            Ici, tu peux choisir une formation, suivre un plan clair, et avancer sans bullshit.
-          </p>
-          <div style="display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;">
-            <a class="btn" href="#formations">Voir les formations</a>
-            <a class="ghost" href="#about">Qui est KCI ?</a>
-          </div>
-        </div>
+<main>
 
-        <div class="hero-card">
-          <div class="badge">⚡ Recommandé</div>
-          <h3 style="margin:14px 0 8px;">Package Global (A + B)</h3>
-          <p class="lead" style="font-size:16px;">
-            La base (discipline & énergie) + le business concret (compétence → offre → ventes). Le bundle le plus rentable.
-          </p>
-          <div style="margin-top:14px; display:flex; gap:10px;">
-            <a class="btn" href="vente-packageglobal.html">Accéder</a>
-            <a class="ghost" href="packageglobal.html">Aperçu</a>
-          </div>
-        </div>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Tu n’es pas ici par hasard.</h1>
+      <p class="lead">
+        KCI te donne une structure claire pour avancer :
+        discipline, énergie, compétences et revenus.
+        Pas de promesses vides. Juste un plan et de l’exécution.
+      </p>
+      <div style="margin-top:22px;">
+        <a class="btn" href="#formations">Voir les formations</a>
       </div>
-    </section>
-
-    <!-- VISION -->
-    <section id="vision">
-      <div class="wrap">
-        <h2>Notre vision</h2>
-        <p class="sub">
-          On ne te promet pas 1000€ demain. On t’enseigne comment devenir quelqu’un que les autres ne rattraperont pas :
-          méthode, constance, compétence.
-        </p>
-        <div class="grid">
-          <div class="card">
-            <h3>La méthode</h3>
-            <p>Apprendre en produisant. Des boucles d’amélioration qui tiennent dans le temps.</p>
-          </div>
-          <div class="card">
-            <h3>Le concret</h3>
-            <p>Des plans d’action applicables : discipline, skill, business, exécution.</p>
-          </div>
-          <div class="card">
-            <h3>La maîtrise</h3>
-            <p>On vise la compétence durable, pas le buzz. Un niveau qui te suit partout.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMATIONS -->
-    <section id="formations">
-      <div class="wrap">
-        <h2>Formations</h2>
-        <p class="sub">
-          Choisis ton format : un package complet, ou une formation à l’unité. Tout est organisé pour être simple et clair.
-        </p>
-
-        <!-- Packages -->
-        <article class="pkg reveal" id="packa">
-          <div>
-            <div class="kicker">Package A</div>
-            <h3>Développement personnel réel</h3>
-            <p class="desc">Discipline, routines, études, sport, soin de soi, hacks utiles. Le socle pour tenir.</p>
-            <div class="actions">
-              <a class="btn" href="vente-packagea.html">Accéder</a>
-              <a class="ghost" href="packagea.html">Programme</a>
-            </div>
-          </div>
-          <div class="card"><h4 style="margin:0 0 6px;">Inclus</h4><p>Routine • Sport • Soin de soi • Travail & études • Hacks de vie</p></div>
-        </article>
-
-        <article class="pkg reveal" id="packb">
-          <div>
-            <div class="kicker">Package B</div>
-            <h3>Business sur tes compétences</h3>
-            <p class="desc">Compétence → Offre → Client → 1ères ventes. Concret, faisable, même jeune.</p>
-            <div class="actions">
-              <a class="btn" href="vente-packageb.html">Accéder</a>
-              <a class="ghost" href="packageb.html">Aperçu</a>
-            </div>
-          </div>
-          <div class="card"><h4 style="margin:0 0 6px;">Tu vas faire</h4><p>Compétence → Client → Offre → Présentation → 1ères ventes</p></div>
-        </article>
-
-        <article class="pkg reveal" id="coaching">
-          <div>
-            <div class="kicker">Coaching</div>
-            <h3>Accompagnement personnalisé</h3>
-            <p class="desc">Sessions ciblées. On regarde ta situation, on pose un plan réaliste, on suit les progrès.</p>
-            <div class="actions">
-              <a class="btn" href="coaching.html">Voir</a>
-              <a class="ghost" href="coaching.html">Détails</a>
-            </div>
-          </div>
-          <div class="card"><h4 style="margin:0 0 6px;">Formats</h4><p>1:1 • Retour écrit • Audit express</p></div>
-        </article>
-
-        <article class="pkg reveal" id="global">
-          <div>
-            <div class="kicker">Package Global</div>
-            <h3>A + B à prix réduit</h3>
-            <p class="desc">Accès complet aux deux packages. Base + business. Le bundle recommandé.</p>
-            <div class="actions">
-              <a class="btn" href="vente-packageglobal.html">Accéder</a>
-              <a class="ghost" href="packageglobal.html">Ce qui est inclus</a>
-            </div>
-          </div>
-          <div class="card"><h4 style="margin:0 0 6px;">Avantage</h4><p>Moins cher que séparément • Mises à jour incluses</p></div>
-        </article>
-
-        <!-- Modules à l'unité -->
-        <div style="margin-top:42px"></div>
-        <h3 class="reveal">Formations à l'unité</h3>
-        <p class="sub">Choisis un module précis. Simple, direct, actionnable.</p>
-
-        <div class="units">
-          <a class="unit reveal" href="vente-formation-generale.html">
-            <h4>Formation générale</h4>
-            <p>Les bases du self-développement pour transformer ton quotidien progressivement.</p>
-            <div class="price">3€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-routine.html">
-            <h4>Routine</h4>
-            <p>Méthode KCI pour construire une routine stable et réaliste.</p>
-            <div class="price">5€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-sport.html">
-            <h4>Sport</h4>
-            <p>Programme d’entraînement débutant + progression simple.</p>
-            <div class="price">5€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-soin.html">
-            <h4>Soin de soi</h4>
-            <p>Sommeil, peau, cheveux, mental, image.</p>
-            <div class="price">8€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-travail-etudes.html">
-            <h4>Travail & études</h4>
-            <p>Méthodes pour cartonner au lycée, gagner du temps, réduire le stress.</p>
-            <div class="price">8€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-hacks.html">
-            <h4>Hacks de vie</h4>
-            <p>Raccourcis stratégiques, outils et systèmes.</p>
-            <div class="price">5€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-business-rapide.html">
-            <h4>Business rapide</h4>
-            <p>Lancer une source de revenu accessible sur tes compétences.</p>
-            <div class="price">10€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-business-long-terme.html">
-            <h4>Business long terme</h4>
-            <p>Apprendre une compétence et construire un revenu conséquent.</p>
-            <div class="price">10€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-bibliotheque.html">
-            <h4>Bibliothèque de ressources</h4>
-            <p>Outils, sites, PDF, idées et systèmes.</p>
-            <div class="price">5€</div>
-          </a>
-
-          <a class="unit reveal" href="vente-apprendre.html">
-            <h4>Apprendre à apprendre</h4>
-            <p>Mémorisation, répétition espacée, apprentissage efficace.</p>
-            <div class="price">8€</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA final -->
-    <section id="cta">
-      <div class="wrap" style="text-align:center;">
-        <h2>Prêt à construire ?</h2>
-        <p class="sub">Pas de promesses vides. Un plan. Du travail. Des progrès visibles.</p>
-        <a class="btn" href="#formations">Commencer</a>
-      </div>
-    </section>
-
-    <!-- RESEAUX -->
-    <section id="reseaux">
-      <div class="wrap">
-        <h2>Nos réseaux</h2>
-        <p class="sub">Remplace les liens par vos comptes réels quand vous êtes prêts.</p>
-        <div class="socials">
-          <a class="ghost" href="#">Instagram KCI</a>
-          <a class="ghost" href="#">TikTok KCI</a>
-          <a class="ghost" href="#">YouTube KCI</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="wrap">
-        <h2>Qui sommes-nous ?</h2>
-        <div class="card">
-          <p><strong>KCI Organisation</strong> est une initiative jeune, indépendante et ambitieuse. Notre objectif : offrir une structure claire, des outils pratiques et une mentalité forte pour construire une meilleure vie — sans bullshit.</p>
-          <p><strong>Équipe :</strong> Kostia (vision & contenu), Clovis (ops & exécution), <strong>Hagen</strong> (systèmes & qualité).</p>
-          <p>Notre promesse : pas de promesses faciles. Juste des méthodes, des plans d’action, et du travail qui paye.</p>
-          <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;">
-            <a class="btn" href="#formations">Voir les offres</a>
-            <a class="ghost" href="coaching.html">Coaching</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, {threshold: .12});
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-  </script>
-
-  <footer>
-    <div class="wrap foot">
-      <div class="brand">
-        <span class="pill">KCI</span>
-        <span class="tiny">© 2026. Tous droits réservés.</span>
-      </div>
-      <div class="tiny">Contact : insta @kci.org • tiktok @kci.org</div>
     </div>
-  </footer>
+
+    <div class="pkg">
+      <div>
+        <h3>🔥 Package Global</h3>
+        <p class="sub">Discipline + Business. Le meilleur choix.</p>
+        <a class="btn" href="vente-packageglobal.html">Accéder</a>
+      </div>
+      <div>
+        <p>Routine • Sport • Focus • Compétence • Clients</p>
+        <p class="price">69,98 €</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formations">
+  <div class="wrap">
+    <h2>Formations</h2>
+    <p class="sub">Choisis un pack complet ou une formation précise.</p>
+
+    <div class="pkg">
+      <div>
+        <h3>Package A — Discipline & énergie</h3>
+        <p>Construis une base stable qui tient sur la durée.</p>
+        <a class="btn" href="vente-packagea.html">Accéder</a>
+      </div>
+      <div class="price">29,99 €</div>
+    </div>
+
+    <div class="pkg">
+      <div>
+        <h3>Package B — Business & compétences</h3>
+        <p>Apprends à créer une offre et trouver tes premiers clients.</p>
+        <a class="btn" href="vente-packageb.html">Accéder</a>
+      </div>
+      <div class="price">59,99 €</div>
+    </div>
+
+    <h3 style="margin-top:48px;">Formations à l’unité</h3>
+    <div class="units">
+      <a class="unit" href="vente-formation-generale.html"><h4>Formation générale</h4><p class="price">3€</p></a>
+      <a class="unit" href="vente-routine.html"><h4>Routine</h4><p class="price">5€</p></a>
+      <a class="unit" href="vente-sport.html"><h4>Sport</h4><p class="price">5€</p></a>
+      <a class="unit" href="vente-soin.html"><h4>Soin de soi</h4><p class="price">8€</p></a>
+      <a class="unit" href="vente-travail-etudes.html"><h4>Travail & études</h4><p class="price">8€</p></a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>Qui sommes-nous ?</h2>
+    <p class="sub">
+      KCI est une structure indépendante créée pour aider ceux qui veulent
+      construire une vraie vie solide — sans bullshit.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 — KCI Organisation
+  </div>
+</footer>
+
 </body>
 </html>
