@@ -1,1 +1,172 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KCI — Acheter Package A</title>
+  <meta name="description" content="Page de vente Package A KCI : discipline, routine, sport, soin de soi, études, hacks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
+      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
+      --maxw:1100px;
+    }
+    body{
+      margin:0;
+      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
+      color:var(--text);
+      font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{ color:var(--accent-2); text-decoration:none; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+    .ghost{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid rgba(0,224,255,.45); border-radius:999px;
+      padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+    }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      color:#c7f0ff; background: rgba(90,164,255,.12);
+      border:1px solid rgba(90,164,255,.3);
+      padding:8px 12px; border-radius:999px;
+      font-size:.85rem; font-weight:700; margin-bottom:12px;
+    }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:80ch; }
+
+    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+
+    .card{
+      background:var(--card); border-radius:var(--radius);
+      border:1px solid rgba(84,168,255,.15);
+      padding:18px; box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
+    .muted{ color:var(--muted); }
+
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
+    .list li{ margin:10px 0; }
+    .list li span{ color:var(--muted); }
+
+    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
+
+    .price-row{
+      display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px; padding-top:14px;
+    }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+    .mini{ font-size:14px; color:var(--muted); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0a0a; font-weight:800; border-radius:999px;
+      padding:12px 18px; width:100%;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
+    .btn-secondary{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border:1px solid rgba(0,224,255,.35);
+      border-radius:999px; padding:12px 18px; color:var(--accent-2);
+      width:100%; margin-top:10px;
+    }
+
+    details{
+      background:#0c1015; border:1px solid rgba(84,168,255,.18);
+      border-radius:14px; padding:14px; margin:10px 0;
+    }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin:10px 0 0; color:var(--muted); }
+  </style>
+</head>
+
+<body>
+  <a href="packagea.html" class="ghost">← Retour</a>
+
+  <section class="wrap">
+    <span class="pill">🧱 Achat — Package A</span>
+    <h1>Package A — Développement personnel</h1>
+    <p class="lead">
+      Le socle KCI : discipline, stabilité, énergie. Tu construis une routine réaliste, tu renforces ton corps,
+      et tu arrêtes les cycles “2 jours bien / 5 jours off”.
+    </p>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h2>📦 Ce que tu reçois</h2>
+          <ul class="list">
+            <li><strong>Routine</strong> <span>→ système simple, stable, applicable</span></li>
+            <li><strong>Sport</strong> <span>→ cadre progressif + constance</span></li>
+            <li><strong>Soin de soi</strong> <span>→ sommeil, hygiène, image, mental</span></li>
+            <li><strong>Travail & Études</strong> <span>→ focus, méthodes, organisation</span></li>
+            <li><strong>Hacks de vie</strong> <span>→ outils, systèmes, raccourcis utiles</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p class="mini">Accès immédiat après paiement (quand Stripe sera activé).</p>
+        </div>
+
+        <div class="card">
+          <h2>❓ FAQ</h2>
+          <details>
+            <summary>Est-ce adapté si je pars de zéro ?</summary>
+            <p>Oui. Le Package A est fait pour créer des bases propres et tenir sur la durée.</p>
+          </details>
+          <details>
+            <summary>Combien de temps ça prend par jour ?</summary>
+            <p>On vise du réaliste : minimum viable, puis progression. Le but = constance.</p>
+          </details>
+          <details>
+            <summary>Comment je reçois le contenu ?</summary>
+            <p>Quand le paiement sera activé, tu recevras l’accès automatiquement après achat.</p>
+          </details>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h3>🧾 Commander</h3>
+          <p class="muted">Paiement par Stripe (bientôt). Préparé : tu n’auras qu’à remplacer le lien.</p>
+
+          <div class="price-row">
+            <div class="mini">Prix</div>
+            <div class="price">25 €</div>
+          </div>
+
+          <!-- Remplacer LIEN_STRIPE_ICI par votre lien Stripe Payment Link plus tard -->
+          <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
+          <a class="btn-secondary" href="index.html#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Si problème d’accès : page <a href="merci.html">merci</a> + support.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>✅ Pour qui ?</h3>
+          <ul class="list">
+            <li>Tu veux une base <span>stable et claire</span></li>
+            <li>Tu veux de l’énergie <span>et moins de flou</span></li>
+            <li>Tu veux tenir <span>sur le long terme</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
