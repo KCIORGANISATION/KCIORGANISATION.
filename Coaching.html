@@ -4,9 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Coaching personnalisé</title>
+  <meta name="description" content="Coaching KCI : 1:1, coaching écrit, audit express. Rapide, honnête, concret." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0b0b0c;
@@ -19,154 +21,330 @@
       --shadow: 0 8px 40px rgba(0,0,0,.35);
       --maxw: 1100px;
     }
+
     body {
       margin: 0;
       background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
+
     a { color: var(--accent-2); text-decoration: none; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+
+    /* Top back button */
     .ghost {
-      display: inline-block;
-      border: 1px solid var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(0,224,255,.45);
       border-radius: 999px;
       padding: 10px 16px;
       color: var(--accent-2);
       margin: 24px;
-      transition: background .2s ease, color .2s ease;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
     }
-    .ghost:hover { background: var(--accent-2); color: #041018; }
-
-    .wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 24px;
-    }
+    .ghost:hover { background: var(--accent-2); color: #041018; transform: translateY(-1px); }
 
     h1 {
       font-size: clamp(32px, 4vw, 48px);
-      margin-bottom: 16px;
+      margin: 0 0 12px;
       color: var(--accent);
+      line-height: 1.1;
     }
 
-    p {
+    .lead {
       font-size: 18px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin: 0 0 22px;
+      max-width: 70ch;
     }
+
+    /* Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
 
     .card {
       background: var(--card);
       border-radius: var(--radius);
       border: 1px solid rgba(84,168,255,.15);
-      padding: 20px;
-      margin-bottom: 20px;
+      padding: 18px;
+      margin-bottom: 18px;
       box-shadow: var(--shadow);
     }
 
-    .card h3 {
-      margin-top: 0;
+    .card h2, .card h3 {
+      margin: 0 0 10px;
       color: var(--accent-2);
+      line-height: 1.2;
     }
 
-    ul {
+    .muted { color: var(--muted); }
+
+    .list {
       list-style: none;
       padding: 0;
+      margin: 14px 0 0;
     }
-
-    li {
-      margin-bottom: 10px;
+    .list li {
+      margin: 10px 0;
       color: var(--text);
     }
-
-    .side {
-      border-left: 2px solid var(--accent);
-      padding-left: 22px;
-      margin-top: 32px;
+    .list li span {
+      color: var(--muted);
     }
 
-    .price-box {
-      margin-top: 48px;
-      text-align: right;
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
       border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 20px;
+      margin-top: 14px;
+      padding-top: 14px;
     }
-
     .price {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 800;
       color: var(--accent-2);
+      white-space: nowrap;
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color: #0a0a0a;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: 999px;
-      padding: 12px 20px;
+      padding: 12px 18px;
       text-decoration: none;
       margin-top: 10px;
       transition: transform .12s ease, filter .12s ease;
+      border: 0;
     }
     .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(0,224,255,.35);
+      border-radius: 999px;
+      padding: 12px 18px;
+      color: var(--accent-2);
+      margin-top: 10px;
+    }
+
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#c7f0ff;
+      background: rgba(90,164,255,.12);
+      border:1px solid rgba(90,164,255,.3);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:700;
+      margin-bottom: 10px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,.06);
+      margin: 18px 0;
+    }
+
+    .mini {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .step {
+      background: #0c1015;
+      border: 1px solid rgba(84,168,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .step strong { color: var(--text); }
+    .step p { margin: 6px 0 0; color: var(--muted); }
+
+    /* FAQ */
+    details {
+      background: #0c1015;
+      border: 1px solid rgba(84,168,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details p { margin: 10px 0 0; color: var(--muted); }
   </style>
 </head>
-<body>
 
+<body>
   <a href="index.html" class="ghost">← Retour</a>
 
   <section class="wrap">
-    <h1>Coaching KCI — Accompagnement personnalisé</h1>
-    <p>
-      Le coaching KCI, c’est un accompagnement **rapide, honnête et concret**.  
-      Pas de théorie inutile : on te pose les bonnes questions, on t’aide à poser un plan d’action,  
-      et on te suit pour que tu restes sur la trajectoire.
+    <span class="pill">⚙️ Coaching KCI — rapide, honnête, concret</span>
+    <h1>Coaching personnalisé</h1>
+    <p class="lead">
+      Le coaching KCI, c’est un accompagnement **direct et actionnable**.
+      Pas de théorie inutile : on clarifie ta situation, on pose un plan simple, et tu repars avec des étapes concrètes.
     </p>
 
-    <div class="card">
-      <h3>💬 Coaching 1:1 (en visio)</h3>
-      <p>Une session complète avec un membre de l’équipe KCI.  
-      On analyse ta situation (routine, objectifs, business, mental), et on crée ensemble un plan clair pour les 30 prochains jours.</p>
-      <ul>
-        <li>Durée : 45–60 min</li>
-        <li>Support : Google Meet / Discord</li>
-        <li>Compte rendu + plan PDF inclus</li>
-      </ul>
-      <div class="price">30 €</div>
-    </div>
+    <div class="grid">
+      <!-- LEFT: offers -->
+      <div>
+        <div class="card">
+          <h2>💬 Coaching 1:1 (visio)</h2>
+          <p class="muted">
+            Une session complète avec un membre de l’équipe KCI.
+            On analyse ta situation (routine, objectifs, business, mental) et on construit un plan clair pour les 30 prochains jours.
+          </p>
+          <ul class="list">
+            <li>Durée : <span>45–60 min</span></li>
+            <li>Support : <span>Google Meet / Discord</span></li>
+            <li>Inclus : <span>compte-rendu + plan (PDF)</span></li>
+          </ul>
 
-    <div class="card">
-      <h3>📄 Coaching écrit</h3>
-      <p>Tu remplis un mini questionnaire, on t’analyse, et tu reçois une réponse complète écrite.  
-      Idéal si tu veux un avis détaillé mais pas de call.</p>
-      <ul>
-        <li>Délai de réponse : 24–48h</li>
-        <li>Format : message Discord ou mail</li>
-        <li>Document PDF de 1–2 pages avec ton plan</li>
-      </ul>
-      <div class="price">15 €</div>
-    </div>
+          <div class="price-row">
+            <div class="mini">Paiement et réservation via Discord</div>
+            <div class="price">30 €</div>
+          </div>
 
-    <div class="card">
-      <h3>⚙️ Audit express</h3>
-      <p>Tu nous montres ton projet (business, Notion, routine, réseau, etc.)  
-      et on t’envoie une liste directe de ce qui va / ce qui bloque / ce qu’il faut changer.</p>
-      <ul>
-        <li>Format : message écrit ou vocal</li>
-        <li>Réponse courte, directe et actionable</li>
-      </ul>
-      <div class="price">10 €</div>
-    </div>
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Réserver sur Discord</a>
+        </div>
 
-    <div class="side">
-      <p><strong>Ce que tu gagnes avec le coaching :</strong><br>
-      • Un regard extérieur lucide, pas complaisant.<br>
-      • Une direction claire à suivre.<br>
-      • La motivation de continuer, parce que tu vois un vrai plan.<br>
-      • Et surtout : des résultats visibles, pas juste des mots.</p>
-    </div>
+        <div class="card">
+          <h2>📄 Coaching écrit</h2>
+          <p class="muted">
+            Tu remplis un mini questionnaire, on analyse, puis tu reçois une réponse structurée (plan + priorités + next steps).
+            Idéal si tu veux un avis détaillé mais pas de call.
+          </p>
+          <ul class="list">
+            <li>Délai : <span>24–48h</span></li>
+            <li>Format : <span>message Discord ou mail</span></li>
+            <li>Inclus : <span>document PDF (1–2 pages)</span></li>
+          </ul>
 
-    <d
+          <div class="price-row">
+            <div class="mini">Paiement et envoi du questionnaire via Discord</div>
+            <div class="price">15 €</div>
+          </div>
+
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander le coaching écrit</a>
+        </div>
+
+        <div class="card">
+          <h2>⚡ Audit express</h2>
+          <p class="muted">
+            Tu nous montres ton projet (business, Notion, routine, réseau, etc.) et on te répond avec :
+            <strong>ce qui va / ce qui bloque / ce qu’il faut changer</strong>.
+          </p>
+          <ul class="list">
+            <li>Format : <span>message écrit ou vocal</span></li>
+            <li>Style : <span>court, direct, sans blabla</span></li>
+            <li>Objectif : <span>débloquer vite</span></li>
+          </ul>
+
+          <div class="price-row">
+            <div class="mini">Envoi du projet + paiement via Discord</div>
+            <div class="price">10 €</div>
+          </div>
+
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander un audit</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: process + guarantees -->
+      <div>
+        <div class="card">
+          <h3>✅ Ce que tu gagnes</h3>
+          <ul class="list">
+            <li>Un regard extérieur <span>lucide, pas complaisant</span></li>
+            <li>Une direction claire <span>et des priorités</span></li>
+            <li>Un plan simple <span>exécutable dès aujourd’hui</span></li>
+            <li>Moins de flou <span>→ plus d’action</span></li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3>🧭 Comment ça se passe</h3>
+          <div class="steps">
+            <div class="step">
+              <strong>1) Tu nous contactes sur Discord</strong>
+              <p>Tu dis ce que tu veux (1:1 / écrit / audit) + ton objectif principal.</p>
+            </div>
+            <div class="step">
+              <strong>2) On récupère les infos</strong>
+              <p>Mini questionnaire rapide (ou ton projet / Notion / contexte).</p>
+            </div>
+            <div class="step">
+              <strong>3) Tu repars avec un plan</strong>
+              <p>Actions concrètes + ordre de priorité (et compte-rendu si besoin).</p>
+            </div>
+          </div>
+
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener" style="width:100%; margin-top:14px;">Rejoindre le Discord (réserver)</a>
+          <a class="btn-secondary" href="index.html#formations" style="width:100%;">Retour aux formations</a>
+        </div>
+
+        <div class="card">
+          <h3>❓ FAQ rapide</h3>
+
+          <details>
+            <summary>Est-ce que c’est adapté si je suis débutant ?</summary>
+            <p>Oui. Justement : on clarifie tes priorités et on te donne un plan simple, sans te noyer.</p>
+          </details>
+
+          <details>
+            <summary>Et si je ne sais pas quoi choisir entre 1:1 / écrit / audit ?</summary>
+            <p>Tu nous expliques ton objectif sur Discord et on te recommande le format le plus adapté.</p>
+          </details>
+
+          <details>
+            <summary>Vous faites “à ma place” ?</summary>
+            <p>Non. On t’aide à structurer et à exécuter. Le but, c’est que tu deviennes autonome.</p>
+          </details>
+
+          <details>
+            <summary>Comment je paye ?</summary>
+            <p>Pour l’instant, tout passe par le Discord. Les solutions de paiement seront activées plus tard.</p>
+          </details>
+
+          <p class="mini" style="margin-top:12px;">
+            Disclaimer : le coaching n’est pas un suivi médical/psychologique. On parle d’organisation, discipline, business, exécution.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
 
