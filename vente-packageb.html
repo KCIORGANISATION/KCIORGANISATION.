@@ -14,6 +14,7 @@
       --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
       --maxw:1100px;
     }
+    *{ box-sizing:border-box; } /* ✅ empêche les dépassements */
     body{
       margin:0;
       background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
@@ -25,6 +26,7 @@
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+
     .ghost{
       display:inline-flex; align-items:center; gap:10px;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
@@ -32,6 +34,7 @@
       transition: background .2s ease, color .2s ease, transform .12s ease;
     }
     .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
+
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
@@ -39,8 +42,9 @@
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
+
     h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
-    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:80ch; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:88ch; }
 
     .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
     @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
@@ -50,6 +54,7 @@
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden; /* ✅ sécurité anti-débordement */
     }
     .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
     .muted{ color:var(--muted); }
@@ -61,19 +66,26 @@
     .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
+    .price-wrap{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
     .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+    .strike{ color:#6f7882; text-decoration: line-through; font-weight:700; }
+
     .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color:#0a0a0a; font-weight:800; border-radius:999px;
-      padding:12px 18px; width:100%;
+      padding:12px 18px;
+      width:100%;
+      max-width:100%;
       transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
     }
     .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
 
@@ -81,7 +93,10 @@
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.35);
       border-radius:999px; padding:12px 18px; color:var(--accent-2);
-      width:100%; margin-top:10px;
+      width:100%;
+      max-width:100%;
+      margin-top:10px;
+      white-space:nowrap;
     }
 
     details{
@@ -101,8 +116,9 @@
     <span class="pill">⚡ Achat — Package B</span>
     <h1>Package B — Business & Compétences</h1>
     <p class="lead">
-      Tu transformes une compétence en valeur et en revenus : compétence → offre → client → vente → amélioration.
-      Pas besoin d’audience. Pas besoin d’être expert. Juste une méthode et de l’exécution.
+      Le but n’est pas de “rêver business”. Le but c’est de construire une compétence utile,
+      de la transformer en <strong>offre simple</strong>, puis d’aller chercher tes <strong>premiers clients</strong>.
+      Sans audience, sans magie : une méthode + de l’exécution.
     </p>
 
     <div class="grid">
@@ -110,11 +126,11 @@
         <div class="card">
           <h2>📦 Ce que tu reçois</h2>
           <ul class="list">
-            <li><strong>Business rapide</strong> <span>→ offre simple, action immédiate</span></li>
-            <li><strong>Monétisation</strong> <span>→ transformer tes skills en valeur</span></li>
-            <li><strong>Long terme</strong> <span>→ construire une compétence solide</span></li>
-            <li><strong>Ressources</strong> <span>→ modèles, outils, templates</span></li>
-            <li><strong>Apprendre vite</strong> <span>→ focus, deep work, progression</span></li>
+            <li><strong>Choisir une compétence vendable</strong> <span>→ selon ton niveau, ton temps, et la demande</span></li>
+            <li><strong>Construire une offre simple</strong> <span>→ claire, vendable, sans “truc compliqué”</span></li>
+            <li><strong>Trouver des clients</strong> <span>→ canaux concrets + messages + approche</span></li>
+            <li><strong>Se vendre proprement</strong> <span>→ portfolio, preuve, crédibilité (même débutant)</span></li>
+            <li><strong>Améliorer & monter en prix</strong> <span>→ retours, process, montée de valeur</span></li>
           </ul>
           <div class="divider"></div>
           <p class="mini">Accès immédiat après paiement (quand Stripe sera activé).</p>
@@ -123,12 +139,16 @@
         <div class="card">
           <h2>❓ FAQ</h2>
           <details>
-            <summary>Faut-il une audience ?</summary>
-            <p>Non. On commence avec des canaux simples : entourage, Discord, plateformes accessibles.</p>
+            <summary>Je n’ai aucune audience. C’est mort ?</summary>
+            <p>Non. On part sur des approches directes (entourage, plateformes, messages ciblés). L’audience vient après.</p>
           </details>
           <details>
-            <summary>Et si je ne sais pas quelle compétence choisir ?</summary>
-            <p>Tu suis une méthode de sélection : niveau, temps disponible, demande, facilité de vente.</p>
+            <summary>Et si je suis “débutant” dans ma compétence ?</summary>
+            <p>Tu peux vendre une version simple (niveau débutant) tant que c’est clair et que tu tiens tes promesses.</p>
+          </details>
+          <details>
+            <summary>Combien de temps avant une première vente ?</summary>
+            <p>Ça dépend de ton exécution. Le système est fait pour te mettre en situation rapidement, pas dans la théorie.</p>
           </details>
           <details>
             <summary>Comment je reçois le contenu ?</summary>
@@ -140,15 +160,19 @@
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
-          <p class="muted">Paiement par Stripe (bientôt). Préparé : tu n’auras qu’à remplacer le lien.</p>
+          <p class="muted">Paiement par Stripe (bientôt). Tout est prêt : tu remplaceras juste le lien.</p>
 
           <div class="price-row">
-            <div class="mini">Prix</div>
-            <div class="price">30 €</div>
+            <div class="mini">Prix promo</div>
+            <div class="price-wrap">
+              <span class="strike">79,99 €</span>
+              <span class="price">59,99 €</span>
+            </div>
           </div>
 
+          <!-- Remplacer LIEN_STRIPE_ICI par votre lien Stripe Payment Link plus tard -->
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
-          <a class="btn-secondary" href="index.html#formations">Retour aux offres</a>
+          <a class="btn-secondary" href="./index.html#formations">Retour aux offres</a>
 
           <p class="mini" style="margin-top:12px;">
             Si problème d’accès : page <a href="merci.html">merci</a> + support.
@@ -158,9 +182,20 @@
         <div class="card">
           <h3>✅ Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux passer de “théorie” à <span>action</span></li>
-            <li>Tu veux 1ère offre + <span>1er client</span></li>
-            <li>Tu veux apprendre une skill <span>qui paye</span></li>
+            <li>Tu veux arrêter de “consommer” et commencer à <span>produire</span></li>
+            <li>Tu veux une méthode pour obtenir <span>tes premiers clients</span></li>
+            <li>Tu veux apprendre une compétence qui a une <span>valeur réelle</span></li>
+            <li>Tu veux un plan simple : <span>compétence → offre → vente</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🎯 Résultat attendu</h3>
+          <ul class="list">
+            <li>Une compétence choisie <span>intelligemment</span></li>
+            <li>Une offre claire <span>qui se vend</span></li>
+            <li>Des conversations clients <span>réelles</span></li>
+            <li>Un système pour répéter <span>et monter en prix</span></li>
           </ul>
         </div>
       </div>
