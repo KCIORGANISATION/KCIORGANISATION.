@@ -4,9 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Package A : Développement personnel</title>
+  <meta name="description" content="Package A KCI : discipline, routine, sport, soin de soi, travail & études, hacks. Le socle pour tenir sur le long terme." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0b0b0c;
@@ -19,130 +21,313 @@
       --shadow: 0 8px 40px rgba(0,0,0,.35);
       --maxw: 1100px;
     }
+
     body {
       margin: 0;
       background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
+
     a { color: var(--accent-2); text-decoration: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+
+    /* Top back button */
     .ghost {
-      display: inline-block;
-      border: 1px solid var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(0,224,255,.45);
       border-radius: 999px;
       padding: 10px 16px;
       color: var(--accent-2);
       margin: 24px;
-      transition: background .2s ease, color .2s ease;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
     }
-    .ghost:hover { background: var(--accent-2); color: #041018; }
+    .ghost:hover { background: var(--accent-2); color: #041018; transform: translateY(-1px); }
 
-    .wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 24px;
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#c7f0ff;
+      background: rgba(90,164,255,.12);
+      border:1px solid rgba(90,164,255,.3);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:700;
+      margin-bottom: 12px;
     }
 
     h1 {
       font-size: clamp(32px, 4vw, 48px);
-      margin-bottom: 16px;
+      margin: 0 0 10px;
       color: var(--accent);
+      line-height: 1.1;
     }
 
-    p {
+    .lead {
       font-size: 18px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin: 0 0 22px;
+      max-width: 75ch;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 24px 0;
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 16px;
     }
+    @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
 
-    li {
-      margin-bottom: 10px;
+    .card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 14px 18px;
       border: 1px solid rgba(84,168,255,.15);
-      color: var(--text);
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
     }
 
-    li strong {
+    .card h2, .card h3 {
+      margin: 0 0 10px;
       color: var(--accent-2);
+      line-height: 1.2;
     }
 
-    .side {
-      border-left: 2px solid var(--accent);
-      padding-left: 22px;
-      margin-top: 32px;
-    }
+    .muted { color: var(--muted); }
 
-    .price-box {
-      margin-top: 48px;
-      text-align: right;
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 20px;
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
     }
+    .list li { margin: 10px 0; color: var(--text); }
+    .list li span { color: var(--muted); }
 
-    .price {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--accent-2);
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,.06);
+      margin: 16px 0;
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color: #0a0a0a;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: 999px;
-      padding: 12px 20px;
+      padding: 12px 18px;
       text-decoration: none;
       margin-top: 10px;
       transition: transform .12s ease, filter .12s ease;
+      border: 0;
+      width: 100%;
     }
     .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(0,224,255,.35);
+      border-radius: 999px;
+      padding: 12px 18px;
+      color: var(--accent-2);
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 14px;
+      padding-top: 14px;
+    }
+    .price {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent-2);
+      white-space: nowrap;
+    }
+    .mini { font-size: 14px; color: var(--muted); }
+
+    /* Section blocks (left column) */
+    .module {
+      background: #0c1015;
+      border: 1px solid rgba(84,168,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .module strong { color: var(--text); }
+    .module p { margin: 6px 0 0; color: var(--muted); }
+
+    /* FAQ */
+    details {
+      background: #0c1015;
+      border: 1px solid rgba(84,168,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details p { margin: 10px 0 0; color: var(--muted); }
   </style>
 </head>
-<body>
 
+<body>
   <a href="index.html" class="ghost">← Retour</a>
 
   <section class="wrap">
+    <span class="pill">🧱 Le socle KCI — discipline & stabilité</span>
     <h1>Package A — Développement personnel</h1>
-    <p>
-      Ce package complet est pensé pour transformer ta discipline et ton équilibre quotidien.  
-      Il rassemble toutes les bases du développement personnel **adaptées à notre génération**,  
-      pour t’aider à construire une vie stable, confiante et efficace.
+    <p class="lead">
+      Le Package A est pensé pour te donner une base solide : discipline, stabilité et constance.
+      Tu construis une routine réaliste, tu renforces ton corps, tu optimises ton énergie et ton organisation.
+      Pas de motivation magique : une méthode simple qui tient sur le long terme.
     </p>
 
-    <ul>
-      <li><strong>Routine :</strong> Crée une routine solide et réaliste adaptée à ton rythme.</li>
-      <li><strong>Sport :</strong> Programme d’entraînement simple et progressif pour garder la constance.</li>
-      <li><strong>Soin de soi :</strong> Sommeil, peau, cheveux, hygiène, mental — apprends à te gérer intelligemment.</li>
-      <li><strong>Travail & Études :</strong> Optimise ton organisation, ton focus, et ton apprentissage.</li>
-      <li><strong>Hacks de vie :</strong> Méthodes, outils et raccourcis utiles pour accélérer tes progrès.</li>
-    </ul>
+    <div class="grid">
+      <!-- LEFT -->
+      <div>
+        <div class="card">
+          <h2>📦 Ce que tu reçois</h2>
+          <p class="muted">Un pack complet pour structurer ton quotidien et progresser sans t’éparpiller.</p>
 
-    <div class="side">
-      <p><strong>Ce que tu vas en tirer :</strong><br>
-      • Plus de stabilité et de discipline au quotidien.<br>
-      • Des bases solides pour tenir sur le long terme.<br>
-      • Un mental plus calme, plus structuré.<br>
-      • Les outils concrets pour avancer sans t’éparpiller.</p>
-    </div>
+          <div class="module">
+            <strong>Routine</strong>
+            <p>Construire un système simple, stable, adapté à ton rythme. Objectif : tenir des semaines, pas 2 jours.</p>
+          </div>
 
-    <div class="price-box">
-      <div class="price">25 €</div>
-      <p>Accès complet à toutes les formations du Package A.<br>Plus d’infos disponibles sur le Discord KCI.</p>
-      <a href="#" class="btn">Acheter (bientôt disponible)</a>
+          <div class="module">
+            <strong>Sport</strong>
+            <p>Un cadre d’entraînement progressif + constance. Objectif : discipline, énergie, mental plus solide.</p>
+          </div>
+
+          <div class="module">
+            <strong>Soin de soi</strong>
+            <p>Sommeil, hygiène, image, mental. Objectif : corps et cerveau alignés → meilleure performance.</p>
+          </div>
+
+          <div class="module">
+            <strong>Travail & Études</strong>
+            <p>Organisation, focus, méthodes d’apprentissage. Objectif : gagner du temps et réduire le stress.</p>
+          </div>
+
+          <div class="module">
+            <strong>Hacks de vie</strong>
+            <p>Outils, systèmes, raccourcis utiles. Objectif : aller plus vite sans te cramer.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🎯 Résultats attendus</h2>
+          <ul class="list">
+            <li>Plus de constance <span>dans ta routine et tes objectifs</span></li>
+            <li>Plus d’énergie <span>et moins de journées “brouillard”</span></li>
+            <li>Moins de procrastination <span>car tu sais quoi faire et quand</span></li>
+            <li>Un mental plus stable <span>parce que ton corps suit</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p class="mini">
+            Le but n’est pas d’être parfait. Le but, c’est de tenir.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>❓ FAQ rapide</h2>
+
+          <details>
+            <summary>Est-ce adapté si je pars de zéro ?</summary>
+            <p>Oui. Le Package A est fait pour construire les bases : routine, énergie, sport, organisation.</p>
+          </details>
+
+          <details>
+            <summary>Combien de temps avant de voir un changement ?</summary>
+            <p>Si tu appliques, tu vois souvent des effets en quelques jours (énergie, clarté). Les vrais résultats se construisent sur plusieurs semaines.</p>
+          </details>
+
+          <details>
+            <summary>Ça prend combien de temps par jour ?</summary>
+            <p>On vise du réaliste. Tu avances avec un minimum viable, puis tu augmentes progressivement.</p>
+          </details>
+
+          <details>
+            <summary>Comment on accède / on paie ?</summary>
+            <p>Pour l’instant, tout passe par le Discord. Les paiements seront activés plus tard.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="card">
+          <h3>✅ Pour qui ?</h3>
+          <ul class="list">
+            <li>Tu veux une base <span>stable et claire</span></li>
+            <li>Tu te disperses <span>et tu veux te structurer</span></li>
+            <li>Tu veux progresser <span>sans motivation artificielle</span></li>
+            <li>Tu veux arrêter <span>les cycles “2 jours ok / 5 jours off”</span></li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3>🚫 Pas pour toi si…</h3>
+          <ul class="list">
+            <li>Tu veux une solution magique <span>sans effort</span></li>
+            <li>Tu refuses la constance <span>et la répétition</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🧭 Comment ça se passe</h3>
+          <p class="muted">Simple : tu rejoins le Discord, tu demandes l’accès, et on te guide.</p>
+          <ul class="list">
+            <li>1) Rejoins le Discord <span>et ouvre un ticket / message</span></li>
+            <li>2) Choisis <span>Package A</span></li>
+            <li>3) On te donne l’accès <span>et la marche à suivre</span></li>
+          </ul>
+
+          <div class="price-row">
+            <div class="mini">Prix indicatif</div>
+            <div class="price">25 €</div>
+          </div>
+
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Accéder via Discord</a>
+          <a class="btn-secondary" href="index.html#formations">Retour aux offres</a>
+        </div>
+
+        <div class="card">
+          <h3>💡 Conseil KCI</h3>
+          <p class="muted">
+            Ne change pas tout d’un coup. Prends 1–2 habitudes, stabilise-les, puis augmente.
+            La constance bat l’intensité.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
-
 </body>
 </html>
+
 
