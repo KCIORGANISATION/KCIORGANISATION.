@@ -4,9 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Package B : Business & Compétences</title>
+  <meta name="description" content="Package B KCI : monétiser tes compétences, lancer une offre simple, poser tes premières ventes. Business concret, même jeune." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0b0b0c;
@@ -19,129 +21,332 @@
       --shadow: 0 8px 40px rgba(0,0,0,.35);
       --maxw: 1100px;
     }
+
     body {
       margin: 0;
       background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
+
     a { color: var(--accent-2); text-decoration: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+
     .ghost {
-      display: inline-block;
-      border: 1px solid var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(0,224,255,.45);
       border-radius: 999px;
       padding: 10px 16px;
       color: var(--accent-2);
       margin: 24px;
-      transition: background .2s ease, color .2s ease;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
     }
-    .ghost:hover { background: var(--accent-2); color: #041018; }
+    .ghost:hover { background: var(--accent-2); color: #041018; transform: translateY(-1px); }
 
-    .wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 24px;
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#c7f0ff;
+      background: rgba(90,164,255,.12);
+      border:1px solid rgba(90,164,255,.3);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:700;
+      margin-bottom: 12px;
     }
 
     h1 {
       font-size: clamp(32px, 4vw, 48px);
-      margin-bottom: 16px;
+      margin: 0 0 10px;
       color: var(--accent);
+      line-height: 1.1;
     }
 
-    p {
+    .lead {
       font-size: 18px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin: 0 0 22px;
+      max-width: 78ch;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 24px 0;
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 16px;
     }
+    @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
 
-    li {
-      margin-bottom: 10px;
+    .card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 14px 18px;
       border: 1px solid rgba(84,168,255,.15);
-      color: var(--text);
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
     }
 
-    li strong {
+    .card h2, .card h3 {
+      margin: 0 0 10px;
       color: var(--accent-2);
+      line-height: 1.2;
     }
 
-    .side {
-      border-left: 2px solid var(--accent);
-      padding-left: 22px;
-      margin-top: 32px;
+    .muted { color: var(--muted); }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,.06);
+      margin: 16px 0;
     }
 
-    .price-box {
-      margin-top: 48px;
-      text-align: right;
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 20px;
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
     }
-
-    .price {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--accent-2);
-    }
+    .list li { margin: 10px 0; color: var(--text); }
+    .list li span { color: var(--muted); }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color: #0a0a0a;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: 999px;
-      padding: 12px 20px;
+      padding: 12px 18px;
       text-decoration: none;
       margin-top: 10px;
       transition: transform .12s ease, filter .12s ease;
+      border: 0;
+      width: 100%;
     }
     .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(0,224,255,.35);
+      border-radius: 999px;
+      padding: 12px 18px;
+      color: var(--accent-2);
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 14px;
+      padding-top: 14px;
+    }
+    .price {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent-2);
+      white-space: nowrap;
+    }
+    .mini { font-size: 14px; color: var(--muted); }
+
+    .module {
+      background: #0c1015;
+      border: 1px solid rgba(84,168,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .module strong { color: var(--text); }
+    .module p { margin: 6px 0 0; color: var(--muted); }
+
+    /* FAQ */
+    details {
+      background: #0c1015;
+      border: 1px solid rgba(84,168,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details p { margin: 10px 0 0; color: var(--muted); }
+
+    /* Mini flow */
+    .flow {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .flow .step {
+      background: #0c1015;
+      border: 1px solid rgba(0,224,255,.18);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .flow .step b { color: var(--text); }
+    .flow .step p { margin: 6px 0 0; color: var(--muted); }
   </style>
 </head>
-<body>
 
+<body>
   <a href="index.html" class="ghost">← Retour</a>
 
   <section class="wrap">
+    <span class="pill">⚡ Business concret — pas du rêve</span>
     <h1>Package B — Business & Compétences</h1>
-    <p>
-      Ce package t’enseigne comment créer ta première source de revenus selon ton âge, ton niveau et tes forces.  
-      Tu y découvriras des méthodes **simples et concrètes** pour monétiser tes compétences, apprendre vite, et poser les bases d’un business stable et durable.
+    <p class="lead">
+      Le Package B t’apprend à transformer une compétence en valeur et en revenus.
+      Tu pars du réel : ce que tu sais faire (ou ce que tu peux apprendre), tu construis une offre simple,
+      puis tu poses tes premières ventes. Pas besoin d’être “expert” ni d’avoir une audience.
     </p>
 
-    <ul>
-      <li><strong>Démarrer un business rapide :</strong> Lancer une offre simple et accessible, même sans expérience ni budget.</li>
-      <li><strong>Créer sur tes compétences :</strong> Identifier ce que tu sais faire et le transformer en valeur utile.</li>
-      <li><strong>Apprendre à long terme :</strong> Construire des compétences solides (trading, montage, communication, etc.).</li>
-      <li><strong>Bibliothèque d’outils :</strong> Ressources, modèles et sites pour automatiser et structurer ton travail.</li>
-      <li><strong>Apprendre à apprendre :</strong> Techniques de mémorisation, focus, deep work et productivité.</li>
-    </ul>
+    <div class="grid">
+      <!-- LEFT -->
+      <div>
+        <div class="card">
+          <h2>📦 Ce que tu apprends</h2>
+          <p class="muted">Une méthode simple : compétence → offre → client → vente → amélioration.</p>
 
-    <div class="side">
-      <p><strong>Résultats concrets attendus :</strong><br>
-      • Tes premiers revenus, même petits, mais réels.<br>
-      • Une compréhension claire du business en ligne.<br>
-      • La capacité de bâtir sur tes compétences plutôt que sur des tendances.<br>
-      • Une mentalité de créateur, pas de consommateur.</p>
-    </div>
+          <div class="module">
+            <strong>Démarrer un business rapide</strong>
+            <p>Lancer une offre simple et accessible, même sans budget. Objectif : passer à l’action vite.</p>
+          </div>
 
-    <div class="price-box">
-      <div class="price">30 €</div>
-      <p>Un pack complet pour poser les bases de ton business personnel.<br>Accès et infos supplémentaires sur le Discord KCI.</p>
-      <a href="#" class="btn">Acheter (bientôt disponible)</a>
+          <div class="module">
+            <strong>Monétiser tes compétences</strong>
+            <p>Identifier ce que tu sais faire (ou apprendre) et le transformer en valeur utile pour quelqu’un.</p>
+          </div>
+
+          <div class="module">
+            <strong>Compétences long terme</strong>
+            <p>Construire une compétence solide (montage, copywriting, design, dev, etc.) pour un revenu durable.</p>
+          </div>
+
+          <div class="module">
+            <strong>Bibliothèque d’outils</strong>
+            <p>Ressources, modèles, sites, templates : pour gagner du temps et structurer ton travail.</p>
+          </div>
+
+          <div class="module">
+            <strong>Apprendre à apprendre</strong>
+            <p>Focus, deep work, répétition, progression : accélérer l’apprentissage sans te disperser.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🧠 Le vrai objectif</h2>
+          <ul class="list">
+            <li>Arrêter de consommer <span>et commencer à produire</span></li>
+            <li>Comprendre le business <span>sans théorie inutile</span></li>
+            <li>Créer une offre claire <span>qui répond à un besoin</span></li>
+            <li>Obtenir des retours <span>et améliorer en boucle</span></li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3>Le flow KCI (simple)</h3>
+          <div class="flow">
+            <div class="step"><b>1) Choisis une compétence</b><p>Soit tu l’as déjà, soit tu la construis.</p></div>
+            <div class="step"><b>2) Transforme-la en offre</b><p>Une promesse claire, un résultat concret.</p></div>
+            <div class="step"><b>3) Trouve tes premiers clients</b><p>Entourage, Discord, plateformes simples.</p></div>
+            <div class="step"><b>4) Fais tes 1ères ventes</b><p>Puis tu ajustes en fonction du feedback.</p></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>❓ FAQ rapide</h2>
+
+          <details>
+            <summary>Faut-il une audience pour commencer ?</summary>
+            <p>Non. On commence avec des canaux simples : entourage, Discord, et plateformes accessibles.</p>
+          </details>
+
+          <details>
+            <summary>Et si je ne sais pas quelle compétence choisir ?</summary>
+            <p>On te donne une méthode pour choisir selon ton niveau, ton temps et tes forces.</p>
+          </details>
+
+          <details>
+            <summary>Est-ce que c’est du “get rich quick” ?</summary>
+            <p>Non. On fait du concret, mais la base reste la compétence + la constance + l’amélioration.</p>
+          </details>
+
+          <details>
+            <summary>Comment on accède / on paie ?</summary>
+            <p>Pour l’instant, tout passe par le Discord. Les paiements seront activés plus tard.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="card">
+          <h3>✅ Pour qui ?</h3>
+          <ul class="list">
+            <li>Tu veux une source de revenu <span>même petite mais réelle</span></li>
+            <li>Tu veux apprendre une compétence <span>qui vaut de l’argent</span></li>
+            <li>Tu veux une méthode <span>simple et exécutable</span></li>
+            <li>Tu veux arrêter <span>de “réfléchir sans agir”</span></li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3>🚫 Pas pour toi si…</h3>
+          <ul class="list">
+            <li>Tu veux un miracle <span>sans travail</span></li>
+            <li>Tu refuses le feedback <span>et l’amélioration</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🧭 Comment ça se passe</h3>
+          <p class="muted">Tu rejoins le Discord, tu demandes l’accès, et on te guide pour choisir la bonne voie.</p>
+          <ul class="list">
+            <li>1) Rejoins le Discord <span>et ouvre un ticket / message</span></li>
+            <li>2) Choisis <span>Package B</span></li>
+            <li>3) On te donne l’accès <span>et la marche à suivre</span></li>
+          </ul>
+
+          <div class="price-row">
+            <div class="mini">Prix indicatif</div>
+            <div class="price">30 €</div>
+          </div>
+
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Accéder via Discord</a>
+          <a class="btn-secondary" href="index.html#formations">Retour aux offres</a>
+        </div>
+
+        <div class="card">
+          <h3>💡 Conseil KCI</h3>
+          <p class="muted">
+            N’essaie pas de tout faire. Choisis une route, fais 1ère offre, 1er client, 1er feedback.
+            C’est comme ça que tu sors du “théorique”.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
-
 </body>
 </html>
+
 
