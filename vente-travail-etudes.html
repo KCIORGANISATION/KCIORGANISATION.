@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KCI — Formation Travail & Études</title>
+  <meta name="description" content="Formation Travail & Études KCI : focus, organisation, méthodes pour mieux apprendre et performer sans stress." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
+      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
+      --maxw:1100px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
+      color:var(--text);
+      font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+    }
+    a{ color:var(--accent-2); text-decoration:none; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+
+    .ghost{
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid rgba(0,224,255,.45); border-radius:999px;
+      padding:10px 16px; color:var(--accent-2); margin:24px;
+    }
+
+    .pill{
+      display:inline-flex; align-items:center;
+      color:#c7f0ff; background: rgba(90,164,255,.12);
+      border:1px solid rgba(90,164,255,.3);
+      padding:8px 12px; border-radius:999px;
+      font-size:.85rem; font-weight:700; margin-bottom:12px;
+    }
+
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
+    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+
+    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
+    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+
+    .card{
+      background:var(--card); border-radius:var(--radius);
+      border:1px solid rgba(84,168,255,.15);
+      padding:18px; box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+
+    .list{ list-style:none; padding:0; margin:12px 0; }
+    .list li{ margin:10px 0; }
+    .list li span{ color:var(--muted); }
+
+    .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
+
+    .price-row{
+      display:flex; justify-content:space-between; align-items:flex-end;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px; padding-top:14px;
+    }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+
+    .btn{
+      display:inline-flex; justify-content:center; align-items:center;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0a0a; font-weight:800;
+      border-radius:999px; padding:12px 18px; width:100%;
+    }
+    .btn-secondary{
+      display:inline-flex; justify-content:center; align-items:center;
+      border:1px solid rgba(0,224,255,.35);
+      border-radius:999px; padding:12px 18px; width:100%;
+      margin-top:10px; color:var(--accent-2);
+    }
+
+    details{
+      background:#0c1015; border:1px solid rgba(84,168,255,.18);
+      border-radius:14px; padding:14px; margin:10px 0;
+    }
+    summary{ cursor:pointer; font-weight:700; }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ color:var(--muted); margin-top:10px; }
+  </style>
+</head>
+
+<body>
+  <a href="https://kciorganisation.github.io/KCIORGANISATION./#formations" class="ghost">← Retour</a>
+
+  <section class="wrap">
+    <span class="pill">📚 Formation à l’unité</span>
+    <h1>Travail & Études — Focus et efficacité</h1>
+    <p class="lead">
+      Travailler plus n’est pas la solution. Travailler mieux l’est.
+      Cette formation t’apprend à <strong>t’organiser, te concentrer et apprendre efficacement</strong>,
+      sans stress inutile ni surcharge mentale.
+    </p>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h2>✅ Ce que tu vas apprendre</h2>
+          <ul class="list">
+            <li><strong>Organiser ton travail</strong> <span>→ priorités claires, moins de dispersion</span></li>
+            <li><strong>Te concentrer plus longtemps</strong> <span>→ réduire distractions et fatigue</span></li>
+            <li><strong>Mieux apprendre</strong> <span>→ mémorisation, compréhension, révisions</span></li>
+            <li><strong>Réduire le stress</strong> <span>→ structure + anticipation</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p class="muted">Applicable au lycée, aux études supérieures ou au travail personnel.</p>
+        </div>
+
+        <div class="card">
+          <h2>❓ FAQ</h2>
+          <details>
+            <summary>Je procrastine beaucoup, ça aide vraiment ?</summary>
+            <p>Oui. Le but est de simplifier et d’enlever les frictions qui bloquent l’action.</p>
+          </details>
+          <details>
+            <summary>Ça marche si je n’aime pas l’école ?</summary>
+            <p>Oui. On travaille sur l’efficacité, pas sur l’amour des cours.</p>
+          </details>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h3>🧾 Commander</h3>
+          <div class="price-row">
+            <span class="price">8 €</span>
+          </div>
+          <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
+          <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+        </div>
+
+        <div class="card">
+          <h3>🎯 Pour qui ?</h3>
+          <ul class="list">
+            <li>Tu veux arrêter de perdre du temps</li>
+            <li>Tu veux mieux apprendre sans t’épuiser</li>
+            <li>Tu veux des méthodes concrètes et simples</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
 
