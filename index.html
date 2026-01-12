@@ -83,7 +83,6 @@
     .card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); display:flex; flex-direction:column; gap:12px; }
     .card h3 { margin: 6px 0; font-size: 20px; }
     .card p { color: var(--muted); margin: 0; }
-    .card .cta { margin-top: auto; display:flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 
     /* Package blocks */
     .pkg {
@@ -97,13 +96,27 @@
     .pkg .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
     @media (max-width: 900px){ .pkg { grid-template-columns: 1fr; } }
 
-    /* Units grid */
-    .units { display:grid; grid-template-columns: repeat(5, 1fr); gap:16px; }
-    @media (max-width: 1200px){ .units { grid-template-columns: repeat(3, 1fr);} }
-    @media (max-width: 800px){ .units { grid-template-columns: 1fr; } }
-    .unit { background:#0c0f14; border:1px solid rgba(84,168,255,.25); border-radius:16px; padding:16px; box-shadow: var(--shadow); display:flex; flex-direction:column; gap:10px; }
+    /* Units grid (✅ FIX: aligné + responsive) */
+    .units{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:16px;
+      align-items: stretch;
+    }
+    .unit{
+      background:#0c0f14;
+      border:1px solid rgba(84,168,255,.25);
+      border-radius:16px;
+      padding:16px;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 165px; /* ✅ homogénéise la hauteur */
+    }
     .unit h4 { margin:0 0 6px; }
-    .price { color: var(--accent-2); font-weight:800; }
+    .unit p { color: var(--muted); margin: 0; }
+    .price { margin-top:auto; color: var(--accent-2); font-weight:800; }
 
     /* Socials */
     .socials { display:flex; gap:10px; flex-wrap: wrap; }
@@ -275,7 +288,6 @@
             <h4>Sport</h4>
             <p>Programme simple + progression pour tenir sur le long terme.</p>
             <div class="price">14,99 €</div>
-              €</div>
           </a>
 
           <a class="unit reveal" href="vente-soin-de-soi.html">
