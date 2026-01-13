@@ -1,209 +1,345 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Coaching personnalisé</title>
-  <meta name="description" content="Coaching KCI : 1:1, coaching écrit, audit express. Rapide, honnête, concret." />
+  <meta name="description" content="Coaching KCI : 1:1, coaching écrit, et KCI Masterclass (accompagnement complet)." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #0b0b0c;
-      --card: #101214;
-      --text: #e7e9ea;
-      --muted: #9aa0a6;
-      --accent: #54a8ff;
-      --accent-2: #00e0ff;
-      --radius: 16px;
-      --shadow: 0 8px 40px rgba(0,0,0,.35);
-      --maxw: 1100px;
+    :root{
+      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
+      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
+      --maxw:1100px;
+
+      /* Masterclass (gold) */
+      --gold:#f6d06f;
+      --gold-2:#ffb86b;
+      --gold-3:#ffd7a1;
+      --gold-dark:#1a1206;
     }
 
-    body {
-      margin: 0;
+    *{ box-sizing:border-box; } /* ✅ anti overflow global */
+    body{
+      margin:0;
       background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.6;
+      color:var(--text);
+      font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+    a{ color:var(--accent-2); text-decoration:none; }
 
-    a { color: var(--accent-2); text-decoration: none; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
 
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
-
-    /* Top back button */
-    .ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(0,224,255,.45);
-      border-radius: 999px;
-      padding: 10px 16px;
-      color: var(--accent-2);
-      margin: 24px;
+    /* Back button */
+    .ghost{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid rgba(0,224,255,.45); border-radius:999px;
+      padding:10px 16px; color:var(--accent-2); margin:24px;
       transition: background .2s ease, color .2s ease, transform .12s ease;
     }
-    .ghost:hover { background: var(--accent-2); color: #041018; transform: translateY(-1px); }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
-    h1 {
+    h1{
       font-size: clamp(32px, 4vw, 48px);
-      margin: 0 0 12px;
-      color: var(--accent);
-      line-height: 1.1;
+      margin:0 0 12px;
+      color:var(--accent);
+      line-height:1.1;
     }
-
-    .lead {
-      font-size: 18px;
-      color: var(--muted);
-      margin: 0 0 22px;
+    .lead{
+      font-size:18px;
+      color:var(--muted);
+      margin:0 0 22px;
       max-width: 70ch;
     }
 
     /* Layout */
-    .grid {
-      display: grid;
+    .grid{
+      display:grid;
       grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items: start;
+      gap:18px;
+      align-items:start;
     }
-    @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
-
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      border: 1px solid rgba(84,168,255,.15);
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: var(--shadow);
+    @media (max-width: 900px){
+      .grid{ grid-template-columns:1fr; }
     }
 
-    .card h2, .card h3 {
-      margin: 0 0 10px;
-      color: var(--accent-2);
-      line-height: 1.2;
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      border:1px solid rgba(84,168,255,.15);
+      padding:18px;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden; /* ✅ anti débordement boutons */
+    }
+    .card h2, .card h3{
+      margin:0 0 10px;
+      color:var(--accent-2);
+      line-height:1.2;
+    }
+    .muted{ color:var(--muted); }
+
+    .list{ list-style:none; padding:0; margin:14px 0 0; }
+    .list li{ margin:10px 0; color:var(--text); }
+    .list li span{ color:var(--muted); }
+
+    .price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px;
+      padding-top:14px;
+      flex-wrap:wrap;
+    }
+    .price{
+      font-size:26px;
+      font-weight:800;
+      color:var(--accent-2);
+      white-space:nowrap;
     }
 
-    .muted { color: var(--muted); }
-
-    .list {
-      list-style: none;
-      padding: 0;
-      margin: 14px 0 0;
-    }
-    .list li {
-      margin: 10px 0;
-      color: var(--text);
-    }
-    .list li span {
-      color: var(--muted);
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      margin-top: 14px;
-      padding-top: 14px;
-    }
-    .price {
-      font-size: 26px;
-      font-weight: 800;
-      color: var(--accent-2);
-      white-space: nowrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color: #0a0a0a;
-      font-weight: 800;
-      border-radius: 999px;
-      padding: 12px 18px;
-      text-decoration: none;
-      margin-top: 10px;
-      transition: transform .12s ease, filter .12s ease;
-      border: 0;
-    }
-    .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 1px solid rgba(0,224,255,.35);
-      border-radius: 999px;
-      padding: 12px 18px;
-      color: var(--accent-2);
-      margin-top: 10px;
-    }
-
-    .pill {
+    /* Buttons (✅ fix overflow) */
+    .btn, .btn-secondary{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      color:#c7f0ff;
-      background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.3);
-      padding:8px 12px;
+      justify-content:center;
+      gap:10px;
       border-radius:999px;
-      font-size:.85rem;
-      font-weight:700;
-      margin-bottom: 10px;
+      padding:12px 18px;
+      text-decoration:none;
+      margin-top:10px;
+
+      width:100%;
+      max-width:100%;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis; /* ✅ si texte trop long */
     }
 
-    .divider {
-      height: 1px;
-      background: rgba(255,255,255,.06);
-      margin: 18px 0;
+    .btn{
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0a0a;
+      font-weight:800;
+      transition: transform .12s ease, filter .12s ease;
+      border:0;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
+    .btn-secondary{
+      border:1px solid rgba(0,224,255,.35);
+      color:var(--accent-2);
+      background: transparent;
     }
 
-    .mini {
-      font-size: 14px;
-      color: var(--muted);
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      color:#c7f0ff; background: rgba(90,164,255,.12);
+      border:1px solid rgba(90,164,255,.3);
+      padding:8px 12px; border-radius:999px;
+      font-size:.85rem; font-weight:700;
+      margin-bottom:10px;
     }
+
+    .divider{ height:1px; background: rgba(255,255,255,.06); margin:18px 0; }
+    .mini{ font-size:14px; color:var(--muted); }
 
     /* Steps */
-    .steps {
-      display: grid;
-      gap: 12px;
-      margin-top: 10px;
+    .steps{ display:grid; gap:12px; margin-top:10px; }
+    .step{
+      background:#0c1015;
+      border:1px solid rgba(84,168,255,.18);
+      border-radius:14px;
+      padding:14px;
     }
-    .step {
-      background: #0c1015;
-      border: 1px solid rgba(84,168,255,.18);
-      border-radius: 14px;
-      padding: 14px;
-    }
-    .step strong { color: var(--text); }
-    .step p { margin: 6px 0 0; color: var(--muted); }
+    .step strong{ color:var(--text); }
+    .step p{ margin:6px 0 0; color:var(--muted); }
 
     /* FAQ */
-    details {
-      background: #0c1015;
-      border: 1px solid rgba(84,168,255,.18);
-      border-radius: 14px;
+    details{
+      background:#0c1015;
+      border:1px solid rgba(84,168,255,.18);
+      border-radius:14px;
+      padding:14px;
+      margin:10px 0;
+    }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin:10px 0 0; color:var(--muted); }
+
+    /* ✅ Masterclass special card */
+    .mastercard{
+      position:relative;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 18px;
+      overflow:hidden;
+
+      /* Gold/black premium mix */
+      background:
+        radial-gradient(900px 420px at 15% 0%, rgba(246,208,111,.22), transparent 55%),
+        radial-gradient(700px 520px at 90% 30%, rgba(255,184,107,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,215,161,.08), rgba(0,0,0,0)),
+        #0e0f12;
+
+      border: 1px solid rgba(246,208,111,.28);
+      box-shadow: 0 18px 70px rgba(0,0,0,.45);
+    }
+
+    /* Shimmer border glow */
+    .mastercard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(
+        from 180deg,
+        rgba(246,208,111,0) 0%,
+        rgba(246,208,111,.55) 12%,
+        rgba(255,184,107,.35) 28%,
+        rgba(246,208,111,0) 45%,
+        rgba(0,224,255,.18) 60%,
+        rgba(246,208,111,0) 78%,
+        rgba(246,208,111,.50) 92%,
+        rgba(246,208,111,0) 100%
+      );
+      filter: blur(10px);
+      opacity:.45;
+      animation: spin 8s linear infinite;
+      pointer-events:none;
+    }
+    .mastercard::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(600px 220px at 20% 0%, rgba(246,208,111,.14), transparent 60%);
+      pointer-events:none;
+    }
+    @keyframes spin{
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(360deg); }
+    }
+
+    .master-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+    .master-tag{
+      display:inline-flex; align-items:center; gap:8px;
+      background: rgba(246,208,111,.14);
+      border: 1px solid rgba(246,208,111,.35);
+      color: var(--gold-3);
+      padding: 8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:.85rem;
+    }
+    .master-title{
+      margin: 8px 0 6px;
+      font-size: 28px;
+      line-height: 1.15;
+      color: var(--gold-3);
+    }
+    .master-sub{
+      color: rgba(233,238,242,.78);
+      margin:0;
+      max-width: 70ch;
+    }
+    .master-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width: 900px){
+      .master-grid{ grid-template-columns: 1fr; }
+    }
+    .master-box{
+      background: rgba(12,16,21,.68);
+      border: 1px solid rgba(246,208,111,.20);
+      border-radius: 16px;
       padding: 14px;
-      margin: 10px 0;
     }
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-      color: var(--text);
-      list-style: none;
+    .master-box h4{
+      margin:0 0 6px;
+      color: var(--gold-3);
+      font-size: 16px;
     }
-    summary::-webkit-details-marker { display: none; }
-    details p { margin: 10px 0 0; color: var(--muted); }
+    .master-box p{
+      margin:0;
+      color: rgba(154,160,166,.95);
+      font-size: 14px;
+    }
+    .master-price{
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(246,208,111,.22);
+      position:relative;
+      z-index:1;
+      flex-wrap:wrap;
+    }
+    .master-price .big{
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--gold-3);
+      white-space:nowrap;
+    }
+
+    /* Master buttons */
+    .btn-master, .btn-master-secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border-radius:999px;
+      padding: 13px 18px;
+      margin-top: 10px;
+
+      width:100%;
+      max-width:100%;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+
+      position:relative;
+      z-index:1;
+      font-weight: 900;
+    }
+    .btn-master{
+      border: 0;
+      color: var(--gold-dark);
+      background: linear-gradient(90deg, var(--gold), var(--gold-2));
+      box-shadow: 0 10px 30px rgba(246,208,111,.18);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn-master:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+    .btn-master-secondary{
+      border: 1px solid rgba(246,208,111,.38);
+      color: var(--gold-3);
+      background: rgba(246,208,111,.08);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn-master-secondary:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
   </style>
 </head>
 
@@ -214,12 +350,12 @@
     <span class="pill">⚙️ Coaching KCI — rapide, honnête, concret</span>
     <h1>Coaching personnalisé</h1>
     <p class="lead">
-      Le coaching KCI, c’est un accompagnement **direct et actionnable**.
+      Le coaching KCI, c’est un accompagnement <strong>direct et actionnable</strong>.
       Pas de théorie inutile : on clarifie ta situation, on pose un plan simple, et tu repars avec des étapes concrètes.
     </p>
 
     <div class="grid">
-      <!-- LEFT: offers -->
+      <!-- LEFT -->
       <div>
         <div class="card">
           <h2>💬 Coaching 1:1 (visio)</h2>
@@ -261,28 +397,52 @@
           <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander le coaching écrit</a>
         </div>
 
-        <div class="card">
-          <h2>⚡ Audit express</h2>
-          <p class="muted">
-            Tu nous montres ton projet (business, Notion, routine, réseau, etc.) et on te répond avec :
-            <strong>ce qui va / ce qui bloque / ce qu’il faut changer</strong>.
-          </p>
-          <ul class="list">
-            <li>Format : <span>message écrit ou vocal</span></li>
-            <li>Style : <span>court, direct, sans blabla</span></li>
-            <li>Objectif : <span>débloquer vite</span></li>
-          </ul>
-
-          <div class="price-row">
-            <div class="mini">Envoi du projet + paiement via Discord</div>
-            <div class="price">10 €</div>
+        <!-- ✅ Masterclass premium (bigger + gold + animations) -->
+        <div class="mastercard">
+          <div class="master-head">
+            <div class="master-tag">🏆 KCI MASTERCLASS — Accompagnement complet</div>
           </div>
 
-          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander un audit</a>
+          <h2 class="master-title">KCI Masterclass</h2>
+          <p class="master-sub">
+            L’accompagnement le plus complet de KCI. On prend ta situation de A à Z et on te guide sur plusieurs semaines :
+            objectifs, discipline, exécution, et (si tu veux) business. Tout passe par Discord, avec un vrai suivi.
+          </p>
+
+          <div class="master-grid">
+            <div class="master-box">
+              <h4>Ce que tu reçois</h4>
+              <p>Plan personnalisé + système de suivi + check-ins + corrections + priorités claires.</p>
+            </div>
+            <div class="master-box">
+              <h4>Pour qui ?</h4>
+              <p>Ceux qui veulent un cadre complet, arrêter le flou, et avancer vite avec un guide.</p>
+            </div>
+            <div class="master-box">
+              <h4>Support</h4>
+              <p>Discord (écrit + vocal) • retours structurés • objectifs hebdo.</p>
+            </div>
+            <div class="master-box">
+              <h4>Résultat</h4>
+              <p>Un système stable + une exécution propre + des progrès visibles (pas juste des conseils).</p>
+            </div>
+          </div>
+
+          <div class="master-price">
+            <div class="mini" style="color:rgba(233,238,242,.72)">Réservation + infos via Discord</div>
+            <div class="big">À partir de 79 €</div>
+          </div>
+
+          <a class="btn-master" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Candidater à la Masterclass</a>
+          <a class="btn-master-secondary" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Poser une question (Masterclass)</a>
+
+          <p class="mini" style="margin-top:10px; position:relative; z-index:1;">
+            On te dira sur Discord si c’est adapté à ta situation + quel format te correspond.
+          </p>
         </div>
       </div>
 
-      <!-- RIGHT: process + guarantees -->
+      <!-- RIGHT -->
       <div>
         <div class="card">
           <h3>✅ Ce que tu gagnes</h3>
@@ -299,7 +459,7 @@
           <div class="steps">
             <div class="step">
               <strong>1) Tu nous contactes sur Discord</strong>
-              <p>Tu dis ce que tu veux (1:1 / écrit / audit) + ton objectif principal.</p>
+              <p>Tu dis ce que tu veux (1:1 / écrit / Masterclass) + ton objectif principal.</p>
             </div>
             <div class="step">
               <strong>2) On récupère les infos</strong>
@@ -311,8 +471,9 @@
             </div>
           </div>
 
-          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener" style="width:100%; margin-top:14px;">Rejoindre le Discord (réserver)</a>
-          <a class="btn-secondary" href="index.html#formations" style="width:100%;">Retour aux formations</a>
+          <!-- ✅ FIX: boutons full width + no overflow -->
+          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Rejoindre le Discord (réserver)</a>
+          <a class="btn-secondary" href="index.html#formations">Retour aux formations</a>
         </div>
 
         <div class="card">
@@ -324,7 +485,7 @@
           </details>
 
           <details>
-            <summary>Et si je ne sais pas quoi choisir entre 1:1 / écrit / audit ?</summary>
+            <summary>Et si je ne sais pas quoi choisir ?</summary>
             <p>Tu nous expliques ton objectif sur Discord et on te recommande le format le plus adapté.</p>
           </details>
 
@@ -347,4 +508,6 @@
   </section>
 </body>
 </html>
+```
+
 
