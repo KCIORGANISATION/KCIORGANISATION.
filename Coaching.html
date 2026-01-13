@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,13 +7,21 @@
   <meta name="description" content="KCI Masterclass : accompagnement complet. Options : 1:1 visio, coaching écrit, audit express." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
-      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
-      --maxw:1100px;
+      --bg:#0b0b0c;
+      --text:#e9eef2;
+      --muted:#a6b0bb;
+      --card:#101214;
+
+      --accent:#54a8ff;
+      --accent-2:#00e0ff;
+
+      --radius:18px;
+      --shadow:0 14px 60px rgba(0,0,0,.40);
+      --maxw:1120px;
 
       /* Gold (Masterclass) */
       --gold:#f6d06f;
@@ -24,375 +31,557 @@
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    html,body{ height:100%; scroll-behavior:smooth; }
     body{
       margin:0;
-      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
+      background:
+        radial-gradient(1100px 720px at 70% 0%, rgba(84,168,255,.08), transparent),
+        radial-gradient(1000px 700px at 12% 12%, rgba(0,224,255,.05), transparent),
+        var(--bg);
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.6;
+      letter-spacing:.1px;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x:hidden;
+      position:relative;
     }
-    a{ color:var(--accent-2); text-decoration:none; }
 
+    /* Subtle background cracks (pro + sobre) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-10%;
+      pointer-events:none;
+      z-index:0;
+      opacity:.24;
+      background:
+        linear-gradient(115deg,
+          transparent 0%,
+          transparent 46.8%,
+          rgba(255,255,255,.10) 47.8%,
+          rgba(255,255,255,.02) 48.9%,
+          transparent 50.2%,
+          transparent 100%
+        ),
+        linear-gradient(115deg,
+          transparent 0%,
+          transparent 46.5%,
+          rgba(0,224,255,.16) 47.8%,
+          transparent 49.2%,
+          transparent 100%
+        ),
+        repeating-linear-gradient(145deg,
+          rgba(255,255,255,.04) 0px,
+          rgba(255,255,255,.04) 1px,
+          transparent 1px,
+          transparent 42px
+        );
+      mix-blend-mode: screen;
+      filter: blur(.2px);
+      transform: rotate(-2deg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+    header, main{ position:relative; z-index:1; }
 
-    /* ✅ Remove the small "HTML" badge in top-right (some browsers show it on <code>/<pre>, but safe) */
-    code, pre { display:none !important; }
-
-    /* Back button */
-    .ghost{
-      display:inline-flex; align-items:center; gap:10px;
-      border:1px solid rgba(0,224,255,.45); border-radius:999px;
-      padding:10px 16px; color:var(--accent-2); margin:24px;
-      transition: background .2s ease, color .2s ease, transform .12s ease;
-      max-width: calc(100% - 48px);
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    /* Header */
+    header{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background: rgba(11,11,12,.6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
-
-    h1{
-      font-size: clamp(32px, 4vw, 48px);
-      margin:0 0 12px;
-      color:var(--accent);
-      line-height:1.1;
-    }
-    .lead{
-      font-size:18px;
-      color:var(--muted);
-      margin:0 0 22px;
-      max-width: 75ch;
-    }
-
-    /* Layout */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      align-items:start;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns:1fr; }
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      border:1px solid rgba(84,168,255,.15);
-      padding:18px;
-      margin-bottom:18px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .card h2, .card h3{
-      margin:0 0 10px;
-      color:var(--accent-2);
-      line-height:1.2;
-    }
-    .muted{ color:var(--muted); }
-
-    .list{ list-style:none; padding:0; margin:14px 0 0; }
-    .list li{ margin:10px 0; color:var(--text); }
-    .list li span{ color:var(--muted); }
-
-    .divider{ height:1px; background: rgba(255,255,255,.06); margin:18px 0; }
-    .mini{ font-size:14px; color:var(--muted); }
-
-    /* Buttons (anti overflow) */
-    .btn, .btn-secondary{
-      display:inline-flex;
+    .nav{
+      display:flex;
       align-items:center;
-      justify-content:center;
-      gap:10px;
+      justify-content:space-between;
+      gap: 16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.6px;
+    }
+    .pill{
+      padding:10px 16px;
+      background: linear-gradient(145deg, rgba(84,168,255,.15), rgba(0,224,255,.12));
+      border: 1px solid rgba(0,224,255,.24);
       border-radius:999px;
-      padding:12px 18px;
-      margin-top:10px;
-      width:100%;
-      max-width:100%;
+    }
+    .tiny{ font-size:12px; opacity:.7; }
+    .nav-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+    .ghost{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:10px 14px;
+      color: var(--text);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+      transition: transform .15s ease, border-color .15s ease, color .15s ease;
     }
+    .ghost:hover{ transform: translateY(-1px); border-color: rgba(0,224,255,.30); color: var(--accent-2); }
+
     .btn{
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a;
-      font-weight:800;
-      border:0;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 18px;
+      border-radius:999px;
+      border: 1px solid rgba(0,224,255,.30);
+      background: linear-gradient(180deg, rgba(84,168,255,.95), rgba(0,224,255,.85));
+      color:#06121f;
+      font-weight:950;
       transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.06); }
 
-    .btn-secondary{
-      border:1px solid rgba(0,224,255,.35);
-      color:var(--accent-2);
-      background: transparent;
-      font-weight:800;
+    /* Hero */
+    .hero{ padding: clamp(52px, 7vh, 92px) 0 22px; }
+    h1{
+      font-size: clamp(34px, 4.8vw, 58px);
+      line-height:1.05;
+      margin: 10px 0 14px;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      max-width: 88ch;
+      margin:0;
     }
 
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      color:#c7f0ff; background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.3);
-      padding:8px 12px; border-radius:999px;
-      font-size:.85rem; font-weight:700;
-      margin-bottom:10px;
+    .kicker{
+      font-weight:950;
+      text-transform:uppercase;
+      font-size:.85rem;
+      letter-spacing:.16em;
+      color: rgba(233,238,242,.9);
+    }
+    .kicker b{
+      background: linear-gradient(90deg, var(--gold), var(--gold-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
     }
 
-    /* Steps */
-    .steps{ display:grid; gap:12px; margin-top:10px; }
-    .step{
-      background:#0c1015;
-      border:1px solid rgba(84,168,255,.18);
-      border-radius:14px;
-      padding:14px;
-    }
-    .step strong{ color:var(--text); }
-    .step p{ margin:6px 0 0; color:var(--muted); }
-
-    /* FAQ */
-    details{
-      background:#0c1015;
-      border:1px solid rgba(84,168,255,.18);
-      border-radius:14px;
-      padding:14px;
-      margin:10px 0;
-    }
-    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
-    summary::-webkit-details-marker{ display:none; }
-    details p{ margin:10px 0 0; color:var(--muted); }
-
-    /* ======================
-       ✅ MASTERCLASS HERO CARD
-       ====================== */
-    .mastercard{
+    /* =========================
+       ✅ BIG MASTERCLASS RECTANGLE
+       ========================= */
+    .master-hero{
       position:relative;
-      border-radius: 20px;
-      padding: 22px;
-      margin-bottom: 18px;
+      border-radius: 22px;
+      padding: 26px;
+      margin-top: 18px;
       overflow:hidden;
 
       background:
-        radial-gradient(900px 420px at 15% 0%, rgba(246,208,111,.22), transparent 55%),
-        radial-gradient(700px 520px at 90% 30%, rgba(255,184,107,.18), transparent 60%),
+        radial-gradient(920px 460px at 15% 0%, rgba(246,208,111,.24), transparent 55%),
+        radial-gradient(780px 620px at 92% 34%, rgba(255,184,107,.18), transparent 60%),
+        radial-gradient(760px 520px at 60% 85%, rgba(0,224,255,.08), transparent 60%),
         linear-gradient(180deg, rgba(255,215,161,.08), rgba(0,0,0,0)),
         #0e0f12;
 
-      border: 1px solid rgba(246,208,111,.28);
-      box-shadow: 0 18px 70px rgba(0,0,0,.45);
+      border: 1px solid rgba(246,208,111,.30);
+      box-shadow: 0 18px 80px rgba(0,0,0,.50);
     }
 
-    .mastercard::before{
+    .master-hero::before{
       content:"";
       position:absolute; inset:-2px;
       background: conic-gradient(
         from 180deg,
         rgba(246,208,111,0) 0%,
-        rgba(246,208,111,.55) 12%,
-        rgba(255,184,107,.35) 28%,
+        rgba(246,208,111,.58) 12%,
+        rgba(255,184,107,.36) 28%,
         rgba(246,208,111,0) 45%,
         rgba(0,224,255,.18) 60%,
         rgba(246,208,111,0) 78%,
-        rgba(246,208,111,.50) 92%,
+        rgba(246,208,111,.52) 92%,
         rgba(246,208,111,0) 100%
       );
-      filter: blur(10px);
+      filter: blur(12px);
       opacity:.45;
-      animation: spin 8s linear infinite;
+      animation: spin 9s linear infinite;
       pointer-events:none;
     }
-    .mastercard::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(600px 220px at 20% 0%, rgba(246,208,111,.14), transparent 60%);
-      pointer-events:none;
-    }
-    @keyframes spin{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
+    @keyframes spin{ from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
 
-    .master-head{
+    .master-hero > *{ position:relative; z-index:1; }
+
+    .master-top{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:12px;
+      gap:14px;
       flex-wrap:wrap;
-      position:relative;
-      z-index:1;
+      margin-bottom: 8px;
     }
+
     .master-tag{
       display:inline-flex; align-items:center; gap:8px;
-      background: rgba(246,208,111,.14);
-      border: 1px solid rgba(246,208,111,.35);
-      color: var(--gold-3);
-      padding: 8px 12px;
+      padding:8px 12px;
       border-radius:999px;
-      font-weight:900;
+      font-weight:950;
       font-size:.85rem;
-    }
-    .master-title{
-      margin: 10px 0 6px;
-      font-size: 32px;
-      line-height: 1.15;
       color: var(--gold-3);
-      position:relative;
-      z-index:1;
+      background: rgba(246,208,111,.14);
+      border: 1px solid rgba(246,208,111,.36);
+      width: fit-content;
+    }
+
+    .master-title{
+      margin: 10px 0 8px;
+      font-size: clamp(26px, 3vw, 36px);
+      line-height: 1.12;
+      color: var(--gold-3);
+      font-weight: 950;
     }
     .master-sub{
-      color: rgba(233,238,242,.82);
       margin:0;
-      max-width: 78ch;
-      position:relative;
-      z-index:1;
+      color: rgba(233,238,242,.82);
+      max-width: 95ch;
+      font-size: 15.5px;
+      line-height: 1.65;
     }
 
     .master-grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:16px;
-      position:relative;
-      z-index:1;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+      margin-top: 16px;
     }
-    @media (max-width: 900px){
-      .master-grid{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 1050px){ .master-grid{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px){ .master-grid{ grid-template-columns: 1fr; } }
+
     .master-box{
       background: rgba(12,16,21,.68);
       border: 1px solid rgba(246,208,111,.20);
       border-radius: 16px;
       padding: 14px;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .master-box:hover{
+      transform: translateY(-2px);
+      border-color: rgba(246,208,111,.30);
+      filter: brightness(1.03);
     }
     .master-box h4{
       margin:0 0 6px;
       color: var(--gold-3);
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 950;
     }
     .master-box p{
       margin:0;
       color: rgba(154,160,166,.95);
-      font-size: 14px;
+      font-size: 13.5px;
+      line-height: 1.55;
     }
 
-    /* Master buttons */
-    .btn-master, .btn-master-secondary{
+    .master-actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+
+    .btn-master{
+      position:relative;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
       border-radius:999px;
-      padding: 13px 18px;
-      margin-top: 10px;
-
-      width:100%;
-      max-width:100%;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-
-      position:relative;
-      z-index:1;
-      font-weight: 900;
-    }
-    .btn-master{
+      padding: 14px 18px;
+      font-weight: 950;
       border: 0;
       color: var(--gold-dark);
       background: linear-gradient(90deg, var(--gold), var(--gold-2));
-      box-shadow: 0 10px 30px rgba(246,208,111,.18);
-      transition: transform .12s ease, filter .12s ease;
+      box-shadow: 0 16px 50px rgba(246,208,111,.18);
+      transition: transform .18s ease, filter .18s ease;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      min-width: 240px;
+      flex: 1 1 260px;
     }
-    .btn-master:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn-master::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-70%;
+      width: 90%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: rotate(18deg);
+      opacity:0;
+      pointer-events:none;
+    }
+    .btn-master:hover{ transform: translateY(-2px); filter: brightness(1.04); }
+    .btn-master:hover::after{ opacity:.9; animation: sheen 900ms ease forwards; }
+    @keyframes sheen{ from{ transform: rotate(18deg) translateX(0);} to{ transform: rotate(18deg) translateX(220%);} }
 
     .btn-master-secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border-radius:999px;
+      padding: 14px 18px;
+      font-weight: 950;
       border: 1px solid rgba(246,208,111,.38);
       color: var(--gold-3);
       background: rgba(246,208,111,.08);
-      transition: transform .12s ease, filter .12s ease;
+      transition: transform .18s ease, filter .18s ease, border-color .18s ease;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      min-width: 240px;
+      flex: 1 1 260px;
     }
-    .btn-master-secondary:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn-master-secondary:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      border-color: rgba(246,208,111,.48);
+    }
+
+    .note{
+      margin-top: 12px;
+      color: rgba(233,238,242,.68);
+      font-size: 13px;
+    }
 
     /* =========================
-       ✅ OPTIONS (smaller cards)
+       ✅ OPTIONS SECTION BELOW
        ========================= */
-    .options{
+    section.options{
+      padding: 52px 0 72px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .section-title{
+      font-size: clamp(22px, 2.6vw, 34px);
+      margin: 0 0 8px;
+      line-height: 1.15;
+    }
+    .section-sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 90ch;
+    }
+
+    .opt-grid{
       display:grid;
-      gap:12px;
-      margin-bottom:18px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+      margin-top: 16px;
     }
-    .option{
-      background:#0c1015;
-      border:1px solid rgba(84,168,255,.18);
-      border-radius:14px;
-      padding:14px;
+    @media (max-width: 980px){ .opt-grid{ grid-template-columns: 1fr; } }
+
+    .opt{
+      position:relative;
+      background: rgba(12,16,21,.72);
+      border: 1px solid rgba(0,224,255,.16);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
       overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
     }
-    .option h3{
+    .opt::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      opacity:.85;
+      background: radial-gradient(620px 220px at 20% 0%, rgba(0,224,255,.10), transparent 60%);
+    }
+    .opt:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,224,255,.24);
+      filter: brightness(1.03);
+    }
+    .opt > *{ position:relative; z-index:1; }
+
+    .opt h3{
       margin:0 0 6px;
       font-size:18px;
-      color: var(--accent-2);
+      color: rgba(233,238,242,.92);
+      font-weight: 950;
     }
-    .option p{ margin:0; color: var(--muted); }
-    .option .row{
+    .opt p{
+      margin:0;
+      color: rgba(154,160,166,.95);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .opt .row{
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:10px;
-      padding-top:10px;
+      margin-top:12px;
+      padding-top:12px;
       border-top:1px solid rgba(255,255,255,.06);
     }
     .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      display:inline-flex; align-items:center; gap:8px;
       padding:6px 10px;
       border-radius:999px;
-      font-weight:800;
-      font-size:12px;
-      color:#c7f0ff;
-      background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.25);
+      font-weight: 900;
+      font-size: 12px;
+      color: rgba(233,238,242,.88);
+      background: rgba(0,224,255,.08);
+      border: 1px solid rgba(0,224,255,.20);
       white-space:nowrap;
     }
-    .option .see{
+
+    .see{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      border:1px solid rgba(0,224,255,.35);
+      border:1px solid rgba(0,224,255,.30);
       border-radius:999px;
       padding:10px 12px;
-      color:var(--accent-2);
+      color: rgba(233,238,242,.90);
+      background: rgba(0,224,255,.06);
+      transition: transform .18s ease, filter .18s ease, border-color .18s ease;
       white-space:nowrap;
-      max-width:100%;
       overflow:hidden;
       text-overflow:ellipsis;
     }
-    .option .see:hover{ filter: brightness(1.05); }
+    .see:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      border-color: rgba(0,224,255,.40);
+    }
+
+    /* Right side info cards */
+    .side{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 900px){ .side{ grid-template-columns:1fr; } }
+
+    .card{
+      background: rgba(12,16,21,.72);
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,224,255,.14);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card h3{
+      margin:0 0 10px;
+      color: rgba(233,238,242,.92);
+      font-weight: 950;
+      line-height: 1.2;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .card h3 .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(0,224,255,.20);
+      background: rgba(0,224,255,.08);
+      color: rgba(233,238,242,.88);
+      font-size: .78rem;
+      font-weight: 900;
+    }
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
+    .list li{ margin:10px 0; color: rgba(233,238,242,.90); }
+    .list li span{ color: rgba(154,160,166,.95); }
+
+    details{
+      background: rgba(12,16,21,.70);
+      border: 1px solid rgba(0,224,255,.14);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+      overflow:hidden;
+      transition: border-color .18s ease, filter .18s ease;
+    }
+    details:hover{ border-color: rgba(0,224,255,.22); filter: brightness(1.02); }
+    summary{
+      cursor:pointer;
+      font-weight: 900;
+      color: rgba(233,238,242,.92);
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    summary .caret{
+      width: 10px; height: 10px;
+      border-right: 2px solid rgba(233,238,242,.70);
+      border-bottom: 2px solid rgba(233,238,242,.70);
+      transform: rotate(-45deg);
+      transition: transform .18s ease, border-color .18s ease;
+      flex: 0 0 auto;
+      opacity:.85;
+    }
+    details[open] summary .caret{ transform: rotate(45deg); border-color: rgba(246,208,111,.75); }
+    details p{ margin: 10px 0 0; color: rgba(154,160,166,.95); }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible{ opacity:1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+      body::before{ display:none; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- ✅ removed the little “html”/badge: nothing else shown top-right -->
-  <a href="index.html#formations" class="ghost">← Retour</a>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="pill">KCI</span>
+        <span class="tiny">Coaching</span>
+      </div>
+      <div class="nav-actions">
+        <a class="ghost" href="index.html#formations">Retour</a>
+        <a class="btn" href="#masterclass">Masterclass</a>
+      </div>
+    </div>
+  </header>
 
-  <section class="wrap">
-    <span class="pill">🏆 KCI — Coaching & accompagnement</span>
-    <h1>Coaching KCI</h1>
-    <p class="lead">
-      Ici, tu as 2 chemins :
-      <strong>la Masterclass</strong> (accompagnement complet, recommandé),
-      ou des <strong>options</strong> si tu veux juste un débloquage rapide.
-    </p>
+  <main>
+    <!-- HERO + MASTERCLASS BIG RECTANGLE -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker"><b>KCI Masterclass</b></div>
+          <h1>Un cadre complet. Un suivi réel.</h1>
+          <p class="lead">
+            Ici, tu as 2 chemins :
+            <strong>la Masterclass</strong> (accompagnement complet, recommandé),
+            ou des <strong>options</strong> si tu veux juste un débloquage rapide.
+          </p>
+        </div>
 
-    <div class="grid">
-      <!-- LEFT -->
-      <div>
-        <!-- ✅ MASTERCLASS FIRST (main focus) -->
-        <div class="mastercard">
-          <div class="master-head">
-            <div class="master-tag">🏆 KCI MASTERCLASS — Accompagnement complet</div>
+        <div class="master-hero reveal" id="masterclass">
+          <div class="master-top">
+            <span class="master-tag">KCI MASTERCLASS — Accompagnement complet</span>
+            <span class="master-tag" style="border-color: rgba(0,224,255,.18); background: rgba(0,224,255,.06); color: rgba(233,238,242,.85);">
+              Focus : exécution
+            </span>
           </div>
 
-          <h2 class="master-title">KCI Masterclass</h2>
+          <div class="master-title">KCI Masterclass</div>
           <p class="master-sub">
             L’accompagnement le plus complet de KCI. On prend ta situation de A à Z et on construit :
             objectifs, discipline, exécution, organisation (et business si tu veux).
@@ -402,137 +591,131 @@
           <div class="master-grid">
             <div class="master-box">
               <h4>Ce que tu reçois</h4>
-              <p>Plan personnalisé + priorités + système de suivi + corrections + check-ins.</p>
+              <p>Plan personnalisé, priorités, système de suivi, corrections, check-ins.</p>
             </div>
             <div class="master-box">
               <h4>Pour qui ?</h4>
-              <p>Ceux qui veulent un cadre complet, arrêter le flou, et avancer proprement.</p>
+              <p>Ceux qui veulent arrêter le flou et avancer avec un cadre complet.</p>
             </div>
             <div class="master-box">
               <h4>Format</h4>
-              <p>Discord : écrit + vocal. On adapte le niveau de suivi à ta situation.</p>
+              <p>Discord : écrit + vocal. Intensité de suivi adaptée à ta situation.</p>
             </div>
             <div class="master-box">
               <h4>Résultat</h4>
-              <p>Un système stable + une exécution claire + des progrès visibles sur plusieurs semaines.</p>
+              <p>Un système stable + une exécution claire + progrès visibles sur plusieurs semaines.</p>
             </div>
           </div>
 
-          <!-- ✅ no “price starting from” -->
-          <div class="divider"></div>
-          <p class="mini" style="color:rgba(233,238,242,.78); position:relative; z-index:1;">
-            Pour rejoindre la Masterclass : tu candidates sur Discord. On voit si c’est adapté + on te donne la meilleure option.
+          <p class="note">
+            Pour rejoindre la Masterclass : tu candidates sur Discord. On voit si c’est adapté, puis on te donne la meilleure option.
           </p>
 
-          <a class="btn-master" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Candidater à la Masterclass</a>
-          <a class="btn-master-secondary" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Poser une question (Masterclass)</a>
-        </div>
-
-        <!-- ✅ OTHER OPTIONS (secondary) -->
-        <div class="card">
-          <h2>✅ Autres options (si tu veux juste débloquer vite)</h2>
-          <p class="muted">
-            Tu ne veux pas un accompagnement complet ? Prends une option plus légère.
-            Tout se réserve sur Discord.
-          </p>
-
-          <div class="options">
-            <div class="option">
-              <h3>💬 Coaching 1:1 (visio)</h3>
-              <p>Une session complète : analyse + plan clair pour les 30 prochains jours.</p>
-              <div class="row">
-                <span class="tag">45–60 min</span>
-                <a class="see" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Réserver sur Discord</a>
-              </div>
-            </div>
-
-            <div class="option">
-              <h3>📄 Coaching écrit</h3>
-              <p>Questionnaire → analyse → réponse structurée (plan + priorités + next steps).</p>
-              <div class="row">
-                <span class="tag">24–48h</span>
-                <a class="see" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander sur Discord</a>
-              </div>
-            </div>
-
-            <div class="option">
-              <h3>⚡ Audit express</h3>
-              <p>Réponse courte et directe : ce qui bloque + quoi changer pour avancer vite.</p>
-              <div class="row">
-                <span class="tag">Rapide</span>
-                <a class="see" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander sur Discord</a>
-              </div>
-            </div>
+          <div class="master-actions">
+            <a class="btn-master" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Candidater à la Masterclass</a>
+            <a class="btn-master-secondary" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Poser une question (Masterclass)</a>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- RIGHT -->
-      <div>
-        <div class="card">
-          <h3>✅ Ce que tu gagnes</h3>
-          <ul class="list">
-            <li>Un regard extérieur <span>lucide, pas complaisant</span></li>
-            <li>Une direction claire <span>et des priorités</span></li>
-            <li>Un plan simple <span>exécutable dès aujourd’hui</span></li>
-            <li>Moins de flou <span>→ plus d’action</span></li>
-          </ul>
+    <!-- OPTIONS BELOW -->
+    <section class="options" id="options">
+      <div class="wrap">
+        <h2 class="section-title reveal">Autres options</h2>
+        <p class="section-sub reveal">
+          Si tu ne veux pas un accompagnement complet : prends une option plus légère.
+          Tout se réserve sur Discord.
+        </p>
 
-          <div class="divider"></div>
-
-          <h3>🧭 Comment ça se passe</h3>
-          <div class="steps">
-            <div class="step">
-              <strong>1) Tu nous contactes sur Discord</strong>
-              <p>Tu dis ton objectif + si tu veux Masterclass ou une option.</p>
-            </div>
-            <div class="step">
-              <strong>2) On récupère les infos</strong>
-              <p>Mini questionnaire ou contexte (routine/projet/objectif).</p>
-            </div>
-            <div class="step">
-              <strong>3) On te donne un plan</strong>
-              <p>Actions concrètes + ordre de priorité + suivi si Masterclass.</p>
+        <div class="opt-grid">
+          <div class="opt reveal">
+            <h3>Coaching 1:1 (visio)</h3>
+            <p>Une session complète : analyse + plan clair pour les 30 prochains jours.</p>
+            <div class="row">
+              <span class="tag">45–60 min</span>
+              <a class="see" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Réserver sur Discord</a>
             </div>
           </div>
 
-          <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Rejoindre le Discord</a>
-          <a class="btn-secondary" href="index.html#formations">Retour aux formations</a>
+          <div class="opt reveal">
+            <h3>Coaching écrit</h3>
+            <p>Questionnaire → analyse → réponse structurée (plan + priorités + next steps).</p>
+            <div class="row">
+              <span class="tag">24–48h</span>
+              <a class="see" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander sur Discord</a>
+            </div>
+          </div>
+
+          <div class="opt reveal">
+            <h3>Audit express</h3>
+            <p>Réponse courte et directe : ce qui bloque + quoi changer pour avancer vite.</p>
+            <div class="row">
+              <span class="tag">Rapide</span>
+              <a class="see" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Demander sur Discord</a>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>❓ FAQ rapide</h3>
+        <!-- Support / FAQ blocks (below options) -->
+        <div class="side">
+          <div class="card reveal">
+            <h3>Ce que tu gagnes <span class="chip">concret</span></h3>
+            <ul class="list">
+              <li>Un regard extérieur <span>lucide, pas complaisant</span></li>
+              <li>Une direction claire <span>et des priorités</span></li>
+              <li>Un plan simple <span>exécutable dès aujourd’hui</span></li>
+              <li>Moins de flou <span>→ plus d’action</span></li>
+            </ul>
+            <div style="margin-top:14px;">
+              <a class="btn" href="https://discord.gg/XasVgkdp" target="_blank" rel="noopener">Rejoindre le Discord</a>
+              <a class="ghost" href="index.html#formations" style="display:inline-flex; margin-top:10px;">Retour aux formations</a>
+            </div>
+          </div>
 
-          <details>
-            <summary>Je suis débutant, c’est OK ?</summary>
-            <p>Oui. On adapte le plan à ton niveau. Le but : te rendre autonome et efficace.</p>
-          </details>
+          <div class="card reveal">
+            <h3>FAQ rapide <span class="chip">réponses</span></h3>
 
-          <details>
-            <summary>Je ne sais pas quoi choisir, je fais quoi ?</summary>
-            <p>Tu viens sur Discord, tu expliques ton objectif, et on te guide vers le bon format.</p>
-          </details>
+            <details>
+              <summary><span>Je suis débutant, c’est OK ?</span><span class="caret" aria-hidden="true"></span></summary>
+              <p>Oui. On adapte le plan à ton niveau. Le but : te rendre autonome et efficace.</p>
+            </details>
 
-          <details>
-            <summary>Vous faites “à ma place” ?</summary>
-            <p>Non. On structure et on guide. Tu exécutes. Le but, c’est le résultat + l’autonomie.</p>
-          </details>
+            <details>
+              <summary><span>Je ne sais pas quoi choisir</span><span class="caret" aria-hidden="true"></span></summary>
+              <p>Tu viens sur Discord, tu expliques ton objectif, et on te guide vers le bon format.</p>
+            </details>
 
-          <details>
-            <summary>Comment je paye ?</summary>
-            <p>Pour l’instant, tout passe par Discord. Les solutions de paiement seront activées plus tard.</p>
-          </details>
+            <details>
+              <summary><span>Vous faites “à ma place” ?</span><span class="caret" aria-hidden="true"></span></summary>
+              <p>Non. On structure et on guide. Tu exécutes. L’objectif : résultats + autonomie.</p>
+            </details>
 
-          <p class="mini" style="margin-top:12px;">
-            Disclaimer : le coaching n’est pas un suivi médical/psychologique. On parle d’organisation, discipline, business, exécution.
-          </p>
+            <details>
+              <summary><span>Comment je paye ?</span><span class="caret" aria-hidden="true"></span></summary>
+              <p>Pour l’instant, tout passe par Discord. Les solutions de paiement seront activées plus tard.</p>
+            </details>
+
+            <p style="margin-top:12px; color: rgba(233,238,242,.65); font-size: 13px;">
+              Disclaimer : le coaching n’est pas un suivi médical/psychologique. On parle d’organisation, discipline, business, exécution.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <script>
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
 </body>
 </html>
-
-
-
 
