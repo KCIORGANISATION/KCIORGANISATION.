@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KCI — Formation Routine</title>
-  <meta name="description" content="Formation Routine KCI : construire une routine stable, réaliste et applicable sur le long terme." />
+  <title>KCI — Formation Routine / Discipline</title>
+  <meta name="description" content="Formation Routine / Discipline KCI : construire un cadre tenable, éliminer les distractions, tenir 21 jours, devenir constant." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -21,71 +21,90 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
 
     .ghost{
-      display:inline-flex; align-items:center; justify-content:center;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+      white-space:nowrap;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
-    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:92ch; }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
-    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
       background:var(--card); border-radius:var(--radius);
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
+    .muted{ color:var(--muted); }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
     .list li span{ color:var(--muted); }
 
-    .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
+    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+
+    .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
-      display:inline-flex; justify-content:center; align-items:center;
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800;
-      border-radius:999px; padding:12px 18px; width:100%;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0a0a; font-weight:800; border-radius:999px;
+      padding:12px 18px;
+      width:100%;
+      max-width:100%;
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
     .btn-secondary{
-      display:inline-flex; justify-content:center; align-items:center;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; width:100%;
-      margin-top:10px; color:var(--accent-2);
+      border-radius:999px; padding:12px 18px; color:var(--accent-2);
+      width:100%;
+      max-width:100%;
+      margin-top:10px;
+      white-space:nowrap;
     }
 
     details{
       background:#0c1015; border:1px solid rgba(84,168,255,.18);
       border-radius:14px; padding:14px; margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
     summary::-webkit-details-marker{ display:none; }
-    details p{ color:var(--muted); margin-top:10px; }
+    details p{ margin:10px 0 0; color:var(--muted); }
   </style>
 </head>
 
@@ -94,36 +113,67 @@
 
   <section class="wrap">
     <span class="pill">🕒 Formation à l’unité</span>
-    <h1>Routine — Construire une base stable</h1>
+    <h1>Routine / Discipline — Le socle</h1>
     <p class="lead">
-      Cette formation t’apprend à créer une <strong>routine réaliste</strong>,
-      sans te cramer ni viser la perfection.
-      Une structure qui tient dans la vraie vie, pas sur le papier.
+      Si tu veux construire une vie solide, il te faut une base. Pas une “motivation” de 48h, pas un planning parfait.
+      <strong>Une routine tenable</strong> : un cadre qui élimine le superflu, réduit les distractions, et te rend constant.
+      Le but n’est pas de faire beaucoup. <strong>Le but, c’est de faire chaque jour.</strong>
     </p>
 
     <div class="grid">
       <div>
         <div class="card">
-          <h2>✅ Ce que tu vas apprendre</h2>
+          <h2>📦 Ce que tu vas apprendre</h2>
           <ul class="list">
-            <li><strong>Pourquoi les routines échouent</strong> <span>→ et comment éviter ça</span></li>
-            <li><strong>Construire une routine flexible</strong> <span>→ même avec l’école / travail</span></li>
-            <li><strong>Identifier les vraies priorités</strong> <span>→ arrêter de tout vouloir faire</span></li>
-            <li><strong>Tenir sur le long terme</strong> <span>→ constance > motivation</span></li>
+            <li><strong>Créer une routine réaliste</strong> <span>→ un cadre, pas une prison de productivité</span></li>
+            <li><strong>Organiser tes journées</strong> <span>→ éliminer le superflu et arrêter la perte de temps</span></li>
+            <li><strong>Rester constant quand t’as pas envie</strong> <span>→ discipline & système (pas motivation)</span></li>
+            <li><strong>Comprendre pourquoi les routines échouent</strong> <span>→ erreurs classiques + correctifs</span></li>
+            <li><strong>Transformer l’habitude en identité</strong> <span>→ ce que tu fais devient ce que tu es</span></li>
           </ul>
+
           <div class="divider"></div>
-          <p class="muted">Base essentielle avant le sport, le business ou les études avancées.</p>
+
+          <h3 style="margin:0 0 8px;">🧱 Les 3 piliers (version KCI)</h3>
+          <ul class="list" style="margin-top:0;">
+            <li><strong>Hygiène</strong> <span>→ environnement propre + énergie stable</span></li>
+            <li><strong>Concentration</strong> <span>→ moins de bruit, plus de clarté dans chaque tâche</span></li>
+            <li><strong>Discipline</strong> <span>→ le moteur : apprendre, exécuter, progresser</span></li>
+          </ul>
+
+          <p class="mini">Tu verras aussi des routines “testées” (extrême vs raisonnable) + une routine recommandée (matin / après-midi / soir).</p>
+        </div>
+
+        <div class="card">
+          <h2>🎯 Objectif concret</h2>
+          <p class="muted">
+            Cette formation te pousse à appliquer un cadre <strong>pendant 21 jours</strong>.
+            Pas pour “faire joli”, mais pour rendre la routine automatique.
+          </p>
+          <ul class="list">
+            <li><strong>Règles simples</strong> <span>→ heures stables, écrans coupés le soir, habitudes obligatoires</span></li>
+            <li><strong>Adaptation à ta vie</strong> <span>→ école, horaires variables, fatigue : on ajuste</span></li>
+            <li><strong>Tableau de suivi</strong> <span>→ cocher, noter, mesurer (et arrêter le flou)</span></li>
+          </ul>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
           <details>
-            <summary>J’ai déjà essayé plein de routines, ça marche jamais</summary>
-            <p>Justement. Ici on construit autour de ta réalité, pas d’un modèle “parfait”.</p>
+            <summary>J’ai déjà essayé 10 routines, je retombe toujours à zéro.</summary>
+            <p>Normal si tu vises trop haut. Ici on construit un cadre tenable : moins “impressionnant”, mais stable. La régularité > l’intensité.</p>
           </details>
           <details>
             <summary>Ça prend combien de temps par jour ?</summary>
-            <p>Le but est de simplifier, pas d’ajouter des couches inutiles.</p>
+            <p>Une bonne routine te fait gagner du temps. Elle coupe les distractions au lieu d’ajouter 15 nouvelles obligations.</p>
+          </details>
+          <details>
+            <summary>Je suis au lycée / j’ai des horaires variables.</summary>
+            <p>C’est prévu. La routine recommandée est polyvalente (matin / après-midi / soir) et s’adapte selon ton rythme.</p>
+          </details>
+          <details>
+            <summary>Comment je reçois le contenu ?</summary>
+            <p>Quand Stripe sera activé, tu recevras l’accès automatiquement après achat.</p>
           </details>
         </div>
       </div>
@@ -131,19 +181,38 @@
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Paiement par Stripe (bientôt). La page est prête : tu remplaceras juste le lien.</p>
+
           <div class="price-row">
-            <span class="price">12,99 €</span>
+            <div class="mini">Prix</div>
+            <div class="price">12,99 €</div>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Si problème d’accès : page <a href="merci.html">merci</a> + support.
+          </p>
         </div>
 
         <div class="card">
-          <h3>🎯 Pour qui ?</h3>
+          <h3>✅ Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux arrêter l’improvisation permanente</li>
-            <li>Tu veux une structure simple et tenable</li>
-            <li>Tu veux progresser sans te cramer</li>
+            <li>Tu commences fort puis tu lâches <span>au bout de 3 jours</span></li>
+            <li>Tu veux arrêter le chaos <span>(écrans, procrastination, fatigue)</span></li>
+            <li>Tu veux une routine <span>qui tient dans la vraie vie</span></li>
+            <li>Tu veux une base <span>avant Sport / Études / Business</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>📈 Résultat attendu</h3>
+          <ul class="list">
+            <li>Un cadre quotidien <span>simple et stable</span></li>
+            <li>Moins de distraction <span>→ plus d’exécution</span></li>
+            <li>Une discipline <span>qui ne dépend pas de l’humeur</span></li>
+            <li>Une routine que tu peux tenir <span>sur 21 jours… puis toute l’année</span></li>
           </ul>
         </div>
       </div>
