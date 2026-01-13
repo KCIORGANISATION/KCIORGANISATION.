@@ -7,7 +7,7 @@
   <meta name="description" content="Formations KCI : méthode, discipline, compétences. Deviens bon pour de vrai." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -21,17 +21,19 @@
       --shadow: 0 10px 40px rgba(0,0,0,.35);
       --maxw: 1120px;
 
-      /* Gold (Masterclass) */
       --gold:#f6d06f;
       --gold-2:#ffb86b;
       --gold-3:#ffd7a1;
       --gold-dark:#1a1206;
 
-      /* Teal / Green / Blue blend */
       --teal:#00e0ff;
       --mint:#38f6b2;
       --blue:#54a8ff;
       --aqua:#14ffd6;
+
+      --crackA: rgba(0,224,255,.22);
+      --crackB: rgba(56,246,178,.16);
+      --crackC: rgba(84,168,255,.18);
     }
 
     *{ box-sizing:border-box; }
@@ -48,7 +50,64 @@
       letter-spacing: .1px;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x:hidden;
+      position: relative;
     }
+
+    /* ==========================
+       ✅ BONUS: fissures overlay global (sobre)
+       ========================== */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: -10%;
+      pointer-events:none;
+      z-index: 0;
+      opacity:.55;
+      background:
+        /* grands traits */
+        linear-gradient(115deg,
+          transparent 0%,
+          transparent 43%,
+          rgba(255,255,255,.06) 44%,
+          transparent 46%,
+          transparent 64%,
+          rgba(0,224,255,.06) 66%,
+          transparent 68%,
+          transparent 100%
+        ),
+        /* micro fissures */
+        repeating-linear-gradient(140deg,
+          rgba(255,255,255,.045) 0px,
+          rgba(255,255,255,.045) 1px,
+          transparent 1px,
+          transparent 34px
+        ),
+        repeating-linear-gradient(35deg,
+          rgba(0,224,255,.035) 0px,
+          rgba(0,224,255,.035) 1px,
+          transparent 1px,
+          transparent 48px
+        );
+      filter: blur(.25px);
+      mix-blend-mode: screen;
+      transform: rotate(-2deg);
+    }
+    body::after{
+      content:"";
+      position: fixed;
+      inset: -10%;
+      pointer-events:none;
+      z-index: 0;
+      opacity:.25;
+      background:
+        radial-gradient(900px 520px at 18% 22%, rgba(0,224,255,.10), transparent 65%),
+        radial-gradient(900px 520px at 82% 70%, rgba(56,246,178,.08), transparent 65%);
+      filter: blur(6px);
+    }
+
+    /* Tout le contenu au-dessus des overlays */
+    header, main, footer { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
@@ -62,7 +121,7 @@
     }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .6px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: .6px; }
 
     .pill {
       padding: 10px 16px;
@@ -81,12 +140,13 @@
       border: 1px solid rgba(0,224,255,.35);
       background: linear-gradient(180deg, var(--accent), var(--accent-2));
       color: #06121f;
-      font-weight: 800;
-      transition: transform .12s ease, filter .12s ease;
+      font-weight: 900;
+      transition: transform .12s ease, filter .12s ease, box-shadow .2s ease;
       white-space: nowrap;
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
+      box-shadow: 0 10px 24px rgba(0,224,255,.10);
     }
     .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
 
@@ -99,28 +159,99 @@
       max-width:100%;
       overflow:hidden;
       text-overflow:ellipsis;
+      transition: border-color .15s ease, color .15s ease, transform .15s ease;
     }
-    .ghost:hover { border-color: rgba(0,224,255,.35); color: var(--accent-2); }
+    .ghost:hover { border-color: rgba(0,224,255,.35); color: var(--accent-2); transform: translateY(-1px); }
 
     /* Hero */
     .hero { padding: clamp(64px, 8vh, 120px) 0; }
     .hero .hgrid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
     @media (max-width: 900px){ .hero .hgrid { grid-template-columns: 1fr; } }
 
-    .kicker { color: var(--accent-2); font-weight: 800; text-transform: uppercase; font-size: .9rem; letter-spacing: .15em; }
+    .kicker { color: var(--accent-2); font-weight: 900; text-transform: uppercase; font-size: .9rem; letter-spacing: .15em; }
     h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; margin: 10px 0 16px; }
 
     .lead { font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); max-width: 70ch; }
 
-    .hero-card {
-      background: radial-gradient(80% 120% at 80% 0%, rgba(90,164,255,.16), transparent 60%), var(--card);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
+    /* ==========================
+       ✅ Package Global design (A+B fusion + fissure)
+       ========================== */
+    .pkg-global,
+    .pkg-global-card{
+      position:relative;
       overflow:hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.07);
+      box-shadow: 0 18px 70px rgba(0,0,0,.45);
+      background:
+        radial-gradient(900px 420px at 12% 8%, rgba(56,246,178,.14), transparent 55%),
+        radial-gradient(900px 420px at 88% 18%, rgba(0,224,255,.14), transparent 60%),
+        radial-gradient(900px 520px at 70% 92%, rgba(84,168,255,.10), transparent 65%),
+        linear-gradient(180deg, rgba(56,246,178,.05), rgba(0,0,0,0)),
+        #0c0f14;
     }
 
+    /* Fissure centrale (propre) */
+    .pkg-global::before,
+    .pkg-global-card::before{
+      content:"";
+      position:absolute;
+      top: 10%;
+      bottom: 10%;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255,255,255,.10) 8%,
+        var(--crackA) 16%,
+        rgba(255,255,255,.08) 22%,
+        var(--crackB) 35%,
+        rgba(255,255,255,.07) 48%,
+        var(--crackC) 60%,
+        rgba(255,255,255,.08) 74%,
+        var(--crackA) 86%,
+        rgba(255,255,255,.10) 92%,
+        transparent 100%
+      );
+      opacity:.95;
+      filter: blur(.15px);
+      pointer-events:none;
+      z-index: 0;
+    }
+    /* Petites “cassures” autour de la fissure */
+    .pkg-global::after,
+    .pkg-global-card::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        repeating-linear-gradient(
+          125deg,
+          rgba(255,255,255,.0) 0px,
+          rgba(255,255,255,.0) 18px,
+          rgba(0,224,255,.08) 19px,
+          rgba(255,255,255,.0) 22px
+        );
+      opacity:.22;
+      filter: blur(10px);
+      pointer-events:none;
+      z-index: 0;
+      animation: microDrift 10s linear infinite;
+    }
+    @keyframes microDrift{
+      0%{ transform: translateX(-10px); }
+      50%{ transform: translateX(10px); }
+      100%{ transform: translateX(-10px); }
+    }
+    .pkg-global > * , .pkg-global-card > *{ position:relative; z-index:1; }
+
+    /* Hero recommended card — prend le style du Global */
+    .hero-card{
+      border-radius: 22px;
+      padding: 24px;
+    }
     .badge {
       display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff;
@@ -129,7 +260,12 @@
       padding:8px 12px;
       border-radius:999px;
       font-size:.85rem;
-      font-weight:700;
+      font-weight:900;
+    }
+    .badge.global{
+      color: rgba(233,238,242,.92);
+      background: rgba(0,224,255,.08);
+      border-color: rgba(0,224,255,.22);
     }
 
     /* Sections */
@@ -137,7 +273,7 @@
     h2 { font-size: clamp(24px, 3vw, 36px); margin: 0 0 8px; }
     p.sub { color: var(--muted); margin: 0 0 24px; }
 
-    /* Standard cards grid */
+    /* Cards */
     .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
 
@@ -155,9 +291,7 @@
     .card h3 { margin: 6px 0; font-size: 20px; }
     .card p { color: var(--muted); margin: 0; }
 
-    /* ==========================
-       ✅ HIGHLIGHT SECTIONS (Vision + About)
-       ========================== */
+    /* Highlight blocks */
     .highlight{
       position:relative;
       border-radius: 22px;
@@ -208,6 +342,12 @@
       padding: 16px;
       box-shadow: 0 10px 36px rgba(0,0,0,.35);
       overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .hl-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,224,255,.28);
+      filter: brightness(1.03);
     }
     .hl-top{
       display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
@@ -247,13 +387,13 @@
       grid-template-columns: 1fr 1fr;
       gap:24px;
       align-items:center;
-      background: linear-gradient(180deg, rgba(84,168,255,.08), rgba(0,0,0,0));
       border:1px solid rgba(84,168,255,.15);
       padding:24px;
       border-radius:20px;
       box-shadow: var(--shadow);
       overflow:hidden;
       margin-bottom: 18px;
+      position: relative;
     }
     .pkg h3 { font-size:28px; margin:0 0 8px; }
     .pkg .desc { color: var(--muted); }
@@ -267,7 +407,6 @@
     }
     @media (max-width: 900px){ .pkg { grid-template-columns: 1fr; } }
 
-    /* ✅ Stylized steps blocks for Pack A/B */
     .steps-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -280,10 +419,16 @@
       background: rgba(12,16,21,.75);
       border: 1px solid rgba(0,224,255,.20);
       border-radius: 16px;
-      padding: 12px 12px 12px 12px;
+      padding: 12px;
       overflow:hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,.32);
       position: relative;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .step-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,224,255,.28);
+      filter: brightness(1.03);
     }
     .step-card::before{
       content:"";
@@ -317,7 +462,9 @@
     .step-title{ margin:0; font-weight: 900; font-size: 15px; color: rgba(233,238,242,.94); }
     .step-desc{ margin:0; color: rgba(154,160,166,.95); font-size: 13px; line-height: 1.5; }
 
-    /* Units grid */
+    /* ==========================
+       ✅ Units: plus premium + animations
+       ========================== */
     .units{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -325,20 +472,109 @@
       align-items: stretch;
     }
     .unit{
-      background:#0c0f14;
-      border:1px solid rgba(84,168,255,.25);
-      border-radius:16px;
+      position:relative;
+      background:
+        radial-gradient(520px 220px at 15% 0%, rgba(0,224,255,.10), transparent 62%),
+        radial-gradient(520px 220px at 90% 50%, rgba(84,168,255,.08), transparent 60%),
+        #0c0f14;
+      border:1px solid rgba(84,168,255,.20);
+      border-radius:18px;
       padding:16px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 14px 46px rgba(0,0,0,.35);
       display:flex;
       flex-direction:column;
       gap:10px;
-      min-height: 165px;
+      min-height: 175px;
       overflow:hidden;
+      transform: translateY(0);
+      transition: transform .20s ease, border-color .20s ease, filter .20s ease, box-shadow .20s ease;
+      isolation:isolate;
     }
-    .unit h4 { margin:0 0 6px; }
-    .unit p { color: var(--muted); margin: 0; }
-    .price { margin-top:auto; color: var(--accent-2); font-weight:800; }
+    .unit::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: conic-gradient(
+        from 210deg,
+        rgba(0,224,255,0) 0%,
+        rgba(0,224,255,.20) 16%,
+        rgba(56,246,178,.10) 30%,
+        rgba(84,168,255,.14) 44%,
+        rgba(0,224,255,0) 60%,
+        rgba(20,255,214,.10) 78%,
+        rgba(0,224,255,.18) 92%,
+        rgba(0,224,255,0) 100%
+      );
+      opacity:.0;
+      filter: blur(12px);
+      transition: opacity .22s ease;
+      z-index:0;
+      pointer-events:none;
+    }
+    /* sheen */
+    .unit::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-60%;
+      width: 80%;
+      height: 180%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+      transform: rotate(20deg) translateX(0);
+      opacity:0;
+      z-index:0;
+      pointer-events:none;
+    }
+    .unit:hover{
+      transform: translateY(-4px);
+      border-color: rgba(0,224,255,.35);
+      filter: brightness(1.04);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+    .unit:hover::before{ opacity:.35; }
+    .unit:hover::after{
+      opacity:.85;
+      animation: sheen 900ms ease forwards;
+    }
+    @keyframes sheen{
+      from{ transform: rotate(20deg) translateX(0); }
+      to{ transform: rotate(20deg) translateX(220%); }
+    }
+
+    .unit > *{ position:relative; z-index:1; }
+
+    .unit h4 { margin:0 0 4px; font-weight: 900; letter-spacing:.2px; }
+    .unit p {
+      color: rgba(154,160,166,.95);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .price {
+      margin-top:auto;
+      font-weight: 900;
+      letter-spacing:.2px;
+      color: rgba(233,238,242,.92);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .price span{
+      color: var(--accent-2);
+      font-weight: 900;
+      white-space:nowrap;
+    }
+    .unit .hint{
+      font-size: 12px;
+      color: rgba(233,238,242,.62);
+      border: 1px solid rgba(0,224,255,.16);
+      background: rgba(0,224,255,.06);
+      padding: 6px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
 
     /* Socials */
     .socials { display:flex; gap:10px; flex-wrap: wrap; }
@@ -360,9 +596,7 @@
     .tiny { font-size: 12px; opacity: .7; }
     .note { color: var(--muted); font-size: 14px; margin-top: 10px; }
 
-    /* ==========================
-       ✅ COACHING MASTERCLASS GOLD
-       ========================== */
+    /* Coaching masterclass gold */
     .coach-premium{
       position:relative;
       display:grid;
@@ -490,6 +724,89 @@
     }
     .mini-price{ font-weight: 900; color: var(--gold-3); white-space: nowrap; }
     @media (max-width: 900px){ .coach-premium{ grid-template-columns: 1fr; } }
+
+    /* ==========================
+       ✅ CTA bouton unique “Commencer”
+       ========================== */
+    .btn-cta{
+      position: relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 950;
+      letter-spacing:.2px;
+      color: rgba(233,238,242,.92);
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 420px at 12% 10%, rgba(56,246,178,.16), transparent 60%),
+        radial-gradient(900px 420px at 88% 10%, rgba(0,224,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,0)),
+        #0c0f14;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      overflow:hidden;
+      transition: transform .18s ease, filter .18s ease, border-color .18s ease;
+      isolation:isolate;
+    }
+    .btn-cta::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: conic-gradient(
+        from 210deg,
+        rgba(0,224,255,0) 0%,
+        rgba(0,224,255,.38) 14%,
+        rgba(56,246,178,.22) 28%,
+        rgba(84,168,255,.24) 42%,
+        rgba(0,224,255,0) 60%,
+        rgba(20,255,214,.18) 78%,
+        rgba(0,224,255,.34) 92%,
+        rgba(0,224,255,0) 100%
+      );
+      filter: blur(14px);
+      opacity:.35;
+      z-index:0;
+      pointer-events:none;
+      animation: ctaSpin 9s linear infinite;
+    }
+    @keyframes ctaSpin { from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+
+    .btn-cta::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-70%;
+      width: 90%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+      transform: rotate(18deg);
+      opacity:0;
+      z-index:0;
+      pointer-events:none;
+    }
+    .btn-cta:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      border-color: rgba(0,224,255,.28);
+    }
+    .btn-cta:hover::after{
+      opacity:.9;
+      animation: sheen 900ms ease forwards;
+    }
+    .btn-cta span{ position:relative; z-index:1; }
+    .btn-cta .dot{
+      width: 9px; height: 9px; border-radius: 999px;
+      background: rgba(0,224,255,.9);
+      box-shadow: 0 0 0 6px rgba(0,224,255,.12);
+    }
+
+    /* Respect reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; }
+      body::before, body::after{ display:none; }
+    }
   </style>
 </head>
 
@@ -533,8 +850,9 @@
           <div class="note">Paiement Stripe : bientôt. Les pages de vente sont prêtes.</div>
         </div>
 
-        <div class="hero-card reveal">
-          <div class="badge">⚡ Recommandé</div>
+        <!-- ✅ HERO: prend le design du Package Global -->
+        <div class="hero-card pkg-global-card reveal">
+          <div class="badge global">Recommandé</div>
           <h3 style="margin:14px 0 8px;">Package Global</h3>
           <p class="lead" style="font-size:16px;">
             Base solide (discipline) + action (revenus). Le meilleur choix si tu veux avancer sans t’éparpiller.
@@ -547,7 +865,7 @@
       </div>
     </section>
 
-    <!-- VISION (✅ styled like About) -->
+    <!-- VISION -->
     <section id="vision">
       <div class="wrap">
         <div class="highlight reveal">
@@ -617,10 +935,7 @@
             </div>
           </div>
 
-          <div class="card" style="
-            background: rgba(12,16,21,.70);
-            border-color: rgba(56,246,178,.18);
-          ">
+          <div class="card" style="background: rgba(12,16,21,.70); border-color: rgba(56,246,178,.18);">
             <h3 style="margin:0;">Ce que tu construis</h3>
             <p style="margin:0; color: rgba(154,160,166,.95);">Une base solide : énergie, constance, exécution.</p>
 
@@ -686,10 +1001,7 @@
             </div>
           </div>
 
-          <div class="card" style="
-            background: rgba(12,16,21,.70);
-            border-color: rgba(0,224,255,.18);
-          ">
+          <div class="card" style="background: rgba(12,16,21,.70); border-color: rgba(0,224,255,.18);">
             <h3 style="margin:0;">Le process KCI</h3>
             <p style="margin:0; color: rgba(154,160,166,.95);">Simple, exécutable, mesurable.</p>
 
@@ -733,7 +1045,8 @@
           </div>
         </article>
 
-        <article class="pkg reveal" id="global">
+        <!-- ✅ Package Global: fusion A+B + fissure -->
+        <article class="pkg pkg-global reveal" id="global">
           <div>
             <div class="kicker">Package Global</div>
             <h3>A + B à prix réduit</h3>
@@ -742,16 +1055,16 @@
               <a class="btn" href="vente-packageglobal.html">Accéder</a>
             </div>
           </div>
-          <div class="card">
+          <div class="card" style="background: rgba(12,16,21,.70); border-color: rgba(0,224,255,.18);">
             <h3 style="margin:0;">Avantage</h3>
-            <p>Moins cher que séparément • Mises à jour incluses</p>
+            <p style="margin:0;">Moins cher que séparément • Mises à jour incluses</p>
           </div>
         </article>
 
-        <!-- ✅ Coaching GOLD -->
+        <!-- Coaching GOLD -->
         <article class="coach-premium reveal" id="coaching">
           <div>
-            <div class="coach-tag">🏆 Offre Premium</div>
+            <div class="coach-tag">Offre Premium</div>
             <h3 class="coach-title">COACHING KCI MASTERCLASS</h3>
             <p class="coach-desc">
               L’accompagnement complet de KCI. On prend ta situation de A à Z et on te guide avec un vrai suivi :
@@ -771,7 +1084,7 @@
 
           <div class="coach-mini">
             <div class="mini-card">
-              <h4>💬 Coaching 1:1 (visio)</h4>
+              <h4>Coaching 1:1 (visio)</h4>
               <p>Une session complète : analyse + plan clair pour les 30 prochains jours.</p>
               <div class="row">
                 <span class="mini-price">30 €</span>
@@ -780,7 +1093,7 @@
             </div>
 
             <div class="mini-card">
-              <h4>📄 Coaching écrit</h4>
+              <h4>Coaching écrit</h4>
               <p>Tu réponds à un mini questionnaire, on te rend un plan structuré en 24–48h.</p>
               <div class="row">
                 <span class="mini-price">15 €</span>
@@ -789,7 +1102,7 @@
             </div>
 
             <div class="mini-card">
-              <h4>⚡ Audit express</h4>
+              <h4>Audit express</h4>
               <p>Réponse courte et directe : ce qui bloque + quoi changer pour avancer vite.</p>
               <div class="row">
                 <span class="mini-price">10 €</span>
@@ -806,63 +1119,73 @@
 
         <div class="units">
           <a class="unit reveal" href="vente-formation-generale.html">
+            <div class="hint">Base</div>
             <h4>Formation générale</h4>
-            <p>Les bases pour transformer ton quotidien progressivement.</p>
-            <div class="price">14,99 €</div>
+            <p>Les fondamentaux pour transformer ton quotidien progressivement, sans te disperser.</p>
+            <div class="price"><span>14,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-routine.html">
+            <div class="hint">Système</div>
             <h4>Routine</h4>
-            <p>Méthode KCI pour construire une routine stable et réaliste.</p>
-            <div class="price">12,99 €</div>
+            <p>Méthode KCI : structure stable, flexible, et adaptée à la vraie vie.</p>
+            <div class="price"><span>12,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-sport.html">
+            <div class="hint">Progression</div>
             <h4>Sport</h4>
-            <p>Programme simple + progression pour tenir sur le long terme.</p>
-            <div class="price">14,99 €</div>
+            <p>Programme simple + progression mesurable pour tenir sur le long terme.</p>
+            <div class="price"><span>14,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-soin-de-soi.html">
+            <div class="hint">Stabilité</div>
             <h4>Soin de soi</h4>
-            <p>Sommeil, hygiène, image, mental : base stratégique.</p>
-            <div class="price">19,99 €</div>
+            <p>Sommeil, hygiène, image, mental : base stratégique pour rester constant.</p>
+            <div class="price"><span>19,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-travail-etudes.html">
+            <div class="hint">Focus</div>
             <h4>Travail & études</h4>
-            <p>Focus, organisation, apprendre efficacement sans stress.</p>
-            <div class="price">19,99 €</div>
+            <p>Organisation, apprentissage efficace, exécution sans surcharge mentale.</p>
+            <div class="price"><span>19,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-bonus.html">
+            <div class="hint">Outils</div>
             <h4>Bonus</h4>
-            <p>Outils & systèmes simples pour gagner du temps.</p>
-            <div class="price">4,99 €</div>
+            <p>Templates, checklists, automatisations simples : gain de temps immédiat.</p>
+            <div class="price"><span>4,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-business-rapide.html">
+            <div class="hint">Cashflow</div>
             <h4>Créer un business sur tes compétences</h4>
-            <p>Lancer une source de revenu accessible et exécutable.</p>
-            <div class="price">24,99 €</div>
+            <p>Lancer une offre exécutable, trouver des clients, faire tes premières ventes.</p>
+            <div class="price"><span>24,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-business-long-terme.html">
+            <div class="hint">Durable</div>
             <h4>Business long terme</h4>
-            <p>Compétence durable → monétisation → montée en valeur.</p>
-            <div class="price">34,99 €</div>
+            <p>Compétence durable → monétisation → montée en valeur (preuve + portfolio).</p>
+            <div class="price"><span>34,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-bibliotheque-de-ressources.html">
+            <div class="hint">Ressources</div>
             <h4>Bibliothèque de ressources</h4>
-            <p>Outils, modèles, sites et frameworks prêts à l’emploi.</p>
-            <div class="price">4,99 €</div>
+            <p>Modèles, sites, frameworks et outils prêts à l’emploi.</p>
+            <div class="price"><span>4,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
 
           <a class="unit reveal" href="vente-apprendre-a-apprendre.html">
+            <div class="hint">Apprentissage</div>
             <h4>Apprendre à apprendre</h4>
-            <p>Mémorisation, focus, apprentissage efficace.</p>
-            <div class="price">29,99 €</div>
+            <p>Mémorisation, focus, systèmes d’apprentissage : devenir rapide et constant.</p>
+            <div class="price"><span>29,99 €</span><span style="color:rgba(233,238,242,.65); font-weight:800;">Voir</span></div>
           </a>
         </div>
       </div>
@@ -873,7 +1196,12 @@
       <div class="wrap" style="text-align:center;">
         <h2 class="reveal">Prêt à construire ?</h2>
         <p class="sub reveal">Pas de promesses vides. Un plan. Du travail. Des progrès visibles.</p>
-        <a class="btn reveal" href="#formations">Commencer</a>
+
+        <!-- ✅ Bouton unique -->
+        <a class="btn-cta reveal" href="#formations">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Commencer</span>
+        </a>
       </div>
     </section>
 
@@ -890,7 +1218,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (✅ Mind-map 4 bubbles) -->
+    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
         <div class="highlight reveal">
@@ -901,8 +1229,47 @@
           </p>
 
           <div class="highlight-grid">
-            <!-- Project bubble -->
+            <!-- Kostia -->
             <div class="hl-card reveal">
+              <div class="hl-top">
+                <span class="hl-chip blue">Kostia</span>
+                <span class="tiny">fondateur</span>
+              </div>
+              <p class="hl-title">Créateur du projet</p>
+              <p class="hl-p">
+                Direction, vision produit, structuration des modules et écriture.
+                Objectif : une méthode simple, exécutable et orientée résultats.
+              </p>
+            </div>
+
+            <!-- Clovis -->
+            <div class="hl-card reveal">
+              <div class="hl-top">
+                <span class="hl-chip teal">Clovis</span>
+                <span class="tiny">bras droit</span>
+              </div>
+              <p class="hl-title">Exécution & production</p>
+              <p class="hl-p">
+                Organisation, livraison, montage vidéo et création de contenu.
+                Le rôle : rendre KCI concret, clair et utilisable.
+              </p>
+            </div>
+
+            <!-- Hagen -->
+            <div class="hl-card reveal">
+              <div class="hl-top">
+                <span class="hl-chip mint">Hagen</span>
+                <span class="tiny">bras gauche</span>
+              </div>
+              <p class="hl-title">Systèmes & qualité</p>
+              <p class="hl-p">
+                Frameworks, cohérence, amélioration continue.
+                Transformer les idées en systèmes mesurables et solides.
+              </p>
+            </div>
+
+            <!-- ✅ Projet en long rectangle dessous -->
+            <div class="hl-card reveal" style="grid-column: 1 / -1;">
               <div class="hl-top">
                 <span class="hl-chip teal">Le projet</span>
                 <span class="tiny">KCI Organisation</span>
@@ -912,45 +1279,6 @@
                 On vend des formations et du coaching basés sur une logique simple :
                 <strong>structure → exécution → preuve</strong>.
                 La communauté vit sur Discord, et les ressources sont mises à jour au fur et à mesure.
-              </p>
-            </div>
-
-            <!-- Kostia bubble -->
-            <div class="hl-card reveal">
-              <div class="hl-top">
-                <span class="hl-chip blue">Kostia</span>
-                <span class="tiny">vision & contenu</span>
-              </div>
-              <p class="hl-title">Clarté + direction</p>
-              <p class="hl-p">
-                Vision produit, structuration des modules, écriture des formations.
-                Focus sur le concret : ce qui fait avancer vraiment (pas de discours, pas de placebo).
-              </p>
-            </div>
-
-            <!-- Clovis bubble -->
-            <div class="hl-card reveal">
-              <div class="hl-top">
-                <span class="hl-chip teal">Clovis</span>
-                <span class="tiny">ops & exécution</span>
-              </div>
-              <p class="hl-title">Rendre le projet réel</p>
-              <p class="hl-p">
-                Mise en place, organisation, exécution et livraison.
-                L’objectif : que KCI tourne proprement et que tout soit utilisable, pas juste “beau”.
-              </p>
-            </div>
-
-            <!-- Hagen bubble -->
-            <div class="hl-card reveal" style="grid-column: 1 / -1;">
-              <div class="hl-top">
-                <span class="hl-chip mint">Hagen</span>
-                <span class="tiny">systèmes & qualité</span>
-              </div>
-              <p class="hl-title">Systèmes, cohérence, niveau</p>
-              <p class="hl-p">
-                Qualité des méthodes, cohérence des frameworks, amélioration continue.
-                Le rôle : transformer des idées en <strong>systèmes</strong> simples, mesurables et solides — ceux qui tiennent sur le long terme.
               </p>
             </div>
           </div>
