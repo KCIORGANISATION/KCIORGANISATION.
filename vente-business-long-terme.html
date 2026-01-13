@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KCI — Formation Business long terme</title>
-  <meta name="description" content="Formation Business long terme KCI : apprendre une compétence solide et construire un revenu durable." />
+  <title>KCI — Business long terme</title>
+  <meta name="description" content="Formation KCI Business long terme : choisir une compétence solide, apprendre efficacement, tenir sur la durée, créer des preuves et monétiser proprement." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
@@ -21,71 +22,106 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
 
     .ghost{
-      display:inline-flex; align-items:center; justify-content:center;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+      white-space:nowrap;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
-    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:90ch; }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
-    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
-      background:var(--card); border-radius:var(--radius);
+      background:var(--card);
+      border-radius:var(--radius);
       border:1px solid rgba(84,168,255,.15);
-      padding:18px; box-shadow:var(--shadow);
+      padding:18px;
+      box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
+    .muted{ color:var(--muted); }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
     .list li span{ color:var(--muted); }
 
-    .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
+    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+    .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
-      display:inline-flex; justify-content:center; align-items:center;
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800;
-      border-radius:999px; padding:12px 18px; width:100%;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0a0a; font-weight:800; border-radius:999px;
+      padding:12px 18px;
+      width:100%;
+      max-width:100%;
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
     .btn-secondary{
-      display:inline-flex; justify-content:center; align-items:center;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; width:100%;
-      margin-top:10px; color:var(--accent-2);
+      border-radius:999px; padding:12px 18px; color:var(--accent-2);
+      width:100%;
+      max-width:100%;
+      margin-top:10px;
+      white-space:nowrap;
     }
 
     details{
-      background:#0c1015; border:1px solid rgba(84,168,255,.18);
-      border-radius:14px; padding:14px; margin:10px 0;
+      background:#0c1015;
+      border:1px solid rgba(84,168,255,.18);
+      border-radius:14px;
+      padding:14px;
+      margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
     summary::-webkit-details-marker{ display:none; }
-    details p{ color:var(--muted); margin-top:10px; }
+    details p{ margin:10px 0 0; color:var(--muted); }
+
+    /* little "tag row" */
+    .tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(84,168,255,.18);
+      background:#0c1015;
+      color:rgba(231,233,234,.92);
+      font-weight:700;
+      font-size:.85rem;
+    }
   </style>
 </head>
 
@@ -94,61 +130,142 @@
 
   <section class="wrap">
     <span class="pill">📈 Formation à l’unité</span>
-    <h1>Business long terme — Compétence durable</h1>
+    <h1>Business long terme — Devenir compétent pour de vrai</h1>
     <p class="lead">
-      Le business “rapide” te donne tes premières ventes.
-      Le business long terme te donne un avantage : une <strong>compétence solide</strong>
-      qui prend de la valeur avec le temps, et qui finit par payer beaucoup plus.
+      Ici, on ne “fait pas du business” pour le style.
+      On construit une <strong>compétence</strong> sur plusieurs mois, jusqu’à ce qu’elle devienne un avantage réel :
+      respect, preuves, et monétisation propre.
     </p>
 
+    <div class="tags">
+      <span class="tag">🎯 1 skill</span>
+      <span class="tag">🧱 Système</span>
+      <span class="tag">🧪 Feedback</span>
+      <span class="tag">💰 Monétisable</span>
+    </div>
+
     <div class="grid">
+      <!-- LEFT -->
       <div>
         <div class="card">
-          <h2>✅ Ce que tu vas apprendre</h2>
+          <h2>✅ Ce que tu vas maîtriser</h2>
           <ul class="list">
-            <li><strong>Choisir une compétence rentable</strong> <span>→ demande réelle, futur, valeur</span></li>
-            <li><strong>Plan d’apprentissage simple</strong> <span>→ progression par étapes</span></li>
-            <li><strong>Créer des preuves</strong> <span>→ projets, portfolio, crédibilité</span></li>
-            <li><strong>Monétiser proprement</strong> <span>→ offre + montée en prix</span></li>
+            <li><strong>Choisir la bonne compétence</strong> <span>→ avec 4 critères : plaisir / demande / scalabilité / identité</span></li>
+            <li><strong>Apprendre efficacement (Méthode KCI)</strong> <span>→ produire > consommer, mini-projets, planning simple</span></li>
+            <li><strong>Tenir sans motivation</strong> <span>→ discipline, rituels automatiques, identité “je construis”</span></li>
+            <li><strong>Créer un système durable</strong> <span>→ cycles 30/60/90 jours + minimum obligatoire (jamais 0)</span></li>
+            <li><strong>Accélérer avec le feedback</strong> <span>→ boucle : projet → retour → correction → nouveau projet</span></li>
+            <li><strong>Monétiser proprement</strong> <span>→ service / contenu / produit + portfolio & preuves</span></li>
+            <li><strong>Monter les paliers</strong> <span>→ débutant → intermédiaire → avancé (stratégie à chaque étape)</span></li>
+            <li><strong>Construire ton statut</strong> <span>→ preuves visibles, rareté maîtrisée, actions > paroles</span></li>
           </ul>
+
           <div class="divider"></div>
-          <p class="muted">Objectif : devenir bon pour de vrai, pas “jouer au business”.</p>
+          <p class="muted">
+            Objectif final : tu ne “sais” pas seulement. Tu <strong>fais</strong>, tu progresses, et tu peux te vendre grâce à tes preuves.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>🧠 Le cœur du système (simple, mais violent)</h2>
+          <ul class="list">
+            <li><strong>Règle d’or</strong> <span>→ 70–80% pratique, 20–30% théorie. Sans pratique, ça ne compte pas.</span></li>
+            <li><strong>Cadre</strong> <span>→ 2h/jour, 5j/semaine (base). Tu peux faire plus, mais tu dois tenir.</span></li>
+            <li><strong>Carburant</strong> <span>→ mini-projets réguliers (court, mesurable, faisable).</span></li>
+            <li><strong>Survie long terme</strong> <span>→ version basse énergie : 20–30 min minimum. Jamais 0.</span></li>
+          </ul>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
+
           <details>
-            <summary>Ça prend trop de temps non ?</summary>
-            <p>Oui, mais c’est le but : construire quelque chose qui te suit partout et longtemps.</p>
+            <summary>Ça veut dire que je dois choisir UNE seule compétence ?</summary>
+            <p>
+              Oui. Une compétence maîtrisée vaut mieux que dix compétences commencées. Tu choisis 1 skill pour 6 mois,
+              tu construis des preuves, puis tu élargis après.
+            </p>
           </details>
+
           <details>
-            <summary>Je sais pas quelle compétence choisir</summary>
-            <p>On te donne une méthode de choix : selon ton profil, ton temps, et la demande.</p>
+            <summary>Et si je ne sais pas quelle compétence choisir ?</summary>
+            <p>
+              La formation te donne une méthode : tu testes rapidement, puis tu filtres avec plaisir / demande / scalabilité / identité.
+              Le but, c’est d’éviter les “skills jetables” et les effets de mode.
+            </p>
+          </details>
+
+          <details>
+            <summary>Je veux de l’argent vite. Ça sert quand même ?</summary>
+            <p>
+              Oui, parce que le long terme te rend dangereux : tu montes en valeur, tu peux augmenter tes prix,
+              et tu n’es plus remplaçable. Le “rapide” sans compétence finit souvent en plafonnement.
+            </p>
+          </details>
+
+          <details>
+            <summary>Concrètement, je vends quoi à la fin ?</summary>
+            <p>
+              Tu pars du besoin : service (tu fais pour quelqu’un), contenu (tu montres ton savoir-faire), ou produit (scalable).
+              Mais la clé reste la même : preuves (projets / portfolio / avant-après / résultats).
+            </p>
           </details>
         </div>
       </div>
 
+      <!-- RIGHT -->
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Paiement par Stripe (bientôt). Remplace juste le lien quand c’est prêt.</p>
+
           <div class="price-row">
-            <span class="price">34,99 €</span>
+            <div class="mini">Prix</div>
+            <div class="price">34,99 €</div>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Contenu basé sur le module “Devenir compétent sur le long terme” (KCI). <a href="merci.html">Page merci</a> après achat.
+          </p>
         </div>
 
         <div class="card">
           <h3>🎯 Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux un revenu durable, pas juste un coup</li>
-            <li>Tu veux devenir excellent dans une compétence</li>
-            <li>Tu veux construire un vrai avantage sur les autres</li>
+            <li>Tu veux un avantage réel <span>pas juste “faire du business”</span></li>
+            <li>Tu veux devenir bon <span>et le prouver</span></li>
+            <li>Tu veux monétiser <span>sans bullshit</span></li>
+            <li>Tu veux tenir 6–12 mois <span>même sans motivation</span></li>
           </ul>
+        </div>
+
+        <div class="card">
+          <h3>📌 Résultat attendu</h3>
+          <ul class="list">
+            <li>Une compétence structurée <span>avec un plan clair</span></li>
+            <li>Des preuves visibles <span>projets + progression</span></li>
+            <li>Un système durable <span>cycles + minimum</span></li>
+            <li>Une monétisation logique <span>service / contenu / produit</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>⚙️ Mini-plan (30 / 60 / 90 jours)</h3>
+          <ul class="list">
+            <li><strong>0–30</strong> <span>→ rituel + production (4 mini-projets)</span></li>
+            <li><strong>30–60</strong> <span>→ stabiliser + réduire les erreurs (feedback critique)</span></li>
+            <li><strong>60–90</strong> <span>→ style + preuves + monétisable</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p class="mini">Règle : tu peux réduire l’effort. Tu ne peux jamais supprimer.</p>
         </div>
       </div>
     </div>
   </section>
 </body>
 </html>
+
 
