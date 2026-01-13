@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KCI — Formation Travail & Études</title>
-  <meta name="description" content="Formation Travail & Études KCI : focus, organisation, méthodes pour mieux apprendre et performer sans stress." />
+  <title>KCI — Travail & Études</title>
+  <meta name="description" content="Formation Travail & Études KCI : orientation, méthode de travail, focus, gestion du stress, CV, job étudiant et organisation (études + job) — simple, concret, applicable." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
@@ -21,71 +22,116 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
 
     .ghost{
-      display:inline-flex; align-items:center; justify-content:center;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+      white-space:nowrap;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
-    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:95ch; }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
-    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
       background:var(--card); border-radius:var(--radius);
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
+    .muted{ color:var(--muted); }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
     .list li span{ color:var(--muted); }
 
-    .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .chip{
+      border:1px solid rgba(84,168,255,.22);
+      background: rgba(84,168,255,.08);
+      color:#cfefff;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+
+    .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
-      display:inline-flex; justify-content:center; align-items:center;
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800;
-      border-radius:999px; padding:12px 18px; width:100%;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#0a0a0a; font-weight:800; border-radius:999px;
+      padding:12px 18px;
+      width:100%;
+      max-width:100%;
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
     .btn-secondary{
-      display:inline-flex; justify-content:center; align-items:center;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; width:100%;
-      margin-top:10px; color:var(--accent-2);
+      border-radius:999px; padding:12px 18px; color:var(--accent-2);
+      width:100%;
+      max-width:100%;
+      margin-top:10px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     details{
       background:#0c1015; border:1px solid rgba(84,168,255,.18);
       border-radius:14px; padding:14px; margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
     summary::-webkit-details-marker{ display:none; }
-    details p{ color:var(--muted); margin-top:10px; }
+    details p{ margin:10px 0 0; color:var(--muted); }
+
+    .steps{ display:grid; gap:12px; margin-top:12px; }
+    .step{
+      background:#0c1015;
+      border:1px solid rgba(84,168,255,.18);
+      border-radius:14px;
+      padding:14px;
+    }
+    .step strong{ color:var(--text); }
+    .step p{ margin:6px 0 0; color:var(--muted); }
   </style>
 </head>
 
@@ -94,56 +140,139 @@
 
   <section class="wrap">
     <span class="pill">📚 Formation à l’unité</span>
-    <h1>Travail & Études — Focus et efficacité</h1>
+    <h1>Travail & Études — Focus, méthode, avance réelle</h1>
     <p class="lead">
-      Travailler plus n’est pas la solution. Travailler mieux l’est.
-      Cette formation t’apprend à <strong>t’organiser, te concentrer et apprendre efficacement</strong>,
-      sans stress inutile ni surcharge mentale.
+      Cette formation va droit au but : <strong>mieux choisir ta voie</strong>, <strong>travailler efficacement</strong>,
+      <strong>gérer la pression</strong>, et <strong>entrer dans le monde du travail intelligemment</strong>.
+      Pas du blabla “motivation” : des méthodes simples, applicables au lycée, en études sup, ou en autodidacte.
     </p>
 
+    <div class="chips" aria-label="Points clés">
+      <span class="chip">Orientation</span>
+      <span class="chip">Méthode de travail</span>
+      <span class="chip">Pomodoro + focus</span>
+      <span class="chip">Stress examens</span>
+      <span class="chip">CV étudiant</span>
+      <span class="chip">Job / stage</span>
+      <span class="chip">Entretien + soft skills</span>
+      <span class="chip">Études + job</span>
+      <span class="chip">Réseau + long terme</span>
+    </div>
+
     <div class="grid">
+      <!-- LEFT -->
       <div>
         <div class="card">
-          <h2>✅ Ce que tu vas apprendre</h2>
+          <h2>✅ Ce que tu vas savoir faire</h2>
           <ul class="list">
-            <li><strong>Organiser ton travail</strong> <span>→ priorités claires, moins de dispersion</span></li>
-            <li><strong>Te concentrer plus longtemps</strong> <span>→ réduire distractions et fatigue</span></li>
-            <li><strong>Mieux apprendre</strong> <span>→ mémorisation, compréhension, révisions</span></li>
-            <li><strong>Réduire le stress</strong> <span>→ structure + anticipation</span></li>
+            <li><strong>Choisir une direction propre</strong> <span>→ forces, motivations, valeurs, éviter les erreurs classiques</span></li>
+            <li><strong>Travailler “mieux”, pas “plus”</strong> <span>→ sessions courtes, objectifs précis, apprentissage actif</span></li>
+            <li><strong>Te concentrer sans t’épuiser</strong> <span>→ gestion des distractions + méthode Pomodoro</span></li>
+            <li><strong>Gérer examens & pression</strong> <span>→ préparation simple, stratégie pendant l’épreuve, calme</span></li>
+            <li><strong>Construire ton CV tôt</strong> <span>→ projets, compétences transférables, présentation claire</span></li>
+            <li><strong>Trouver un job / stage</strong> <span>→ canaux, réseau, terrain, et comment te démarquer</span></li>
+            <li><strong>Réussir un entretien</strong> <span>→ préparation, mini-histoires, structure de réponse (simple et pro)</span></li>
+            <li><strong>Garder l’équilibre</strong> <span>→ études + job + vie perso : planning, limites, repos</span></li>
+            <li><strong>Penser long terme</strong> <span>→ réseau, mentors, apprentissage continu, capital d’expérience</span></li>
           </ul>
+
           <div class="divider"></div>
-          <p class="muted">Applicable au lycée, aux études supérieures ou au travail personnel.</p>
+          <p class="mini">
+            Objectif : passer de <strong>“je subis”</strong> à <strong>“je contrôle”</strong> — avec un système simple.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>🧭 Comment tu l’appliques (simple)</h2>
+          <div class="steps">
+            <div class="step">
+              <strong>1) Tu clarifies la direction</strong>
+              <p>Tu identifies ce qui te correspond et tu évites de perdre des années “par défaut”.</p>
+            </div>
+            <div class="step">
+              <strong>2) Tu passes en mode efficacité</strong>
+              <p>Objectifs précis + sessions courtes + apprentissage actif (pas de relecture infinie).</p>
+            </div>
+            <div class="step">
+              <strong>3) Tu construis ton avance</strong>
+              <p>CV + preuves + soft skills + réseau : tu deviens “utile” et crédible plus tôt que la moyenne.</p>
+            </div>
+          </div>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
+
           <details>
-            <summary>Je procrastine beaucoup, ça aide vraiment ?</summary>
-            <p>Oui. Le but est de simplifier et d’enlever les frictions qui bloquent l’action.</p>
+            <summary>Ça marche si je procrastine fort ?</summary>
+            <p>
+              Oui, parce que tu ne relies pas “procrastination” à “manque de motivation”.
+              Tu retires les frictions : objectifs clairs, sessions courtes, téléphone loin, progression mesurable.
+            </p>
           </details>
+
           <details>
-            <summary>Ça marche si je n’aime pas l’école ?</summary>
-            <p>Oui. On travaille sur l’efficacité, pas sur l’amour des cours.</p>
+            <summary>C’est surtout pour les “bons élèves” ?</summary>
+            <p>
+              Non. C’est pour ceux qui veulent arrêter le flou. Les bons élèves y gagnent en vitesse,
+              les autres y gagnent une structure qui rend le travail faisable.
+            </p>
+          </details>
+
+          <details>
+            <summary>Je veux bosser en même temps que mes études, c’est abordé ?</summary>
+            <p>
+              Oui : avantages / pièges, limite d’heures, planning simple, règle des priorités, et comment garder un équilibre.
+            </p>
+          </details>
+
+          <details>
+            <summary>Et si je ne sais pas quoi faire plus tard ?</summary>
+            <p>
+              Justement : tu apprends une méthode de choix (forces / passions / valeurs) + comment tester sans te cramer.
+              Un choix n’est pas une prison, mais tourner en rond coûte cher.
+            </p>
           </details>
         </div>
       </div>
 
+      <!-- RIGHT -->
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Paiement par Stripe (bientôt). Tu remplacerais juste le lien quand c’est prêt.</p>
+
           <div class="price-row">
-            <span class="price">19,99 €</span>
+            <div class="mini">Prix</div>
+            <div class="price">19,99 €</div>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Si besoin : page <a href="merci.html">merci</a> + support.
+          </p>
         </div>
 
         <div class="card">
           <h3>🎯 Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux arrêter de perdre du temps</li>
-            <li>Tu veux mieux apprendre sans t’épuiser</li>
-            <li>Tu veux des méthodes concrètes et simples</li>
+            <li>Tu veux arrêter de bosser “au feeling”</li>
+            <li>Tu veux te concentrer sans te cramer</li>
+            <li>Tu veux réduire le stress des exams</li>
+            <li>Tu veux un CV et des preuves tôt</li>
+            <li>Tu veux un plan réaliste si tu bosses à côté</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>📈 Résultat attendu</h3>
+          <ul class="list">
+            <li>Plus de clarté <span>→ moins de dispersion</span></li>
+            <li>Meilleure efficacité <span>→ moins d’heures pour plus de résultats</span></li>
+            <li>Moins de stress <span>→ meilleure exécution</span></li>
+            <li>Plus d’avance <span>→ CV + réseau + soft skills</span></li>
           </ul>
         </div>
       </div>
@@ -151,4 +280,5 @@
   </section>
 </body>
 </html>
+
 
