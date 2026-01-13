@@ -7,200 +7,570 @@
   <meta name="description" content="Formation KCI Apprendre à apprendre : mémoire, deep focus, mini-projets, système 30/90/365 jours pour progresser plus vite et sur le long terme." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
-      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
-      --maxw:1100px;
+      --bg:#0b0b0c;
+      --card:#0f1115;
+      --text:#e9eef2;
+      --muted:#a6b0bb;
+
+      /* Package B vibe (blue/cyan) */
+      --b1:#54a8ff;
+      --b2:#00e0ff;
+      --b3:#14ffd6;
+
+      --radius:18px;
+      --shadow: 0 14px 60px rgba(0,0,0,.42);
+      --maxw:1120px;
     }
+
     *{ box-sizing:border-box; }
+    html,body{ height:100%; scroll-behavior:smooth; }
     body{
       margin:0;
-      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.6;
+      letter-spacing:.1px;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x:hidden;
+      position:relative;
+
+      background:
+        radial-gradient(1200px 820px at 72% 0%, rgba(84,168,255,.10), transparent 60%),
+        radial-gradient(950px 720px at 10% 14%, rgba(0,224,255,.08), transparent 60%),
+        radial-gradient(900px 720px at 45% 110%, rgba(20,255,214,.05), transparent 55%),
+        var(--bg);
     }
-    a{ color:var(--accent-2); text-decoration:none; }
+
+    /* ✅ subtle "fissures" background (pro, sobre) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-10%;
+      pointer-events:none;
+      z-index:0;
+      opacity:.22;
+      background:
+        linear-gradient(118deg,
+          transparent 0%,
+          transparent 46.4%,
+          rgba(255,255,255,.08) 47.6%,
+          rgba(255,255,255,.02) 49.0%,
+          transparent 50.2%,
+          transparent 100%
+        ),
+        linear-gradient(118deg,
+          transparent 0%,
+          transparent 46.3%,
+          rgba(0,224,255,.18) 47.7%,
+          transparent 49.2%,
+          transparent 100%
+        ),
+        repeating-linear-gradient(145deg,
+          rgba(255,255,255,.035) 0px,
+          rgba(255,255,255,.035) 1px,
+          transparent 1px,
+          transparent 46px
+        );
+      mix-blend-mode: screen;
+      filter: blur(.25px);
+      transform: rotate(-2deg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    header, main{ position:relative; z-index:1; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+
+    /* Header */
+    header{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background: rgba(11,11,12,.62);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.6px;
+    }
+    .pill-top{
+      padding:10px 16px;
+      background: linear-gradient(145deg, rgba(84,168,255,.16), rgba(0,224,255,.12));
+      border: 1px solid rgba(0,224,255,.22);
+      border-radius:999px;
+    }
+    .tiny{ font-size:12px; opacity:.7; }
 
     .ghost{
       display:inline-flex; align-items:center; justify-content:center;
-      border:1px solid rgba(0,224,255,.45); border-radius:999px;
-      padding:10px 16px; color:var(--accent-2); margin:24px;
-      transition: background .2s ease, color .2s ease, transform .12s ease;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:10px 14px;
+      color: rgba(233,238,242,.92);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition: transform .16s ease, border-color .16s ease, color .16s ease, background .16s ease;
     }
-    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
-
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      color:#c7f0ff; background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.3);
-      padding:8px 12px; border-radius:999px;
-      font-size:.85rem; font-weight:700; margin-bottom:12px;
+    .ghost:hover{
+      transform: translateY(-1px);
+      border-color: rgba(0,224,255,.30);
+      color: var(--b2);
+      background: rgba(0,224,255,.05);
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
-    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:90ch; }
-    .muted{ color:var(--muted); }
+    /* Hero */
+    .hero{
+      padding: clamp(54px, 7vh, 92px) 0 12px;
+    }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start; }
-    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:950;
+      font-size:.85rem;
+      color: rgba(233,238,242,.92);
+      background: rgba(0,224,255,.08);
+      border: 1px solid rgba(0,224,255,.20);
+      width: fit-content;
+    }
 
+    h1{
+      font-size: clamp(34px, 4.8vw, 58px);
+      line-height:1.05;
+      margin: 12px 0 14px;
+      background: linear-gradient(90deg, rgba(233,238,242,.95), rgba(0,224,255,.95));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      font-weight: 950;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      max-width: 92ch;
+      margin:0;
+      line-height: 1.7;
+    }
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+      margin-top: 18px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Cards */
     .card{
-      background:var(--card); border-radius:var(--radius);
-      border:1px solid rgba(84,168,255,.15);
-      padding:18px; box-shadow:var(--shadow);
-      margin-bottom:18px;
+      position:relative;
+      background: rgba(12,16,21,.74);
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,224,255,.16);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
       overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; line-height:1.2; }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      opacity:.85;
+      background:
+        radial-gradient(760px 240px at 20% 0%, rgba(0,224,255,.12), transparent 60%),
+        radial-gradient(680px 240px at 90% 20%, rgba(84,168,255,.10), transparent 60%);
+    }
+    .card > *{ position:relative; z-index:1; }
 
-    .list{ list-style:none; padding:0; margin:12px 0 0; }
-    .list li{ margin:10px 0; }
-    .list li span{ color:var(--muted); }
-
-    .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
-
-    .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
-      border-top:1px solid rgba(255,255,255,.08);
-      margin-top:14px; padding-top:14px;
+    .card h2, .card h3{
+      margin: 0 0 10px;
+      line-height: 1.2;
+      font-weight: 950;
+      color: rgba(233,238,242,.92);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
       flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
 
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,224,255,.20);
+      background: rgba(0,224,255,.08);
+      color: rgba(233,238,242,.88);
+      font-size:.78rem;
+      font-weight: 900;
+      white-space:nowrap;
+    }
+
+    .muted{ color: rgba(154,160,166,.96); }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.06);
+      margin: 16px 0;
+    }
+
+    /* List */
+    .list{ list-style:none; padding:0; margin: 12px 0 0; }
+    .list li{
+      margin: 10px 0;
+      color: rgba(233,238,242,.92);
+      line-height: 1.6;
+    }
+    .list li span{ color: rgba(154,160,166,.96); }
+
+    /* Feature grid (for "maîtriser") */
+    .features{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 900px){ .features{ grid-template-columns: 1fr; } }
+
+    .feature{
+      position:relative;
+      background: rgba(10,14,19,.60);
+      border: 1px solid rgba(0,224,255,.16);
+      border-radius: 16px;
+      padding: 14px;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .feature::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      background: radial-gradient(560px 180px at 18% 0%, rgba(0,224,255,.12), transparent 62%);
+      opacity:.9;
+    }
+    .feature > *{ position:relative; z-index:1; }
+    .feature:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,224,255,.24);
+      filter: brightness(1.03);
+    }
+    .feature h4{
+      margin:0 0 6px;
+      font-weight:950;
+      font-size: 15px;
+      color: rgba(233,238,242,.92);
+    }
+    .feature p{
+      margin:0;
+      color: rgba(154,160,166,.96);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    /* Pricing */
+    .price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px;
+      padding-top:14px;
+      flex-wrap:wrap;
+    }
+    .price{
+      font-size: 28px;
+      font-weight: 950;
+      color: rgba(233,238,242,.92);
+      white-space:nowrap;
+    }
+    .price strong{
+      background: linear-gradient(90deg, var(--b1), var(--b2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    /* Buttons */
     .btn, .btn-secondary{
-      display:inline-flex; justify-content:center; align-items:center; gap:10px;
-      border-radius:999px; padding:12px 18px; width:100%; max-width:100%;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      transition: transform .12s ease, filter .12s ease;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      border-radius:999px;
+      padding: 13px 18px;
+      width:100%;
+      max-width:100%;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition: transform .16s ease, filter .16s ease, border-color .16s ease, background .16s ease;
+      font-weight: 950;
+      position:relative;
     }
+
     .btn{
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800;
+      border: 1px solid rgba(0,224,255,.22);
+      background: linear-gradient(180deg, rgba(84,168,255,.92), rgba(0,224,255,.86));
+      color:#06121f;
+      box-shadow: 0 18px 60px rgba(0,224,255,.08);
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.06); }
+    .btn::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-70%;
+      width: 90%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: rotate(18deg);
+      opacity:0;
+      pointer-events:none;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+    .btn:hover::after{
+      opacity:.9;
+      animation: sheen 900ms ease forwards;
+    }
+    @keyframes sheen{
+      from{ transform: rotate(18deg) translateX(0); }
+      to{ transform: rotate(18deg) translateX(220%); }
+    }
 
     .btn-secondary{
-      border:1px solid rgba(0,224,255,.35);
-      background:transparent;
-      margin-top:10px; color:var(--accent-2);
+      margin-top: 10px;
+      border:1px solid rgba(0,224,255,.30);
+      background: rgba(0,224,255,.06);
+      color: rgba(233,238,242,.92);
     }
-    .btn-secondary:hover{ transform: translateY(-1px); filter: brightness(1.06); }
+    .btn-secondary:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      border-color: rgba(0,224,255,.40);
+    }
 
+    /* FAQ */
     details{
-      background:#0c1015; border:1px solid rgba(84,168,255,.18);
-      border-radius:14px; padding:14px; margin:10px 0;
+      background: rgba(10,14,19,.55);
+      border:1px solid rgba(0,224,255,.16);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+      overflow:hidden;
+      transition: border-color .18s ease, filter .18s ease;
     }
-    summary{ cursor:pointer; font-weight:700; list-style:none; }
+    details:hover{ border-color: rgba(0,224,255,.24); filter: brightness(1.02); }
+    summary{
+      cursor:pointer;
+      font-weight: 950;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      color: rgba(233,238,242,.92);
+    }
     summary::-webkit-details-marker{ display:none; }
-    details p{ color:var(--muted); margin:10px 0 0; }
+    summary .caret{
+      width: 10px; height: 10px;
+      border-right: 2px solid rgba(233,238,242,.70);
+      border-bottom: 2px solid rgba(233,238,242,.70);
+      transform: rotate(-45deg);
+      transition: transform .18s ease, border-color .18s ease;
+      flex: 0 0 auto;
+      opacity:.85;
+    }
+    details[open] summary .caret{ transform: rotate(45deg); border-color: rgba(0,224,255,.75); }
+    details p{
+      color: rgba(154,160,166,.96);
+      margin: 10px 0 0;
+      line-height: 1.65;
+    }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible{ opacity:1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+      body::before{ display:none; }
+    }
   </style>
 </head>
 
 <body>
-  <a href="https://kciorganisation.github.io/KCIORGANISATION./#formations" class="ghost">← Retour</a>
-
-  <section class="wrap">
-    <span class="pill">🧠 Formation à l’unité</span>
-    <h1>Apprendre à apprendre</h1>
-    <p class="lead">
-      Ton avantage n’est pas “d’être plus intelligent”.
-      Ton avantage, c’est d’avoir une méthode : <strong>comprendre → appliquer → consolider</strong>.
-      Cette formation te donne le système KCI pour apprendre vite, retenir longtemps, et transformer chaque session en <strong>progrès mesurable</strong>.
-    </p>
-
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h2>📘 Ce que tu vas réellement maîtriser</h2>
-          <ul class="list">
-            <li><strong>Comprendre comment ton cerveau apprend</strong> <span>→ neuroplasticité, mémoire court/long terme, pourquoi tu oublies</span></li>
-            <li><strong>Le Cycle KCI (apprentissage accéléré)</strong> <span>→ découverte → clarification → production → consolidation</span></li>
-            <li><strong>Mémoire x3 (les 3 leviers)</strong> <span>→ Active Recall, Spaced Repetition, Feynman (expliquer = verrouiller)</span></li>
-            <li><strong>Lecture stratégique (extraction)</strong> <span>→ balayage KCI + notes 3-2-1 : 3 idées, 2 actions, 1 question</span></li>
-            <li><strong>Mini-projets & boucle d’amélioration</strong> <span>→ produire en 72h : projet → feedback → correction → upgrade</span></li>
-            <li><strong>Deep Focus (Pomodoro KCI)</strong> <span>→ 40/10, règles strictes, “pas de production = pas de travail”</span></li>
-            <li><strong>Sprint 30 jours + système 30/60/90</strong> <span>→ routine, preuves, progression stable sur 1 an</span></li>
-            <li><strong>Mode “basse énergie”</strong> <span>→ session survie 20–30 min + règle absolue : <strong>Jamais 0</strong></span></li>
-          </ul>
-
-          <div class="divider"></div>
-          <p class="muted">
-            Objectif : que tu deviennes autonome. Tu sais quoi faire chaque jour, comment mesurer ta progression, et comment monter de niveau sans dépendre de la motivation.
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>🧩 Ce que tu obtiens concrètement</h2>
-          <ul class="list">
-            <li><strong>Une méthode complète</strong> <span>→ applicable aux études, sport, business, skills</span></li>
-            <li><strong>Des exercices “obligatoires”</strong> <span>→ résumé actif, Feynman 10 min, mini-projet 72h, feedback loop</span></li>
-            <li><strong>Une structure de progression</strong> <span>→ roadmaps 30 / 90 / 365 jours + règles anti-abandon</span></li>
-            <li><strong>Un système de suivi</strong> <span>→ preuves hebdo, jalons J1/J2/J5/J14, tracking “Jamais 0”</span></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h2>❓ FAQ</h2>
-          <details>
-            <summary>Je suis déjà “bon élève”. Ça sert à quoi ?</summary>
-            <p>À transformer ton niveau en avantage durable : meilleure rétention, meilleure pratique, et surtout un système qui te rend constant même quand tu n’as pas envie.</p>
-          </details>
-          <details>
-            <summary>C’est plutôt théorie ou pratique ?</summary>
-            <p>Pratique. Chaque chapitre pousse à produire : résumer, tester sans notes, expliquer, faire un mini-projet, puis consolider avec un timing précis.</p>
-          </details>
-          <details>
-            <summary>Je suis fatigué / irrégulier, je vais y arriver ?</summary>
-            <p>Oui. Le module inclut la version “basse énergie” + la règle Jamais 0, pour ne plus retomber à zéro même les jours moyens.</p>
-          </details>
-        </div>
+  <header>
+    <div class="wrap nav">
+      <div class="brand" style="display:flex; align-items:center; gap:10px; font-weight:950; letter-spacing:.6px;">
+        <span class="pill-top">KCI</span>
+        <span class="tiny">Formation à l’unité</span>
       </div>
-
-      <div>
-        <div class="card">
-          <h3>🧾 Commander</h3>
-          <p class="muted">Accès immédiat après paiement (quand Stripe sera activé).</p>
-
-          <div class="price-row">
-            <div class="mini muted">Prix</div>
-            <span class="price">29,99 €</span>
-          </div>
-
-          <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
-          <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
-
-          <p class="muted" style="margin-top:12px; font-size:14px;">
-            Conseil : prends <strong>1 compétence</strong> et applique le Sprint 30 jours. C’est là que la différence se voit.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>🎯 Pour qui ?</h3>
-          <ul class="list">
-            <li>Tu veux apprendre plus vite <span>sans t’éparpiller</span></li>
-            <li>Tu veux arrêter de “consommer” <span>et produire pour de vrai</span></li>
-            <li>Tu veux une méthode <span>qui marche même quand t’es fatigué</span></li>
-            <li>Tu veux devenir autonome <span>sur n’importe quel skill</span></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>📈 Résultat attendu</h3>
-          <ul class="list">
-            <li>Meilleure rétention <span>(tu oublies moins)</span></li>
-            <li>Sessions plus profondes <span>(Deep Work réel)</span></li>
-            <li>Progrès visibles <span>(preuves + mini-projets)</span></li>
-            <li>Système stable <span>(30/60/90 + Jamais 0)</span></li>
-          </ul>
-        </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="ghost" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour</a>
+        <a class="ghost" href="#commande">Commander</a>
       </div>
     </div>
-  </section>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="reveal">
+          <span class="badge">Formation — Package B (thème)</span>
+          <h1>Apprendre à apprendre</h1>
+          <p class="lead">
+            Ton avantage n’est pas “d’être plus intelligent”.
+            Ton avantage, c’est d’avoir une méthode : <strong>comprendre → appliquer → consolider</strong>.
+            Cette formation te donne le système KCI pour apprendre vite, retenir longtemps, et transformer chaque session en <strong>progrès mesurable</strong>.
+          </p>
+        </div>
+
+        <div class="grid">
+          <!-- LEFT -->
+          <div>
+            <div class="card reveal">
+              <h2>Ce que tu vas réellement maîtriser <span class="chip">système</span></h2>
+
+              <div class="features">
+                <div class="feature">
+                  <h4>Comprendre comment tu apprends</h4>
+                  <p>Neuroplasticité, mémoire court/long terme, pourquoi tu oublies, comment verrouiller.</p>
+                </div>
+                <div class="feature">
+                  <h4>Cycle KCI (accélération)</h4>
+                  <p>Découverte → clarification → production → consolidation. Zéro théorie sans action.</p>
+                </div>
+                <div class="feature">
+                  <h4>Mémoire x3</h4>
+                  <p>Active Recall, Spaced Repetition, Feynman : expliquer = solidifier.</p>
+                </div>
+                <div class="feature">
+                  <h4>Lecture stratégique</h4>
+                  <p>Balayage KCI + notes 3-2-1 : 3 idées, 2 actions, 1 question.</p>
+                </div>
+                <div class="feature">
+                  <h4>Mini-projets (72h)</h4>
+                  <p>Projet → feedback → correction → upgrade. Tu avances en produisant.</p>
+                </div>
+                <div class="feature">
+                  <h4>Deep Focus (cadre)</h4>
+                  <p>40/10 strict. Règle KCI : pas de production = pas de travail.</p>
+                </div>
+                <div class="feature">
+                  <h4>Système 30/90/365</h4>
+                  <p>Sprints, preuves, progression stable. Tu construis un vrai moteur.</p>
+                </div>
+                <div class="feature">
+                  <h4>Mode basse énergie</h4>
+                  <p>Session survie 20–30 min + règle : jamais 0. Tu ne retombes plus à zéro.</p>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+              <p class="muted">
+                Objectif : autonomie. Tu sais quoi faire chaque jour, comment mesurer, et comment monter de niveau sans dépendre de la motivation.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h2>Ce que tu obtiens concrètement <span class="chip">livrables</span></h2>
+              <ul class="list">
+                <li><strong>Une méthode complète</strong> <span>→ applicable aux études, sport, business, skills</span></li>
+                <li><strong>Des exercices obligatoires</strong> <span>→ résumé actif, Feynman 10 min, mini-projet 72h, feedback loop</span></li>
+                <li><strong>Une structure de progression</strong> <span>→ roadmaps 30 / 90 / 365 jours + règles anti-abandon</span></li>
+                <li><strong>Un système de suivi</strong> <span>→ preuves hebdo, jalons, tracking “jamais 0”</span></li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h2>FAQ <span class="chip">clair</span></h2>
+              <details>
+                <summary><span>Je suis déjà bon élève. Ça sert à quoi ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>À transformer ton niveau en avantage durable : meilleure rétention, meilleure pratique, et un système qui te rend constant même quand tu n’as pas envie.</p>
+              </details>
+              <details>
+                <summary><span>C’est plutôt théorie ou pratique ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Pratique. Chaque chapitre pousse à produire : résumer, tester sans notes, expliquer, faire un mini-projet, puis consolider avec un timing précis.</p>
+              </details>
+              <details>
+                <summary><span>Je suis fatigué / irrégulier. Je vais y arriver ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Oui. Le module inclut la version basse énergie + la règle “jamais 0”, pour ne plus retomber à zéro même les jours moyens.</p>
+              </details>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div>
+            <div class="card reveal" id="commande">
+              <h3>Commander <span class="chip">accès</span></h3>
+              <p class="muted">Accès immédiat après paiement (quand Stripe sera activé).</p>
+
+              <div class="price-row">
+                <div class="muted" style="font-size:14px;">Prix</div>
+                <div class="price"><strong>29,99 €</strong></div>
+              </div>
+
+              <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
+              <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+              <p class="muted" style="margin-top:12px; font-size:14px;">
+                Conseil : prends 1 compétence et applique le Sprint 30 jours. C’est là que la différence se voit.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h3>Pour qui ? <span class="chip">profil</span></h3>
+              <ul class="list">
+                <li>Tu veux apprendre plus vite <span>sans t’éparpiller</span></li>
+                <li>Tu veux arrêter de consommer <span>et produire pour de vrai</span></li>
+                <li>Tu veux une méthode <span>qui marche même quand t’es fatigué</span></li>
+                <li>Tu veux devenir autonome <span>sur n’importe quel skill</span></li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3>Résultat attendu <span class="chip">preuve</span></h3>
+              <ul class="list">
+                <li>Meilleure rétention <span>(tu oublies moins)</span></li>
+                <li>Sessions plus profondes <span>(deep focus réel)</span></li>
+                <li>Progrès visibles <span>(preuves + mini-projets)</span></li>
+                <li>Système stable <span>(30/90/365 + jamais 0)</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
 </body>
 </html>
