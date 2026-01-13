@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Formation Bonus</title>
-  <meta name="description" content="Formation Bonus KCI : outils, méthodes, systèmes simples pour gagner du temps et progresser plus vite." />
+  <meta name="description" content="Formation Bonus KCI : 50 astuces concrètes (focus, calme, énergie, style, discipline) pour gagner du temps et avancer plus vite." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -21,6 +21,8 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
@@ -29,20 +31,23 @@
       display:inline-flex; align-items:center; justify-content:center;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+      white-space:nowrap;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
-    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:95ch; }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
+    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start; }
     @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
@@ -50,40 +55,50 @@
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; line-height:1.2; }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
+    .muted{ color:var(--muted); }
+
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
     .list li span{ color:var(--muted); }
 
     .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+    .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
       display:inline-flex; justify-content:center; align-items:center;
       background:linear-gradient(90deg, var(--accent), var(--accent-2));
       color:#0a0a0a; font-weight:800;
       border-radius:999px; padding:12px 18px; width:100%;
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
     .btn-secondary{
       display:inline-flex; justify-content:center; align-items:center;
       border:1px solid rgba(0,224,255,.35);
       border-radius:999px; padding:12px 18px; width:100%;
       margin-top:10px; color:var(--accent-2);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
     details{
       background:#0c1015; border:1px solid rgba(84,168,255,.18);
       border-radius:14px; padding:14px; margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
     summary::-webkit-details-marker{ display:none; }
     details p{ color:var(--muted); margin-top:10px; }
   </style>
@@ -94,56 +109,99 @@
 
   <section class="wrap">
     <span class="pill">⚙️ Formation à l’unité</span>
-    <h1>Bonus — Outils & systèmes utiles</h1>
+    <h1>Bonus — 50 astuces pour avancer plus vite</h1>
     <p class="lead">
-      Ici on parle pas de “tips TikTok”. On parle de <strong>systèmes simples</strong> qui te font gagner du temps,
-      réduisent la friction, et rendent tes progrès plus automatiques.
-      Moins d’effort mental, plus d’exécution.
+      On arrive à la fin du Pack A : pour terminer proprement, tu reçois une <strong>collection de 50 astuces</strong>
+      simples et efficaces. Le but n’est pas d’être “motivé”, mais de rendre la progression <strong>plus facile à répéter</strong> :
+      esprit clair, calme, énergie, style, discipline.
     </p>
 
     <div class="grid">
+      <!-- LEFT -->
       <div>
         <div class="card">
-          <h2>✅ Ce que tu vas apprendre</h2>
+          <h2>✅ Ce que tu vas obtenir</h2>
           <ul class="list">
-            <li><strong>Outils qui boostent ton quotidien</strong> <span>→ organisation, focus, suivi</span></li>
-            <li><strong>Raccourcis intelligents</strong> <span>→ éviter de réinventer la roue</span></li>
-            <li><strong>Systèmes anti-procrastination</strong> <span>→ réduire les frictions</span></li>
-            <li><strong>Automatiser le minimum</strong> <span>→ habitudes + environnement</span></li>
+            <li><strong>Un kit “esprit clair”</strong> <span>→ décisions plus nettes, moins de charge mentale</span></li>
+            <li><strong>Un kit “calme & émotions”</strong> <span>→ gérer stress et réactions (sans te mentir)</span></li>
+            <li><strong>Un kit “énergie & corps”</strong> <span>→ routines courtes qui reset le mental</span></li>
+            <li><strong>Un kit “style & présence”</strong> <span>→ petits détails qui changent l’impact</span></li>
+            <li><strong>Un kit “discipline & exécution”</strong> <span>→ faire avancer la journée, même fatigué</span></li>
           </ul>
           <div class="divider"></div>
-          <p class="muted">Objectif : rendre tes actions plus faciles à répéter, sans “motivation”.</p>
+          <p class="muted">
+            Chaque astuce est pensée pour être appliquée en <strong>30 secondes à 5 minutes</strong> : tu choisis, tu testes, tu gardes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>🧩 Les 5 catégories (exactement comme la formation)</h2>
+          <ul class="list">
+            <li><strong>1) Tête & idées claires</strong> <span>→ focus, simplification, décisions</span></li>
+            <li><strong>2) Émotions & calme</strong> <span>→ apaisement, contrôle, réactions</span></li>
+            <li><strong>3) Corps & énergie</strong> <span>→ reset, sommeil, hydratation, routines courtes</span></li>
+            <li><strong>4) Style & charisme</strong> <span>→ présence, posture, détails sociaux</span></li>
+            <li><strong>5) Discipline & avancement</strong> <span>→ blocs de travail, inertie, constance</span></li>
+          </ul>
+          <div class="divider"></div>
+          <p class="muted">
+            Objectif : te donner des “boutons” simples à activer quand tu sens que ça part en vrille.
+          </p>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
           <details>
-            <summary>C’est utile si j’ai déjà Notion / des apps ?</summary>
-            <p>Oui, parce que le problème c’est rarement l’app. C’est le système derrière.</p>
+            <summary>Ça ressemble à des “tips TikTok” ?</summary>
+            <p>Non. Ce sont des micro-systèmes pratiques (focus, calme, énergie, discipline) que tu peux appliquer immédiatement, sans blabla.</p>
           </details>
           <details>
-            <summary>Ça marche si je suis pas “organisé” ?</summary>
-            <p>Justement : on te donne des structures simples qui ne demandent pas d’être parfait.</p>
+            <summary>Je dois tout faire ?</summary>
+            <p>Non. Tu pioches 5–10 astuces qui matchent ton moment. Le but c’est d’avoir des leviers, pas une liste infinie.</p>
+          </details>
+          <details>
+            <summary>Ça sert si je suis déjà organisé ?</summary>
+            <p>Oui : ça te donne des “raccourcis” concrets (ex : gérer stress, blocage, fatigue, flemme) pour rester stable.</p>
           </details>
         </div>
       </div>
 
+      <!-- RIGHT -->
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Paiement par Stripe (bientôt). Pour l’instant, la page est prête : tu remplaceras juste le lien.</p>
+
           <div class="price-row">
-            <span class="price">4,99 €</span>
+            <div class="mini">Prix</div>
+            <div class="price">4,99 €</div>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Bonus recommandé : poste un avis/témoignage sur Discord après lecture (ça vous aide à upgrader KCI).
+          </p>
         </div>
 
         <div class="card">
           <h3>🎯 Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux arrêter de perdre du temps sur des détails</li>
-            <li>Tu veux des outils concrets et rapides à appliquer</li>
-            <li>Tu veux rendre tes progrès plus automatiques</li>
+            <li>Tu veux des actions <span>courtes et efficaces</span></li>
+            <li>Tu veux un “reset” <span>quand tu pars en chaos</span></li>
+            <li>Tu veux garder le cap <span>sans dépendre de la motivation</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>📌 Résultat attendu</h3>
+          <ul class="list">
+            <li>Moins de charge mentale</li>
+            <li>Plus de calme et de contrôle</li>
+            <li>Meilleure énergie au quotidien</li>
+            <li>Plus de présence (social / posture)</li>
+            <li>Plus d’exécution, même fatigué</li>
           </ul>
         </div>
       </div>
