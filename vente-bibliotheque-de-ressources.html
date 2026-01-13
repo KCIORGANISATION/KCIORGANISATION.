@@ -7,218 +7,601 @@
   <meta name="description" content="Bibliothèque de ressources KCI : templates, systèmes, outils et checklists pour exécuter plus vite (offre, clients, contenu, organisation)." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
-      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
-      --maxw:1100px;
+      --bg:#0b0b0c;
+      --card:#0f1115;
+      --text:#e9eef2;
+      --muted:#a6b0bb;
+
+      /* Library / brown theme */
+      --wood-1:#c79a57;   /* amber */
+      --wood-2:#f0c27b;   /* gold */
+      --ink:#1a120a;
+      --paper:#ffd8a3;
+      --leaf:#7ee2b8;
+
+      --radius:18px;
+      --shadow: 0 14px 60px rgba(0,0,0,.42);
+      --maxw:1120px;
     }
+
     *{ box-sizing:border-box; }
+    html,body{ height:100%; scroll-behavior:smooth; }
     body{
       margin:0;
-      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.6;
+      letter-spacing:.1px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x:hidden;
+      position:relative;
+
+      background:
+        radial-gradient(1200px 820px at 72% 0%, rgba(240,194,123,.10), transparent 60%),
+        radial-gradient(1000px 720px at 12% 12%, rgba(199,154,87,.09), transparent 60%),
+        radial-gradient(980px 740px at 50% 110%, rgba(255,216,163,.05), transparent 55%),
+        var(--bg);
     }
-    a{ color:var(--accent-2); text-decoration:none; }
+
+    /* ✅ subtle “paper cracks / fibers” background */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-12%;
+      pointer-events:none;
+      z-index:0;
+      opacity:.20;
+      background:
+        linear-gradient(120deg,
+          transparent 0%,
+          transparent 46.0%,
+          rgba(255,255,255,.06) 47.2%,
+          rgba(255,255,255,.015) 48.7%,
+          transparent 50.0%,
+          transparent 100%
+        ),
+        linear-gradient(120deg,
+          transparent 0%,
+          transparent 46.2%,
+          rgba(240,194,123,.18) 47.6%,
+          transparent 49.1%,
+          transparent 100%
+        ),
+        repeating-linear-gradient(145deg,
+          rgba(255,255,255,.030) 0px,
+          rgba(255,255,255,.030) 1px,
+          transparent 1px,
+          transparent 54px
+        );
+      mix-blend-mode: screen;
+      filter: blur(.25px);
+      transform: rotate(-2deg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    header, main{ position:relative; z-index:1; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
+
+    /* Header */
+    header{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background: rgba(11,11,12,.62);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.6px;
+    }
+    .pill-top{
+      padding:10px 16px;
+      background: linear-gradient(145deg, rgba(240,194,123,.16), rgba(199,154,87,.12));
+      border: 1px solid rgba(240,194,123,.22);
+      border-radius:999px;
+    }
+    .tiny{ font-size:12px; opacity:.7; }
 
     .ghost{
       display:inline-flex; align-items:center; justify-content:center;
-      border:1px solid rgba(0,224,255,.45); border-radius:999px;
-      padding:10px 16px; color:var(--accent-2); margin:24px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:10px 14px;
+      color: rgba(233,238,242,.92);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition: transform .16s ease, border-color .16s ease, color .16s ease, background .16s ease;
+    }
+    .ghost:hover{
+      transform: translateY(-1px);
+      border-color: rgba(240,194,123,.30);
+      color: var(--wood-2);
+      background: rgba(240,194,123,.05);
     }
 
-    .pill{
-      display:inline-flex; align-items:center;
-      color:#c7f0ff; background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.3);
-      padding:8px 12px; border-radius:999px;
-      font-size:.85rem; font-weight:700; margin-bottom:12px;
+    /* Hero */
+    .hero{
+      padding: clamp(54px, 7vh, 92px) 0 12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
-    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:950;
+      font-size:.85rem;
+      color: rgba(233,238,242,.92);
+      background: rgba(240,194,123,.08);
+      border: 1px solid rgba(240,194,123,.20);
+      width: fit-content;
+    }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
-    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+    h1{
+      font-size: clamp(34px, 4.8vw, 58px);
+      line-height:1.05;
+      margin: 12px 0 14px;
+      background: linear-gradient(90deg, rgba(233,238,242,.95), rgba(240,194,123,.95));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      font-weight: 950;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      max-width: 92ch;
+      margin:0;
+      line-height: 1.7;
+    }
 
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+      margin-top: 18px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Cards */
     .card{
-      background:var(--card); border-radius:var(--radius);
-      border:1px solid rgba(84,168,255,.15);
-      padding:18px; box-shadow:var(--shadow);
-      margin-bottom:18px;
+      position:relative;
+      background: rgba(12,16,21,.74);
+      border-radius: var(--radius);
+      border: 1px solid rgba(240,194,123,.14);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      opacity:.9;
+      background:
+        radial-gradient(780px 260px at 18% 0%, rgba(240,194,123,.12), transparent 62%),
+        radial-gradient(700px 260px at 92% 18%, rgba(199,154,87,.10), transparent 62%);
+    }
+    .card > *{ position:relative; z-index:1; }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
-    .list li{ margin:10px 0; }
-    .list li span{ color:var(--muted); }
+    .card h2, .card h3{
+      margin: 0 0 10px;
+      line-height: 1.2;
+      font-weight: 950;
+      color: rgba(233,238,242,.92);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
 
-    .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
-
-    .tag{
-      display:inline-block;
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
       padding:6px 10px;
       border-radius:999px;
-      background: rgba(84,168,255,.12);
-      border:1px solid rgba(84,168,255,.25);
-      color:#c7f0ff;
-      font-weight:700;
-      font-size:12px;
-      margin:6px 8px 0 0;
+      border:1px solid rgba(240,194,123,.20);
+      background: rgba(240,194,123,.08);
+      color: rgba(233,238,242,.88);
+      font-size:.78rem;
+      font-weight: 900;
+      white-space:nowrap;
     }
 
-    .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
-      border-top:1px solid rgba(255,255,255,.08);
-      margin-top:14px; padding-top:14px;
+    .muted{ color: rgba(154,160,166,.96); }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.06);
+      margin: 16px 0;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+
+    /* List */
+    .list{ list-style:none; padding:0; margin: 12px 0 0; }
+    .list li{
+      margin: 10px 0;
+      color: rgba(233,238,242,.92);
+      line-height: 1.6;
+    }
+    .list li span{ color: rgba(154,160,166,.96); }
+
+    /* Tags row (prettier) */
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 8px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,194,123,.18);
+      background: rgba(240,194,123,.07);
+      color: rgba(233,238,242,.90);
+      font-weight: 900;
+      font-size: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .tag::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(220px 80px at 25% 0%, rgba(255,216,163,.22), transparent 60%);
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    /* Mini feature tiles (for “comment l’utiliser”) */
+    .tiles{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 900px){ .tiles{ grid-template-columns: 1fr; } }
+
+    .tile{
+      position:relative;
+      background: rgba(10,14,19,.60);
+      border: 1px solid rgba(240,194,123,.15);
+      border-radius: 16px;
+      padding: 14px;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .tile::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      background: radial-gradient(560px 180px at 18% 0%, rgba(240,194,123,.12), transparent 62%);
+      opacity:.9;
+    }
+    .tile > *{ position:relative; z-index:1; }
+    .tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(240,194,123,.24);
+      filter: brightness(1.03);
+    }
+    .tile h4{
+      margin:0 0 6px;
+      font-weight:950;
+      font-size: 15px;
+      color: rgba(233,238,242,.92);
+    }
+    .tile p{
+      margin:0;
+      color: rgba(154,160,166,.96);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    /* Pricing */
+    .price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px;
+      padding-top:14px;
+      flex-wrap:wrap;
+    }
+    .price{
+      font-size: 28px;
+      font-weight: 950;
+      white-space:nowrap;
+    }
+    .price strong{
+      background: linear-gradient(90deg, var(--wood-1), var(--wood-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    /* Buttons */
+    .btn, .btn-secondary{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      border-radius:999px;
+      padding: 13px 18px;
+      width:100%;
+      max-width:100%;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition: transform .16s ease, filter .16s ease, border-color .16s ease, background .16s ease;
+      font-weight: 950;
+      position:relative;
+    }
 
     .btn{
-      display:inline-flex; justify-content:center; align-items:center;
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800;
-      border-radius:999px; padding:12px 18px; width:100%;
+      border: 1px solid rgba(240,194,123,.22);
+      background: linear-gradient(180deg, rgba(240,194,123,.92), rgba(199,154,87,.86));
+      color: var(--ink);
+      box-shadow: 0 18px 60px rgba(240,194,123,.08);
     }
-    .btn-secondary{
-      display:inline-flex; justify-content:center; align-items:center;
-      border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; width:100%;
-      margin-top:10px; color:var(--accent-2);
+    .btn::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-70%;
+      width: 90%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: rotate(18deg);
+      opacity:0;
+      pointer-events:none;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+    .btn:hover::after{
+      opacity:.9;
+      animation: sheen 900ms ease forwards;
+    }
+    @keyframes sheen{
+      from{ transform: rotate(18deg) translateX(0); }
+      to{ transform: rotate(18deg) translateX(220%); }
     }
 
-    details{
-      background:#0c1015; border:1px solid rgba(84,168,255,.18);
-      border-radius:14px; padding:14px; margin:10px 0;
+    .btn-secondary{
+      margin-top: 10px;
+      border:1px solid rgba(240,194,123,.30);
+      background: rgba(240,194,123,.06);
+      color: rgba(233,238,242,.92);
     }
-    summary{ cursor:pointer; font-weight:700; }
+    .btn-secondary:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      border-color: rgba(240,194,123,.40);
+    }
+
+    /* FAQ */
+    details{
+      background: rgba(10,14,19,.55);
+      border:1px solid rgba(240,194,123,.15);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+      overflow:hidden;
+      transition: border-color .18s ease, filter .18s ease;
+    }
+    details:hover{ border-color: rgba(240,194,123,.24); filter: brightness(1.02); }
+    summary{
+      cursor:pointer;
+      font-weight: 950;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      color: rgba(233,238,242,.92);
+    }
     summary::-webkit-details-marker{ display:none; }
-    details p{ color:var(--muted); margin-top:10px; }
+    summary .caret{
+      width: 10px; height: 10px;
+      border-right: 2px solid rgba(233,238,242,.70);
+      border-bottom: 2px solid rgba(233,238,242,.70);
+      transform: rotate(-45deg);
+      transition: transform .18s ease, border-color .18s ease;
+      flex: 0 0 auto;
+      opacity:.85;
+    }
+    details[open] summary .caret{ transform: rotate(45deg); border-color: rgba(240,194,123,.78); }
+    details p{
+      color: rgba(154,160,166,.96);
+      margin: 10px 0 0;
+      line-height: 1.65;
+    }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible{ opacity:1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+      body::before{ display:none; }
+    }
   </style>
 </head>
 
 <body>
-  <a href="https://kciorganisation.github.io/KCIORGANISATION./#formations" class="ghost">← Retour</a>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="pill-top">KCI</span>
+        <span class="tiny">Bibliothèque</span>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="ghost" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour</a>
+        <a class="ghost" href="#commande">Commander</a>
+      </div>
+    </div>
+  </header>
 
-  <section class="wrap">
-    <span class="pill">📦 Formation à l’unité</span>
-    <h1>Bibliothèque de ressources — Accélérateur</h1>
-    <p class="lead">
-      Ici, tu ne payes pas pour de la théorie.
-      Tu payes pour <strong>exécuter plus vite</strong> : des templates, des systèmes, des outils et des checklists
-      qui te font gagner du temps sur l’essentiel (offre, clients, contenu, organisation).
-    </p>
-
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h2>✅ Ce que tu obtiens</h2>
-          <ul class="list">
-            <li><strong>Templates prêts à l’emploi</strong> <span>→ messages, structure d’offre, scripts, frameworks</span></li>
-            <li><strong>Systèmes d’exécution</strong> <span>→ process simple pour avancer sans improviser</span></li>
-            <li><strong>Outils & ressources triés</strong> <span>→ apps / sites utiles (pas 200 liens inutiles)</span></li>
-            <li><strong>Checklists & anti-erreurs</strong> <span>→ éviter les pièges classiques (débutant → crédible)</span></li>
-          </ul>
-
-          <div class="divider"></div>
-
-          <div>
-            <span class="tag">Templates</span>
-            <span class="tag">Checklists</span>
-            <span class="tag">Systèmes</span>
-            <span class="tag">Outils</span>
-            <span class="tag">Scripts</span>
-            <span class="tag">Frameworks</span>
-          </div>
-
-          <div class="divider"></div>
-          <p class="muted">
-            Idée simple : tu construis une fois, tu réutilises longtemps.
-            Ça ne remplace pas le travail — ça enlève juste les frictions et les pertes de temps.
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="reveal">
+          <span class="badge">Formation à l’unité</span>
+          <h1>Bibliothèque de ressources</h1>
+          <p class="lead">
+            Ici, tu ne payes pas pour de la théorie.
+            Tu payes pour <strong>exécuter plus vite</strong> : templates, systèmes, outils et checklists
+            qui réduisent la friction sur l’essentiel (offre, clients, contenu, organisation).
           </p>
         </div>
 
-        <div class="card">
-          <h2>💡 Comment l’utiliser (vraiment)</h2>
-          <ul class="list">
-            <li><strong>1) Tu choisis 1 objectif</strong> <span>→ ex: “trouver 1 client”, “structurer mon offre”, “m’organiser”</span></li>
-            <li><strong>2) Tu prends un template</strong> <span>→ tu l’adaptes à ta situation (10 min)</span></li>
-            <li><strong>3) Tu exécutes</strong> <span>→ pas d’optimisation infinie, on avance</span></li>
-          </ul>
-        </div>
+        <div class="grid">
+          <!-- LEFT -->
+          <div>
+            <div class="card reveal">
+              <h2>Ce que tu obtiens <span class="chip">accélérateur</span></h2>
+              <ul class="list">
+                <li><strong>Templates prêts à l’emploi</strong> <span>→ messages, structure d’offre, scripts, frameworks</span></li>
+                <li><strong>Systèmes d’exécution</strong> <span>→ process simple pour avancer sans improviser</span></li>
+                <li><strong>Outils & ressources triés</strong> <span>→ apps / sites utiles (pas 200 liens inutiles)</span></li>
+                <li><strong>Checklists & anti-erreurs</strong> <span>→ éviter les pièges classiques (débutant → crédible)</span></li>
+              </ul>
 
-        <div class="card">
-          <h2>❓ FAQ</h2>
+              <div class="divider"></div>
+              <div class="tags" aria-label="Catégories">
+                <span class="tag">Templates</span>
+                <span class="tag">Checklists</span>
+                <span class="tag">Systèmes</span>
+                <span class="tag">Outils</span>
+                <span class="tag">Scripts</span>
+                <span class="tag">Frameworks</span>
+              </div>
 
-          <details>
-            <summary>C’est quoi exactement “bibliothèque” ?</summary>
-            <p>
-              Un pack de <strong>ressources triées</strong> : templates, checklists, systèmes et outils.
-              Pas une formation longue : un accélérateur que tu utilises quand tu bloques ou quand tu veux aller plus vite.
-            </p>
-          </details>
+              <div class="divider"></div>
+              <p class="muted">
+                Idée simple : tu construis une fois, tu réutilises longtemps.
+                Ça ne remplace pas le travail — ça enlève juste les frictions et les pertes de temps.
+              </p>
+            </div>
 
-          <details>
-            <summary>Ça remplace une formation ?</summary>
-            <p>
-              Non. Une formation t’apprend le cadre. La bibliothèque te fait <strong>gagner du temps</strong> sur l’exécution
-              (tu copies une structure propre au lieu de tout inventer).
-            </p>
-          </details>
+            <div class="card reveal">
+              <h2>Comment l’utiliser (vraiment) <span class="chip">exécution</span></h2>
 
-          <details>
-            <summary>Je suis débutant, c’est utile ?</summary>
-            <p>
-              Oui, surtout. Les débutants perdent du temps sur “comment faire”.
-              Là, tu pars avec des structures propres et tu avances sans te noyer.
-            </p>
-          </details>
+              <div class="tiles">
+                <div class="tile">
+                  <h4>1) Choisis un seul objectif</h4>
+                  <p>Ex : trouver un client, structurer une offre, organiser ta semaine, écrire du contenu.</p>
+                </div>
+                <div class="tile">
+                  <h4>2) Prends une structure</h4>
+                  <p>Tu adaptes un template à ta situation en 10 minutes. Pas de perfection.</p>
+                </div>
+                <div class="tile">
+                  <h4>3) Exécute immédiatement</h4>
+                  <p>Tu envoies, tu publies, tu livres. La bibliothèque sert à passer à l’action.</p>
+                </div>
+                <div class="tile">
+                  <h4>4) Réutilise / itère</h4>
+                  <p>Tu gardes ce qui marche, tu ajustes le reste. Tu accumules des assets.</p>
+                </div>
+              </div>
+            </div>
 
-          <details>
-            <summary>Il y aura des mises à jour ?</summary>
-            <p>
-              Possiblement. Quand on upgrade la base, on peut ajouter/mettre à jour des ressources (selon l’évolution de KCI).
-            </p>
-          </details>
-        </div>
-      </div>
+            <div class="card reveal">
+              <h2>FAQ <span class="chip">clair</span></h2>
 
-      <div>
-        <div class="card">
-          <h3>🧾 Commander</h3>
-          <div class="price-row">
-            <span class="price">4,99 €</span>
+              <details>
+                <summary><span>C’est quoi exactement “bibliothèque” ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Un pack de ressources triées : templates, checklists, systèmes et outils. Ce n’est pas une formation longue — c’est un accélérateur que tu utilises quand tu bloques ou quand tu veux aller plus vite.</p>
+              </details>
+
+              <details>
+                <summary><span>Ça remplace une formation ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Non. Une formation t’apprend le cadre. La bibliothèque te fait gagner du temps sur l’exécution : tu pars d’une structure propre au lieu de tout inventer.</p>
+              </details>
+
+              <details>
+                <summary><span>Je suis débutant. C’est utile ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Oui. Les débutants perdent le plus de temps sur “comment faire”. Là, tu pars avec des structures propres et tu avances sans te noyer.</p>
+              </details>
+
+              <details>
+                <summary><span>Il y aura des mises à jour ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Possible. Quand on upgrade la base, on peut ajouter/mettre à jour des ressources (selon l’évolution de KCI).</p>
+              </details>
+            </div>
           </div>
-          <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
-          <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
-        </div>
 
-        <div class="card">
-          <h3>🎯 Pour qui ?</h3>
-          <ul class="list">
-            <li>Tu veux <strong>aller plus vite</strong> sans réinventer la roue</li>
-            <li>Tu veux des structures propres <span>au lieu de “faire au feeling”</span></li>
-            <li>Tu veux éviter les erreurs <span>qui te font perdre des semaines</span></li>
-          </ul>
-        </div>
+          <!-- RIGHT -->
+          <div>
+            <div class="card reveal" id="commande">
+              <h3>Commander <span class="chip">accès</span></h3>
+              <p class="muted">Accès immédiat après paiement (quand Stripe sera activé).</p>
 
-        <div class="card">
-          <h3>📌 Résultat attendu</h3>
-          <ul class="list">
-            <li>Moins de friction → plus d’action</li>
-            <li>Plus de clarté dans tes étapes</li>
-            <li>Exécution plus propre, plus crédible</li>
-          </ul>
+              <div class="price-row">
+                <div class="muted" style="font-size:14px;">Prix</div>
+                <div class="price"><strong>4,99 €</strong></div>
+              </div>
+
+              <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
+              <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+              <p class="muted" style="margin-top:12px; font-size:14px;">
+                Usage conseillé : quand tu bloques, tu prends une structure, tu exécutes, tu passes au prochain step.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h3>Pour qui ? <span class="chip">profil</span></h3>
+              <ul class="list">
+                <li>Tu veux <strong>aller plus vite</strong> sans réinventer la roue</li>
+                <li>Tu veux des structures propres <span>au lieu de faire au feeling</span></li>
+                <li>Tu veux éviter les erreurs <span>qui te font perdre des semaines</span></li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3>Résultat attendu <span class="chip">effet</span></h3>
+              <ul class="list">
+                <li>Moins de friction → plus d’action</li>
+                <li>Plus de clarté dans tes étapes</li>
+                <li>Exécution plus propre, plus crédible</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <script>
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
 </body>
 </html>
-
-
