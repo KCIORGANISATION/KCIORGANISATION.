@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Apprendre à apprendre</title>
-  <meta name="description" content="Formation KCI Apprendre à apprendre : mémorisation, focus, méthodes efficaces pour progresser plus vite." />
+  <meta name="description" content="Formation KCI Apprendre à apprendre : mémoire, deep focus, mini-projets, système 30/90/365 jours pour progresser plus vite et sur le long terme." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -21,6 +21,8 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
@@ -29,20 +31,23 @@
       display:inline-flex; align-items:center; justify-content:center;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
-    .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
+    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:90ch; }
+    .muted{ color:var(--muted); }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
+    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start; }
     @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
@@ -50,42 +55,50 @@
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; line-height:1.2; }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
     .list li span{ color:var(--muted); }
 
     .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
 
+    .btn, .btn-secondary{
+      display:inline-flex; justify-content:center; align-items:center; gap:10px;
+      border-radius:999px; padding:12px 18px; width:100%; max-width:100%;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      transition: transform .12s ease, filter .12s ease;
+    }
     .btn{
-      display:inline-flex; justify-content:center; align-items:center;
       background:linear-gradient(90deg, var(--accent), var(--accent-2));
       color:#0a0a0a; font-weight:800;
-      border-radius:999px; padding:12px 18px; width:100%;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.06); }
+
     .btn-secondary{
-      display:inline-flex; justify-content:center; align-items:center;
       border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; width:100%;
+      background:transparent;
       margin-top:10px; color:var(--accent-2);
     }
+    .btn-secondary:hover{ transform: translateY(-1px); filter: brightness(1.06); }
 
     details{
       background:#0c1015; border:1px solid rgba(84,168,255,.18);
       border-radius:14px; padding:14px; margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; list-style:none; }
     summary::-webkit-details-marker{ display:none; }
-    details p{ color:var(--muted); margin-top:10px; }
+    details p{ color:var(--muted); margin:10px 0 0; }
   </style>
 </head>
 
@@ -96,38 +109,55 @@
     <span class="pill">🧠 Formation à l’unité</span>
     <h1>Apprendre à apprendre</h1>
     <p class="lead">
-      Le vrai avantage n’est pas d’être intelligent.
-      C’est de savoir <strong>apprendre plus vite que les autres</strong>, retenir plus longtemps,
-      et transformer ce que tu apprends en résultats concrets.
+      Ton avantage n’est pas “d’être plus intelligent”.
+      Ton avantage, c’est d’avoir une méthode : <strong>comprendre → appliquer → consolider</strong>.
+      Cette formation te donne le système KCI pour apprendre vite, retenir longtemps, et transformer chaque session en <strong>progrès mesurable</strong>.
     </p>
 
     <div class="grid">
       <div>
         <div class="card">
-          <h2>📘 Ce que tu vas maîtriser</h2>
+          <h2>📘 Ce que tu vas réellement maîtriser</h2>
           <ul class="list">
-            <li><strong>Mémorisation efficace</strong> <span>→ retenir sans relire 10 fois</span></li>
-            <li><strong>Focus & attention</strong> <span>→ rester concentré sans forcer</span></li>
-            <li><strong>Apprentissage rapide</strong> <span>→ comprendre au lieu de survoler</span></li>
-            <li><strong>Répétition intelligente</strong> <span>→ consolider sans perdre du temps</span></li>
-            <li><strong>Apprendre seul</strong> <span>→ livres, vidéos, formations, compétences</span></li>
+            <li><strong>Comprendre comment ton cerveau apprend</strong> <span>→ neuroplasticité, mémoire court/long terme, pourquoi tu oublies</span></li>
+            <li><strong>Le Cycle KCI (apprentissage accéléré)</strong> <span>→ découverte → clarification → production → consolidation</span></li>
+            <li><strong>Mémoire x3 (les 3 leviers)</strong> <span>→ Active Recall, Spaced Repetition, Feynman (expliquer = verrouiller)</span></li>
+            <li><strong>Lecture stratégique (extraction)</strong> <span>→ balayage KCI + notes 3-2-1 : 3 idées, 2 actions, 1 question</span></li>
+            <li><strong>Mini-projets & boucle d’amélioration</strong> <span>→ produire en 72h : projet → feedback → correction → upgrade</span></li>
+            <li><strong>Deep Focus (Pomodoro KCI)</strong> <span>→ 40/10, règles strictes, “pas de production = pas de travail”</span></li>
+            <li><strong>Sprint 30 jours + système 30/60/90</strong> <span>→ routine, preuves, progression stable sur 1 an</span></li>
+            <li><strong>Mode “basse énergie”</strong> <span>→ session survie 20–30 min + règle absolue : <strong>Jamais 0</strong></span></li>
           </ul>
 
           <div class="divider"></div>
           <p class="muted">
-            Ces méthodes s’appliquent aux études, au sport, au business et à toute compétence.
+            Objectif : que tu deviennes autonome. Tu sais quoi faire chaque jour, comment mesurer ta progression, et comment monter de niveau sans dépendre de la motivation.
           </p>
+        </div>
+
+        <div class="card">
+          <h2>🧩 Ce que tu obtiens concrètement</h2>
+          <ul class="list">
+            <li><strong>Une méthode complète</strong> <span>→ applicable aux études, sport, business, skills</span></li>
+            <li><strong>Des exercices “obligatoires”</strong> <span>→ résumé actif, Feynman 10 min, mini-projet 72h, feedback loop</span></li>
+            <li><strong>Une structure de progression</strong> <span>→ roadmaps 30 / 90 / 365 jours + règles anti-abandon</span></li>
+            <li><strong>Un système de suivi</strong> <span>→ preuves hebdo, jalons J1/J2/J5/J14, tracking “Jamais 0”</span></li>
+          </ul>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
           <details>
-            <summary>Ça sert vraiment si je suis déjà “bon élève” ?</summary>
-            <p>Oui. Les bons élèves progressent encore plus vite quand ils apprennent correctement.</p>
+            <summary>Je suis déjà “bon élève”. Ça sert à quoi ?</summary>
+            <p>À transformer ton niveau en avantage durable : meilleure rétention, meilleure pratique, et surtout un système qui te rend constant même quand tu n’as pas envie.</p>
           </details>
           <details>
-            <summary>Est-ce que c’est théorique ?</summary>
-            <p>Non. Tout est orienté pratique : méthodes simples, applicables dès aujourd’hui.</p>
+            <summary>C’est plutôt théorie ou pratique ?</summary>
+            <p>Pratique. Chaque chapitre pousse à produire : résumer, tester sans notes, expliquer, faire un mini-projet, puis consolider avec un timing précis.</p>
+          </details>
+          <details>
+            <summary>Je suis fatigué / irrégulier, je vais y arriver ?</summary>
+            <p>Oui. Le module inclut la version “basse énergie” + la règle Jamais 0, pour ne plus retomber à zéro même les jours moyens.</p>
           </details>
         </div>
       </div>
@@ -135,29 +165,38 @@
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Accès immédiat après paiement (quand Stripe sera activé).</p>
+
           <div class="price-row">
+            <div class="mini muted">Prix</div>
             <span class="price">29,99 €</span>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="muted" style="margin-top:12px; font-size:14px;">
+            Conseil : prends <strong>1 compétence</strong> et applique le Sprint 30 jours. C’est là que la différence se voit.
+          </p>
         </div>
 
         <div class="card">
           <h3>🎯 Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux apprendre plus vite que la moyenne</li>
-            <li>Tu veux arrêter d’oublier ce que tu étudies</li>
-            <li>Tu veux progresser sans t’épuiser</li>
+            <li>Tu veux apprendre plus vite <span>sans t’éparpiller</span></li>
+            <li>Tu veux arrêter de “consommer” <span>et produire pour de vrai</span></li>
+            <li>Tu veux une méthode <span>qui marche même quand t’es fatigué</span></li>
+            <li>Tu veux devenir autonome <span>sur n’importe quel skill</span></li>
           </ul>
         </div>
 
         <div class="card">
           <h3>📈 Résultat attendu</h3>
           <ul class="list">
-            <li>Meilleure concentration</li>
-            <li>Apprentissage plus rapide</li>
-            <li>Moins de temps perdu</li>
-            <li>Progression continue</li>
+            <li>Meilleure rétention <span>(tu oublies moins)</span></li>
+            <li>Sessions plus profondes <span>(Deep Work réel)</span></li>
+            <li>Progrès visibles <span>(preuves + mini-projets)</span></li>
+            <li>Système stable <span>(30/60/90 + Jamais 0)</span></li>
           </ul>
         </div>
       </div>
@@ -165,4 +204,3 @@
   </section>
 </body>
 </html>
-
