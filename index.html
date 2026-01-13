@@ -65,7 +65,6 @@
       z-index: 0;
       opacity:.55;
       background:
-        /* grands traits */
         linear-gradient(115deg,
           transparent 0%,
           transparent 43%,
@@ -76,7 +75,6 @@
           transparent 68%,
           transparent 100%
         ),
-        /* micro fissures */
         repeating-linear-gradient(140deg,
           rgba(255,255,255,.045) 0px,
           rgba(255,255,255,.045) 1px,
@@ -106,7 +104,6 @@
       filter: blur(6px);
     }
 
-    /* Tout le contenu au-dessus des overlays */
     header, main, footer { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
@@ -174,7 +171,7 @@
     .lead { font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); max-width: 70ch; }
 
     /* ==========================
-       ✅ Package Global design (A+B fusion + fissure)
+       ✅ Package Global design
        ========================== */
     .pkg-global,
     .pkg-global-card{
@@ -191,7 +188,6 @@
         #0c0f14;
     }
 
-    /* Fissure centrale (propre) */
     .pkg-global::before,
     .pkg-global-card::before{
       content:"";
@@ -220,7 +216,6 @@
       pointer-events:none;
       z-index: 0;
     }
-    /* Petites “cassures” autour de la fissure */
     .pkg-global::after,
     .pkg-global-card::after{
       content:"";
@@ -247,7 +242,6 @@
     }
     .pkg-global > * , .pkg-global-card > *{ position:relative; z-index:1; }
 
-    /* Hero recommended card — prend le style du Global */
     .hero-card{
       border-radius: 22px;
       padding: 24px;
@@ -462,9 +456,7 @@
     .step-title{ margin:0; font-weight: 900; font-size: 15px; color: rgba(233,238,242,.94); }
     .step-desc{ margin:0; color: rgba(154,160,166,.95); font-size: 13px; line-height: 1.5; }
 
-    /* ==========================
-       ✅ Units: plus premium + animations
-       ========================== */
+    /* Units */
     .units{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -511,7 +503,6 @@
       z-index:0;
       pointer-events:none;
     }
-    /* sheen */
     .unit::after{
       content:"";
       position:absolute;
@@ -596,7 +587,7 @@
     .tiny { font-size: 12px; opacity: .7; }
     .note { color: var(--muted); font-size: 14px; margin-top: 10px; }
 
-    /* Coaching masterclass gold */
+    /* Coaching */
     .coach-premium{
       position:relative;
       display:grid;
@@ -725,9 +716,7 @@
     .mini-price{ font-weight: 900; color: var(--gold-3); white-space: nowrap; }
     @media (max-width: 900px){ .coach-premium{ grid-template-columns: 1fr; } }
 
-    /* ==========================
-       ✅ CTA bouton unique “Commencer”
-       ========================== */
+    /* CTA */
     .btn-cta{
       position: relative;
       display:inline-flex;
@@ -802,6 +791,99 @@
       box-shadow: 0 0 0 6px rgba(0,224,255,.12);
     }
 
+    /* ==========================
+       ✅ Legal section (cards)
+       ========================== */
+    .legal-wrap{
+      margin-top: 6px;
+    }
+    .legal-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+    .legal-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(0,224,255,.22);
+      background: rgba(0,224,255,.08);
+      color: rgba(233,238,242,.92);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .85rem;
+      width: fit-content;
+    }
+    .legal-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    @media (max-width: 980px){
+      .legal-grid{ grid-template-columns: 1fr; }
+    }
+    .legal-card{
+      position:relative;
+      overflow:hidden;
+      border-radius: 18px;
+      padding: 16px;
+      background:
+        radial-gradient(520px 220px at 15% 0%, rgba(0,224,255,.10), transparent 62%),
+        radial-gradient(520px 220px at 90% 50%, rgba(84,168,255,.08), transparent 60%),
+        #0c0f14;
+      border:1px solid rgba(84,168,255,.18);
+      box-shadow: 0 14px 46px rgba(0,0,0,.35);
+    }
+    .legal-card h3{
+      margin: 0 0 8px;
+      color: rgba(233,238,242,.94);
+      font-size: 16px;
+      font-weight: 950;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .legal-card p{
+      margin: 0;
+      color: rgba(154,160,166,.95);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .legal-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .75rem;
+      border: 1px solid rgba(0,224,255,.20);
+      background: rgba(0,224,255,.07);
+      color: rgba(233,238,242,.86);
+      width: fit-content;
+    }
+    .legal-mini{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      font-size: 12px;
+      color: rgba(166,176,187,.92);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .legal-mini a{ color: var(--accent-2); text-decoration: none; }
+    .legal-mini a:hover{ text-decoration: underline; }
+
     /* Respect reduce motion */
     @media (prefers-reduced-motion: reduce){
       *{ animation: none !important; transition: none !important; }
@@ -850,7 +932,6 @@
           <div class="note">Paiement Stripe : bientôt. Les pages de vente sont prêtes.</div>
         </div>
 
-        <!-- ✅ HERO: prend le design du Package Global -->
         <div class="hero-card pkg-global-card reveal">
           <div class="badge global">Recommandé</div>
           <h3 style="margin:14px 0 8px;">Package Global</h3>
@@ -1045,7 +1126,6 @@
           </div>
         </article>
 
-        <!-- ✅ Package Global: fusion A+B + fissure -->
         <article class="pkg pkg-global reveal" id="global">
           <div>
             <div class="kicker">Package Global</div>
@@ -1061,7 +1141,6 @@
           </div>
         </article>
 
-        <!-- Coaching GOLD -->
         <article class="coach-premium reveal" id="coaching">
           <div>
             <div class="coach-tag">Offre Premium</div>
@@ -1112,7 +1191,6 @@
           </div>
         </article>
 
-        <!-- Units -->
         <div style="margin-top:42px"></div>
         <h3 class="reveal">Formations à l'unité</h3>
         <p class="sub reveal">Choisis un module précis. Chaque module a sa page de vente dédiée.</p>
@@ -1197,7 +1275,6 @@
         <h2 class="reveal">Prêt à construire ?</h2>
         <p class="sub reveal">Pas de promesses vides. Un plan. Du travail. Des progrès visibles.</p>
 
-        <!-- ✅ Bouton unique -->
         <a class="btn-cta reveal" href="#formations">
           <span class="dot" aria-hidden="true"></span>
           <span>Commencer</span>
@@ -1229,7 +1306,6 @@
           </p>
 
           <div class="highlight-grid">
-            <!-- Kostia -->
             <div class="hl-card reveal">
               <div class="hl-top">
                 <span class="hl-chip blue">Kostia</span>
@@ -1242,7 +1318,6 @@
               </p>
             </div>
 
-            <!-- Clovis -->
             <div class="hl-card reveal">
               <div class="hl-top">
                 <span class="hl-chip teal">Clovis</span>
@@ -1255,7 +1330,6 @@
               </p>
             </div>
 
-            <!-- Hagen -->
             <div class="hl-card reveal">
               <div class="hl-top">
                 <span class="hl-chip mint">Hagen</span>
@@ -1268,7 +1342,6 @@
               </p>
             </div>
 
-            <!-- ✅ Projet en long rectangle dessous -->
             <div class="hl-card reveal" style="grid-column: 1 / -1;">
               <div class="hl-top">
                 <span class="hl-chip teal">Le projet</span>
@@ -1290,6 +1363,186 @@
         </div>
       </div>
     </section>
+
+    <!-- ✅ LEGAL (tout sur index) -->
+    <section id="legal">
+      <div class="wrap">
+        <div class="highlight reveal legal-wrap">
+          <div class="legal-head">
+            <div>
+              <div class="legal-badge">🧾 Légal & informations</div>
+              <h2 style="margin:10px 0 6px;">Mentions / Conditions / Données</h2>
+              <p class="sub" style="margin:0;">
+                Transparence. Pas de piège. Ici tu as les infos essentielles : contact, paiements, produits numériques,
+                remboursements, données et responsabilité.
+              </p>
+            </div>
+            <a class="ghost" href="#formations">Retour aux offres</a>
+          </div>
+
+          <div class="legal-grid">
+            <!-- Identité -->
+            <div class="legal-card reveal">
+              <h3>
+                Identité
+                <span class="legal-pill">Éditeur</span>
+              </h3>
+              <p>
+                Site : <strong>KCI Organisation</strong><br>
+                Nature : <strong>projet / collectif</strong> (en construction)<br>
+                Pays : <strong>Belgique</strong><br>
+                Contact : <strong>contact.kci@exemple.com</strong> (à remplacer)<br>
+                Réseaux : Instagram / TikTok / Discord (voir section réseaux)
+              </p>
+              <div class="legal-mini">
+                <span>Dernière mise à jour : <strong>2026</strong></span>
+                <a href="mailto:contact.kci@exemple.com">Écrire</a>
+              </div>
+            </div>
+
+            <!-- Produits & livraison -->
+            <div class="legal-card reveal">
+              <h3>
+                Produits numériques
+                <span class="legal-pill">Accès</span>
+              </h3>
+              <p>
+                Les formations KCI sont des <strong>contenus numériques</strong> (PDF / ressources / accès Discord selon l’offre).<br>
+                L’accès est fourni <strong>après paiement</strong> (Stripe) et/ou instructions de livraison.<br>
+                Les mises à jour peuvent être ajoutées au fil du temps (selon l’offre).
+              </p>
+              <div class="legal-mini">
+                <span>Format : <strong>digital</strong></span>
+                <span>Livraison : <strong>automatique</strong> (quand Stripe est actif)</span>
+              </div>
+            </div>
+
+            <!-- Paiement -->
+            <div class="legal-card reveal">
+              <h3>
+                Paiements
+                <span class="legal-pill">Stripe</span>
+              </h3>
+              <p>
+                Les paiements sont traités via <strong>Stripe</strong> (prestataire externe).<br>
+                KCI ne stocke pas tes données bancaires : Stripe gère la transaction.<br>
+                Les prix affichés sont en <strong>EUR</strong> et peuvent évoluer.
+              </p>
+              <div class="legal-mini">
+                <span>Sécurité : <strong>Stripe</strong></span>
+                <span>Devise : <strong>€</strong></span>
+              </div>
+            </div>
+
+            <!-- Remboursements -->
+            <div class="legal-card reveal">
+              <h3>
+                Remboursements
+                <span class="legal-pill">Digital</span>
+              </h3>
+              <p>
+                Pour les contenus numériques, un remboursement dépend du <strong>niveau d’accès</strong> et de la situation.<br>
+                Si tu as un problème (accès, lien, erreur), on priorise une <strong>résolution rapide</strong>.<br>
+                Contacte-nous via <strong>contact.kci@exemple.com</strong> avec preuve d’achat.
+              </p>
+              <div class="legal-mini">
+                <span>Délai réponse : <strong>24–72h</strong> (objectif)</span>
+                <span>Support : <strong>email / Discord</strong></span>
+              </div>
+            </div>
+
+            <!-- Données -->
+            <div class="legal-card reveal">
+              <h3>
+                Données & confidentialité
+                <span class="legal-pill">Privacy</span>
+              </h3>
+              <p>
+                On collecte le minimum : infos nécessaires au support (ex : email) et statistiques basiques.<br>
+                Si des outils externes existent (Stripe, analytics), ils peuvent utiliser des cookies/identifiants.<br>
+                Tu peux demander suppression : <strong>contact.kci@exemple.com</strong>.
+              </p>
+              <div class="legal-mini">
+                <span>Principe : <strong>minimum</strong></span>
+                <span>Suppression : <strong>sur demande</strong></span>
+              </div>
+            </div>
+
+            <!-- Responsabilité -->
+            <div class="legal-card reveal">
+              <h3>
+                Responsabilité
+                <span class="legal-pill">Limites</span>
+              </h3>
+              <p>
+                Les contenus KCI sont éducatifs. Les résultats dépendent de l’<strong>application</strong> et de la régularité.<br>
+                KCI ne remplace pas un professionnel (santé / finance / juridique).<br>
+                En cas de doute : consulte un professionnel.
+              </p>
+              <div class="legal-mini">
+                <span>But : <strong>éducatif</strong></span>
+                <span>Résultats : <strong>variables</strong></span>
+              </div>
+            </div>
+
+            <!-- Propriété intellectuelle -->
+            <div class="legal-card reveal">
+              <h3>
+                Propriété intellectuelle
+                <span class="legal-pill">Copyright</span>
+              </h3>
+              <p>
+                Tous les contenus (textes, templates, modules) sont protégés.<br>
+                Interdit : revente, repost complet, partage public.<br>
+                Autorisé : usage personnel. Pour partenariat : <strong>contact.kci@exemple.com</strong>.
+              </p>
+              <div class="legal-mini">
+                <span>Usage : <strong>personnel</strong></span>
+                <span>Partage : <strong>interdit</strong></span>
+              </div>
+            </div>
+
+            <!-- Cookies -->
+            <div class="legal-card reveal">
+              <h3>
+                Cookies
+                <span class="legal-pill">Infos</span>
+              </h3>
+              <p>
+                Ce site peut utiliser des cookies/traceurs via des services externes (ex : paiement, analytics).<br>
+                Tu peux limiter via ton navigateur. Sans cookies, certaines fonctionnalités peuvent être réduites.
+              </p>
+              <div class="legal-mini">
+                <span>Contrôle : <strong>navigateur</strong></span>
+                <span>Impact : <strong>fonctionnalités</strong></span>
+              </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="legal-card reveal">
+              <h3>
+                Contact
+                <span class="legal-pill">Support</span>
+              </h3>
+              <p>
+                Pour toute question : accès, paiement, bug, partenariat, remboursement.<br>
+                Email : <strong>contact.kci@exemple.com</strong> (à remplacer)<br>
+                Discord : via lien dans la section réseaux.
+              </p>
+              <div class="legal-mini">
+                <span>Canaux : <strong>Email / Discord</strong></span>
+                <a href="#reseaux">Réseaux</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="legal-mini" style="margin-top:14px;">
+            <span>En naviguant sur ce site, tu acceptes ces informations et l’usage des services externes nécessaires (ex : paiement).</span>
+            <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Remonter</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -1307,8 +1560,15 @@
 
   <footer>
     <div class="wrap foot">
-      <div class="brand"><span class="pill">KCI</span><span class="tiny">© 2026. Tous droits réservés.</span></div>
-      <div class="tiny">Contact : réseaux KCI • Discord</div>
+      <div class="brand">
+        <span class="pill">KCI</span>
+        <span class="tiny">© 2026. Tous droits réservés.</span>
+      </div>
+      <div class="tiny">
+        <a class="ghost" href="#legal">Infos légales</a>
+        <span style="opacity:.7;">•</span>
+        <span>Contact : <strong>contact.kci@exemple.com</strong></span>
+      </div>
     </div>
   </footer>
 </body>
