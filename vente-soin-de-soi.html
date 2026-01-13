@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Formation Soin de soi</title>
-  <meta name="description" content="Formation Soin de soi KCI : sommeil, hygiène, image, mental. Prendre soin de toi intelligemment pour performer." />
+  <meta name="description" content="Formation Soin de soi KCI : hygiène, style, peau, cheveux, aura. Construire une image propre et une confiance stable." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
@@ -21,6 +23,8 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
@@ -29,20 +33,23 @@
       display:inline-flex; align-items:center; justify-content:center;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      white-space:nowrap;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
     .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
 
-    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
+    .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
     @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
@@ -50,42 +57,68 @@
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; line-height:1.2; }
+    .muted{ color:var(--muted); }
 
-    .list{ list-style:none; padding:0; margin:12px 0; }
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
     .list li{ margin:10px 0; }
     .list li span{ color:var(--muted); }
 
     .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+    .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
       display:inline-flex; justify-content:center; align-items:center;
       background:linear-gradient(90deg, var(--accent), var(--accent-2));
       color:#0a0a0a; font-weight:800;
-      border-radius:999px; padding:12px 18px; width:100%;
+      border-radius:999px; padding:12px 18px;
+      width:100%; max-width:100%;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      transition: transform .12s ease, filter .12s ease;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
     .btn-secondary{
       display:inline-flex; justify-content:center; align-items:center;
       border:1px solid rgba(0,224,255,.35);
       border-radius:999px; padding:12px 18px; width:100%;
       margin-top:10px; color:var(--accent-2);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
     details{
       background:#0c1015; border:1px solid rgba(84,168,255,.18);
       border-radius:14px; padding:14px; margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
     summary::-webkit-details-marker{ display:none; }
     details p{ color:var(--muted); margin-top:10px; }
+
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media(max-width:700px){ .kpi{ grid-template-columns: 1fr; } }
+    .kpi .box{
+      background:#0c1015;
+      border:1px solid rgba(84,168,255,.18);
+      border-radius:14px;
+      padding:14px;
+    }
+    .kpi .box strong{ color:var(--text); }
+    .kpi .box p{ margin:6px 0 0; color:var(--muted); font-size:14px; }
   </style>
 </head>
 
@@ -93,62 +126,135 @@
   <a href="https://kciorganisation.github.io/KCIORGANISATION./#formations" class="ghost">← Retour</a>
 
   <section class="wrap">
-    <span class="pill">🧠 Formation à l’unité</span>
-    <h1>Soin de soi — Énergie, image et stabilité</h1>
+    <span class="pill">🧼 Formation à l’unité</span>
+    <h1>Soin de soi — Hygiène, style, peau, aura</h1>
     <p class="lead">
-      Le soin de soi n’est pas un luxe. C’est une condition pour avancer.
-      Cette formation t’apprend à <strong>prendre soin de ton corps et de ton mental intelligemment</strong>,
-      sans obsession ni extrême.
+      On va être direct : <strong>ton image, c’est ta première carte de visite</strong>.
+      Avant même que tu parles, les gens captent ton niveau de propreté, ton style, ta vibe.
+      Cette formation ne sert pas à devenir “mannequin”.
+      Elle sert à te rendre <strong>clean, cohérent, et confiant</strong> avec une routine simple et tenable.
     </p>
 
     <div class="grid">
+      <!-- LEFT -->
       <div>
         <div class="card">
-          <h2>✅ Ce que tu vas apprendre</h2>
+          <h2>✅ Ce que tu vas maîtriser</h2>
           <ul class="list">
-            <li><strong>Sommeil stratégique</strong> <span>→ récupération, énergie, clarté mentale</span></li>
-            <li><strong>Hygiène & image</strong> <span>→ confiance, présence, crédibilité</span></li>
-            <li><strong>Gestion mentale</strong> <span>→ stress, émotions, équilibre</span></li>
-            <li><strong>Habitudes durables</strong> <span>→ éviter les extrêmes et tenir</span></li>
+            <li><strong>Hygiène = base non négociable</strong> <span>→ douche, dents, odeur, détails (ongles, haleine)</span></li>
+            <li><strong>Style = identité visuelle</strong> <span>→ tenues simples mais propres, cohérence, “effet halo”</span></li>
+            <li><strong>Peau = glow réel</strong> <span>→ routine courte (nettoyer / hydrater / protéger) + habitudes utiles</span></li>
+            <li><strong>Cheveux & barbe</strong> <span>→ coupe adaptée, contours nets, entretien facile</span></li>
+            <li><strong>Aura / vibe</strong> <span>→ posture, regard, voix, présence (les détails qui changent tout)</span></li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <p class="muted">
+            Objectif : que ton “niveau” se voie sans que tu aies besoin de parler.
+            Une image propre → plus de respect → plus de confiance → plus d’impact.
+          </p>
+
+          <div class="kpi">
+            <div class="box">
+              <strong>Routine matin (minimum)</strong>
+              <p>Douche rapide • dents • déo • coiffure (simple mais net).</p>
+            </div>
+            <div class="box">
+              <strong>Routine soir (reset)</strong>
+              <p>Dents • visage propre • vêtements/oreiller propres (ça change ta peau + ton vibe).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🔥 Les erreurs qui te détruisent (sans que tu t’en rendes compte)</h2>
+          <ul class="list">
+            <li><strong>Parfum pour cacher une mauvaise odeur</strong> <span>→ pire combo</span></li>
+            <li><strong>“Trop de produits”</strong> <span>→ peau irritée, routine impossible à tenir</span></li>
+            <li><strong>Chaussures / vêtements négligés</strong> <span>→ on te juge en 5 secondes</span></li>
+            <li><strong>Coupe laissée à l’abandon</strong> <span>→ ça ruine ton style même si tes vêtements sont ok</span></li>
+            <li><strong>Posture fermée + regard fuyant</strong> <span>→ tu perds du respect gratuitement</span></li>
           </ul>
           <div class="divider"></div>
-          <p class="muted">Le corps soutient le cerveau. Les négliger te coûte plus que tu ne le penses.</p>
+          <p class="mini">Dans la formation, tu as les gestes simples + la logique pour automatiser tout ça sans te prendre la tête.</p>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
+
           <details>
-            <summary>Ce n’est pas juste du “bien-être” ?</summary>
-            <p>Non. On parle d’efficacité, de stabilité et de performance sur le long terme.</p>
+            <summary>“Soin de soi” = superficiel ?</summary>
+            <p>Non. C’est stratégique : quand tu te respectes, ça se voit, et les autres te respectent plus facilement. C’est un boost de confiance quotidien.</p>
           </details>
+
           <details>
-            <summary>Ça concerne aussi les mecs ?</summary>
-            <p>Oui. Soin de soi ≠ faiblesse. C’est une base stratégique.</p>
+            <summary>Je suis un mec, c’est vraiment utile ?</summary>
+            <p>Oui. Une image clean + une présence maîtrisée, ça améliore tes relations, ton respect au lycée, et ton impact en général. C’est un avantage simple.</p>
+          </details>
+
+          <details>
+            <summary>Ça prend combien de temps par jour ?</summary>
+            <p>Le but c’est une routine courte : quelques minutes le matin + le soir. Simple, régulier, efficace.</p>
+          </details>
+
+          <details>
+            <summary>J’ai pas de budget, ça sert quand même ?</summary>
+            <p>Oui. Le cœur du truc c’est les habitudes, pas la marque. Mieux vaut 3 tenues propres et cohérentes qu’un placard plein et mal géré.</p>
           </details>
         </div>
       </div>
 
+      <!-- RIGHT -->
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Paiement Stripe (bientôt). Quand c’est prêt, tu remplaces juste le lien.</p>
+
           <div class="price-row">
-            <span class="price">19,99 €</span>
+            <div class="mini">Prix</div>
+            <div class="price">19,99 €</div>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Astuce : commence par appliquer <strong>le minimum syndical</strong> 7 jours. Tu verras déjà une différence.
+          </p>
         </div>
 
         <div class="card">
           <h3>🎯 Pour qui ?</h3>
           <ul class="list">
-            <li>Tu manques d’énergie au quotidien</li>
-            <li>Tu veux plus de stabilité mentale</li>
-            <li>Tu veux une base saine pour performer</li>
+            <li>Tu veux être <strong>propre et net</strong> sans y penser</li>
+            <li>Tu veux une <strong>vibe</strong> plus solide (posture, regard, confiance)</li>
+            <li>Tu veux améliorer ton <strong>style</strong> sans tomber dans la mode</li>
+            <li>Tu veux une <strong>peau</strong> plus clean avec une routine simple</li>
           </ul>
+        </div>
+
+        <div class="card">
+          <h3>📈 Résultat attendu</h3>
+          <ul class="list">
+            <li>Image plus propre <span>→ respect plus facile</span></li>
+            <li>Plus de confiance <span>→ moins d’auto-sabotage</span></li>
+            <li>Routine stable <span>→ tu tiens sur le long terme</span></li>
+            <li>Présence + aura <span>→ tu marques plus les gens</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🧠 Rappel important</h3>
+          <p class="muted" style="margin:0;">
+            Le self-care, c’est pas “du physique”. C’est une discipline cachée.
+            Tu fais des petites choses tous les jours, sans négocier — et ça se reflète partout (école, social, confiance, performance).
+          </p>
         </div>
       </div>
     </div>
   </section>
 </body>
 </html>
+
 
