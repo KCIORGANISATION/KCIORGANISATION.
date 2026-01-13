@@ -7,209 +7,591 @@
   <meta name="description" content="Formation générale KCI : mindset, organisation, attention, énergie (sommeil/sport/nutrition), bases financières, vision personnelle." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b0b0c; --card:#101214; --text:#e7e9ea; --muted:#9aa0a6;
-      --accent:#54a8ff; --accent-2:#00e0ff; --radius:16px; --shadow:0 8px 40px rgba(0,0,0,.35);
-      --maxw:1100px;
+      --bg:#0b0b0c;
+      --text:#e9eef2;
+      --muted:#a6b0bb;
+
+      /* ✅ Package A vibe */
+      --a1:#54a8ff;
+      --a2:#00e0ff;
+
+      /* “General / Core” vibe = stable + premium but still A */
+      --g1:#7dd3ff;   /* light */
+      --g2:#67ffe5;   /* mint */
+      --card: rgba(12,16,21,.74);
+      --panel: rgba(10,14,19,.55);
+      --border: rgba(0,224,255,.14);
+
+      --radius:18px;
+      --shadow: 0 14px 60px rgba(0,0,0,.42);
+      --maxw:1120px;
     }
+
     *{ box-sizing:border-box; }
+    html,body{ height:100%; scroll-behavior:smooth; }
     body{
       margin:0;
-      background: radial-gradient(1000px 800px at 80% 0%, rgba(84,168,255,.08), transparent), var(--bg);
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x:hidden;
+      position:relative;
+
+      background:
+        radial-gradient(1200px 820px at 70% 0%, rgba(84,168,255,.11), transparent 60%),
+        radial-gradient(980px 720px at 12% 10%, rgba(0,224,255,.09), transparent 58%),
+        radial-gradient(980px 760px at 88% 110%, rgba(103,255,229,.06), transparent 60%),
+        var(--bg);
     }
-    a{ color:var(--accent-2); text-decoration:none; }
+
+    /* subtle texture */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-12%;
+      pointer-events:none;
+      z-index:0;
+      opacity:.16;
+      background:
+        repeating-linear-gradient(135deg,
+          rgba(255,255,255,.028) 0px,
+          rgba(255,255,255,.028) 1px,
+          transparent 1px,
+          transparent 60px
+        );
+      mix-blend-mode: screen;
+      filter: blur(.25px);
+      transform: rotate(-2deg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    header, main{ position:relative; z-index:1; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
 
-    .ghost{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      border:1px solid rgba(0,224,255,.45); border-radius:999px;
-      padding:10px 16px; color:var(--accent-2); margin:24px;
-      transition: background .2s ease, color .2s ease, transform .12s ease;
-      white-space:nowrap;
+    /* Header */
+    header{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background: rgba(11,11,12,.62);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
-
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      color:#c7f0ff; background: rgba(90,164,255,.12);
-      border:1px solid rgba(90,164,255,.3);
-      padding:8px 12px; border-radius:999px;
-      font-size:.85rem; font-weight:700; margin-bottom:12px;
-    }
-
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
-    .lead{ font-size:18px; color:var(--muted); margin:0 0 22px; max-width:90ch; }
-
-    .grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:start; margin-top:16px; }
-    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
-
-    .card{
-      background:var(--card); border-radius:var(--radius);
-      border:1px solid rgba(84,168,255,.15);
-      padding:18px; box-shadow:var(--shadow);
-      margin-bottom:18px;
-      overflow:hidden;
-    }
-    .card h2, .card h3{ margin:0 0 10px; color:var(--accent-2); line-height:1.2; }
-    .muted{ color:var(--muted); }
-
-    .list{ list-style:none; padding:0; margin:12px 0 0; }
-    .list li{ margin:10px 0; }
-    .list li span{ color:var(--muted); }
-
-    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
-
-    .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
-      border-top:1px solid rgba(255,255,255,.08);
-      margin-top:14px; padding-top:14px;
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
       flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.6px;
+    }
+    .pill-top{
+      padding:10px 16px;
+      background: linear-gradient(145deg, rgba(84,168,255,.16), rgba(0,224,255,.12));
+      border: 1px solid rgba(0,224,255,.18);
+      border-radius:999px;
+    }
+    .tiny{ font-size:12px; opacity:.7; }
 
-    .mini{ font-size:14px; color:var(--muted); }
+    .ghost{
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid rgba(0,224,255,.24);
+      border-radius:999px;
+      padding:10px 14px;
+      color: rgba(233,238,242,.92);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition: transform .16s ease, border-color .16s ease, color .16s ease, background .16s ease;
+    }
+    .ghost:hover{
+      transform: translateY(-1px);
+      border-color: rgba(0,224,255,.38);
+      color: var(--a2);
+      background: rgba(0,224,255,.05);
+    }
+
+    /* Hero */
+    .hero{ padding: clamp(54px, 7vh, 92px) 0 12px; }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:950;
+      font-size:.85rem;
+      color: rgba(199,240,255,.98);
+      background: rgba(0,224,255,.09);
+      border: 1px solid rgba(0,224,255,.18);
+      width: fit-content;
+    }
+
+    h1{
+      font-size: clamp(34px, 4.8vw, 58px);
+      line-height:1.05;
+      margin: 12px 0 14px;
+      background: linear-gradient(90deg, rgba(233,238,242,.95), rgba(0,224,255,.92), rgba(103,255,229,.70));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      font-weight: 950;
+    }
+
+    .lead{
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      max-width: 96ch;
+      margin:0;
+      line-height:1.7;
+    }
+
+    /* small tag row */
+    .tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,224,255,.16);
+      background: rgba(0,224,255,.07);
+      color: rgba(233,238,242,.90);
+      font-weight: 900;
+      font-size:.85rem;
+      white-space:nowrap;
+    }
+    .tag .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(90deg, var(--a1), var(--a2));
+      box-shadow: 0 0 0 4px rgba(0,224,255,.10);
+      flex:0 0 auto;
+    }
+
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin-top:18px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Cards */
+    .card{
+      position:relative;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(860px 320px at 16% 0%, rgba(0,224,255,.10), transparent 62%),
+        radial-gradient(760px 260px at 92% 18%, rgba(84,168,255,.08), transparent 62%),
+        radial-gradient(760px 260px at 52% 118%, rgba(103,255,229,.07), transparent 62%);
+      opacity:.95;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    .card h2, .card h3{
+      margin:0 0 10px;
+      line-height:1.2;
+      font-weight:950;
+      color: rgba(233,238,242,.92);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,224,255,.16);
+      background: rgba(0,224,255,.08);
+      color: rgba(199,240,255,.98);
+      font-size:.78rem;
+      font-weight: 950;
+      white-space:nowrap;
+    }
+    .chip.core{
+      border-color: rgba(103,255,229,.18);
+      background: rgba(103,255,229,.08);
+      color: rgba(204,255,235,.92);
+    }
+
+    .divider{ height:1px; background: rgba(255,255,255,.06); margin:16px 0; }
+    .muted{ color: rgba(154,160,166,.96); }
+    .mini{ font-size:14px; color: rgba(154,160,166,.96); }
+
+    /* List */
+    .list{ list-style:none; padding:0; margin:12px 0 0; }
+    .list li{ margin:10px 0; line-height:1.6; color: rgba(233,238,242,.92); }
+    .list li span{ color: rgba(154,160,166,.96); }
+
+    /* “Pillars / modules” grid */
+    .modules{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 700px){
+      .modules{ grid-template-columns: 1fr; }
+    }
+    .module{
+      position:relative;
+      background: var(--panel);
+      border:1px solid rgba(0,224,255,.13);
+      border-radius:16px;
+      padding:14px;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+    }
+    .module::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(520px 170px at 20% 0%, rgba(0,224,255,.10), transparent 62%),
+        radial-gradient(520px 170px at 90% 20%, rgba(103,255,229,.08), transparent 62%);
+      opacity:.9;
+    }
+    .module > *{ position:relative; z-index:1; }
+    .module:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,224,255,.22);
+      filter: brightness(1.03);
+    }
+    .module strong{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      font-weight:950; color: rgba(233,238,242,.92);
+    }
+    .module p{
+      margin:8px 0 0;
+      color: rgba(154,160,166,.96);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .orb{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(90deg, var(--a1), var(--a2));
+      box-shadow: 0 0 0 4px rgba(0,224,255,.10);
+      flex:0 0 auto;
+    }
+
+    /* Price + buttons */
+    .price-row{
+      display:flex; justify-content:space-between; align-items:flex-end;
+      gap:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:14px;
+      padding-top:14px;
+      flex-wrap:wrap;
+    }
+    .price{
+      font-size: 28px;
+      font-weight: 950;
+      white-space:nowrap;
+    }
+    .price strong{
+      background: linear-gradient(90deg, var(--a1), var(--a2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    .btn, .btn-secondary{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      border-radius:999px;
+      padding: 13px 18px;
+      width:100%;
+      max-width:100%;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition: transform .16s ease, filter .16s ease, border-color .16s ease, background .16s ease;
+      font-weight: 950;
+      position:relative;
+    }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color:#0a0a0a; font-weight:800; border-radius:999px;
-      padding:12px 18px;
-      width:100%;
-      max-width:100%;
-      transition: transform .12s ease, filter .12s ease;
-      white-space:nowrap;
+      border:0;
+      background: linear-gradient(90deg, var(--a1), var(--a2));
+      color:#061016;
+      box-shadow: 0 18px 60px rgba(0,224,255,.10);
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+    .btn::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-70%;
+      width: 90%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+      transform: rotate(18deg);
+      opacity:0;
+      pointer-events:none;
+    }
+    .btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+    .btn:hover::after{ opacity:.9; animation: sheen 900ms ease forwards; }
+    @keyframes sheen{
+      from{ transform: rotate(18deg) translateX(0); }
+      to{ transform: rotate(18deg) translateX(220%); }
+    }
 
     .btn-secondary{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      border:1px solid rgba(0,224,255,.35);
-      border-radius:999px; padding:12px 18px; color:var(--accent-2);
-      width:100%;
-      max-width:100%;
       margin-top:10px;
-      white-space:nowrap;
+      border:1px solid rgba(0,224,255,.26);
+      background: rgba(0,224,255,.05);
+      color: rgba(233,238,242,.92);
+    }
+    .btn-secondary:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      border-color: rgba(0,224,255,.38);
     }
 
+    /* FAQ */
     details{
-      background:#0c1015; border:1px solid rgba(84,168,255,.18);
-      border-radius:14px; padding:14px; margin:10px 0;
+      background: var(--panel);
+      border:1px solid rgba(0,224,255,.13);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+      overflow:hidden;
+      transition: border-color .18s ease, filter .18s ease;
     }
-    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
+    details:hover{ border-color: rgba(0,224,255,.22); filter: brightness(1.02); }
+    summary{
+      cursor:pointer;
+      font-weight: 950;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color: rgba(233,238,242,.92);
+    }
     summary::-webkit-details-marker{ display:none; }
-    details p{ margin:10px 0 0; color:var(--muted); }
+    .caret{
+      width: 10px; height: 10px;
+      border-right: 2px solid rgba(233,238,242,.70);
+      border-bottom: 2px solid rgba(233,238,242,.70);
+      transform: rotate(-45deg);
+      transition: transform .18s ease, border-color .18s ease;
+      opacity:.85;
+      flex: 0 0 auto;
+    }
+    details[open] .caret{
+      transform: rotate(45deg);
+      border-color: rgba(0,224,255,.80);
+    }
+    details p{
+      color: rgba(154,160,166,.96);
+      margin: 10px 0 0;
+      line-height: 1.65;
+    }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible{ opacity:1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+      body::before{ display:none; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- retour vers index (lien absolu pour éviter les 404) -->
-  <a href="https://kciorganisation.github.io/KCIORGANISATION./#formations" class="ghost">← Retour</a>
-
-  <section class="wrap">
-    <span class="pill">📘 Formation à l’unité</span>
-    <h1>Formation générale — Le cadre KCI</h1>
-    <p class="lead">
-      Cette formation te donne le <strong>cadre de base</strong> pour arrêter le mode “je sais mais je fais pas”.
-      On pose la fondation : <strong>mindset</strong>, <strong>organisation</strong>, <strong>attention</strong>,
-      <strong>énergie</strong> (sommeil/sport/nutrition), <strong>bases financières</strong> et <strong>vision</strong>.
-      Pas pour te motiver 10 minutes — pour te rendre <strong>exécutable</strong>.
-    </p>
-
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h2>📦 Ce que tu vas construire</h2>
-          <ul class="list">
-            <li><strong>Un mindset solide</strong> <span>→ discipline > motivation, et une vision qui sert de “GPS”</span></li>
-            <li><strong>Une organisation simple</strong> <span>→ rythme de journée + “3 tâches du jour” + priorités (Eisenhower)</span></li>
-            <li><strong>Une attention maîtrisée</strong> <span>→ réduire le scroll, mode travail, production > consommation</span></li>
-            <li><strong>Un niveau d’énergie stable</strong> <span>→ sommeil régulier + sport “obligation” + nutrition comme carburant</span></li>
-            <li><strong>Des bases d’argent intelligentes</strong> <span>→ mentalité + répartition 50/25/25 + commencer tôt sans se griller</span></li>
-            <li><strong>Une vision personnelle claire</strong> <span>→ objectifs 1/3/5 ans, cohérence, résistance au regard des autres</span></li>
-          </ul>
-
-          <div class="divider"></div>
-
-          <p class="mini">
-            Bonus : exercices rapides inclus (objectifs, habitudes 7 jours, tri de l’environnement, mode travail, etc.)
-            pour <strong>passer à l’action</strong> dès la lecture.
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>🧩 Pourquoi ça marche</h2>
-          <p class="muted" style="margin:0;">
-            Le problème n’est pas “la motivation”. C’est le flou + le chaos.
-            Ici tu récupères un système simple : tu sais quoi faire, dans quel ordre, et comment tenir même quand t’as zéro envie.
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>❓ FAQ</h2>
-          <details>
-            <summary>J’ai déjà vu du dev perso sur YouTube, ça sert quand même ?</summary>
-            <p>Oui. Là c’est structuré, court, et orienté exécution : tu appliques un cadre (mindset → organisation → attention → énergie) au lieu de consommer du contenu.</p>
-          </details>
-          <details>
-            <summary>Je suis au lycée, c’est adapté ?</summary>
-            <p>Oui. Le système est pensé pour fonctionner avec l’école : pas un planning impossible, mais un rythme + des priorités.</p>
-          </details>
-          <details>
-            <summary>Ça prend combien de temps à appliquer ?</summary>
-            <p>Tu peux commencer le jour même : 3 tâches, mode travail, une action anti-scroll, et une base sommeil/sport. Tu stabilises, puis tu montes.</p>
-          </details>
-          <details>
-            <summary>Comment je reçois le contenu ?</summary>
-            <p>Quand Stripe sera activé, tu recevras l’accès automatiquement après achat.</p>
-          </details>
-        </div>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="pill-top">KCI</span>
+        <span class="tiny">Formation générale</span>
       </div>
-
-      <div>
-        <div class="card">
-          <h3>🧾 Commander</h3>
-          <p class="muted">Paiement par Stripe (bientôt). La page est prête : tu remplaceras juste le lien.</p>
-
-          <div class="price-row">
-            <div class="mini">Prix</div>
-            <div class="price">14,99 €</div>
-          </div>
-
-          <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
-          <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
-
-          <p class="mini" style="margin-top:12px;">
-            Si problème d’accès : page <a href="merci.html">merci</a> + support.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>✅ Pour qui ?</h3>
-          <ul class="list">
-            <li>Tu te sens en mode <span>chaos / irrégulier</span></li>
-            <li>Tu veux un cadre simple <span>qui te fait avancer même sans motivation</span></li>
-            <li>Tu veux une base <span>avant Routine / Sport / Études / Business</span></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>🎯 Résultat attendu</h3>
-          <ul class="list">
-            <li>Plus de clarté <span>sur ce que tu dois faire</span></li>
-            <li>Moins de procrastination <span>(attention mieux contrôlée)</span></li>
-            <li>Plus d’énergie <span>grâce aux bases sommeil/sport/nutrition</span></li>
-            <li>Une direction <span>via une vraie vision et des objectifs</span></li>
-          </ul>
-        </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="ghost" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour</a>
+        <a class="ghost" href="#commande">Commander</a>
       </div>
     </div>
-  </section>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="reveal">
+          <span class="badge">📘 Formation à l’unité</span>
+          <h1>Formation générale — Le cadre KCI</h1>
+          <p class="lead">
+            Cette formation te donne le <strong>cadre de base</strong> pour arrêter le mode “je sais mais je fais pas”.
+            On pose la fondation : <strong>mindset</strong>, <strong>organisation</strong>, <strong>attention</strong>,
+            <strong>énergie</strong> (sommeil/sport/nutrition), <strong>bases financières</strong> et <strong>vision</strong>.
+            Pas pour te motiver 10 minutes — pour te rendre <strong>exécutable</strong>.
+          </p>
+
+          <div class="tags">
+            <span class="tag"><span class="dot"></span> Mindset</span>
+            <span class="tag"><span class="dot"></span> Organisation</span>
+            <span class="tag"><span class="dot"></span> Attention</span>
+            <span class="tag"><span class="dot"></span> Énergie</span>
+            <span class="tag"><span class="dot"></span> Argent</span>
+            <span class="tag"><span class="dot"></span> Vision</span>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- LEFT -->
+          <div>
+            <div class="card reveal">
+              <h2>Ce que tu vas construire <span class="chip core">fondation</span></h2>
+
+              <div class="modules">
+                <div class="module">
+                  <strong><span>Mindset solide</span><span class="orb"></span></strong>
+                  <p>Discipline &gt; motivation, et une vision qui sert de GPS quand t’as envie de lâcher.</p>
+                </div>
+                <div class="module">
+                  <strong><span>Organisation simple</span><span class="orb"></span></strong>
+                  <p>Rythme de journée + “3 tâches du jour” + priorités (Eisenhower) sans planning impossible.</p>
+                </div>
+                <div class="module">
+                  <strong><span>Attention maîtrisée</span><span class="orb"></span></strong>
+                  <p>Réduire le scroll, mode travail, production &gt; consommation. Tu reprends ton cerveau.</p>
+                </div>
+                <div class="module">
+                  <strong><span>Énergie stable</span><span class="orb"></span></strong>
+                  <p>Sommeil régulier + sport “obligation” + nutrition comme carburant (pas comme émotion).</p>
+                </div>
+                <div class="module">
+                  <strong><span>Bases financières</span><span class="orb"></span></strong>
+                  <p>Mentalité + répartition 50/25/25 + commencer tôt sans se griller (pas de flou).</p>
+                </div>
+                <div class="module">
+                  <strong><span>Vision personnelle</span><span class="orb"></span></strong>
+                  <p>Objectifs 1/3/5 ans, cohérence, résistance au regard des autres. Direction = puissance.</p>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+              <p class="mini" style="margin:0;">
+                Bonus : exercices rapides inclus (objectifs, habitudes 7 jours, tri de l’environnement, mode travail, etc.)
+                pour <strong>passer à l’action</strong> dès la lecture.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h2>Pourquoi ça marche <span class="chip">anti-chaos</span></h2>
+              <p class="muted" style="margin:0;">
+                Le problème n’est pas “la motivation”. C’est le flou + le chaos.
+                Ici tu récupères un système simple : tu sais quoi faire, dans quel ordre,
+                et comment tenir même quand t’as zéro envie.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h2>FAQ <span class="chip">clair</span></h2>
+
+              <details>
+                <summary><span>J’ai déjà vu du dev perso sur YouTube, ça sert quand même ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Oui. Là c’est structuré, court, et orienté exécution : tu appliques un cadre (mindset → organisation → attention → énergie) au lieu de consommer du contenu.</p>
+              </details>
+
+              <details>
+                <summary><span>Je suis au lycée, c’est adapté ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Oui. Le système est pensé pour fonctionner avec l’école : pas un planning impossible, mais un rythme + des priorités.</p>
+              </details>
+
+              <details>
+                <summary><span>Ça prend combien de temps à appliquer ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Tu peux commencer le jour même : 3 tâches, mode travail, une action anti-scroll, et une base sommeil/sport/nutrition. Tu stabilises, puis tu montes.</p>
+              </details>
+
+              <details>
+                <summary><span>Comment je reçois le contenu ?</span><span class="caret" aria-hidden="true"></span></summary>
+                <p>Quand Stripe sera activé, tu recevras l’accès automatiquement après achat.</p>
+              </details>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div>
+            <div class="card reveal" id="commande">
+              <h3>Commander <span class="chip">Stripe</span></h3>
+              <p class="muted">Paiement par Stripe (bientôt). La page est prête : tu remplaceras juste le lien.</p>
+
+              <div class="price-row">
+                <div class="mini">Prix</div>
+                <div class="price"><strong>14,99 €</strong></div>
+              </div>
+
+              <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
+              <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+              <p class="mini" style="margin-top:12px;">
+                Si problème d’accès : page <a href="merci.html">merci</a> + support.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h3>Pour qui ? <span class="chip core">base</span></h3>
+              <ul class="list">
+                <li>Tu te sens en mode <span>chaos / irrégulier</span></li>
+                <li>Tu veux un cadre simple <span>qui te fait avancer même sans motivation</span></li>
+                <li>Tu veux une base <span>avant Routine / Sport / Études / Business</span></li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3>Résultat attendu <span class="chip">concret</span></h3>
+              <ul class="list">
+                <li>Plus de clarté <span>sur ce que tu dois faire</span></li>
+                <li>Moins de procrastination <span>(attention mieux contrôlée)</span></li>
+                <li>Plus d’énergie <span>via sommeil/sport/nutrition</span></li>
+                <li>Une direction <span>avec objectifs + vision</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
 </body>
 </html>
