@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KCI — Formation Sport</title>
-  <meta name="description" content="Formation Sport KCI : s'entraîner intelligemment, progresser sans se blesser et tenir sur le long terme." />
+  <meta name="description" content="Formation Sport KCI : structure d’entraînement, régularité, progression long terme, éviter les blessures et arrêter de repartir à zéro." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -21,6 +21,8 @@
       color:var(--text);
       font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     a{ color:var(--accent-2); text-decoration:none; }
     .wrap{ max-width:var(--maxw); margin:0 auto; padding:24px; }
@@ -29,17 +31,20 @@
       display:inline-flex; align-items:center; justify-content:center;
       border:1px solid rgba(0,224,255,.45); border-radius:999px;
       padding:10px 16px; color:var(--accent-2); margin:24px;
+      transition: background .2s ease, color .2s ease, transform .12s ease;
+      white-space:nowrap;
     }
+    .ghost:hover{ background:var(--accent-2); color:#041018; transform: translateY(-1px); }
 
     .pill{
-      display:inline-flex; align-items:center;
+      display:inline-flex; align-items:center; gap:8px;
       color:#c7f0ff; background: rgba(90,164,255,.12);
       border:1px solid rgba(90,164,255,.3);
       padding:8px 12px; border-radius:999px;
       font-size:.85rem; font-weight:700; margin-bottom:12px;
     }
 
-    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); }
+    h1{ font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; color:var(--accent); line-height:1.1; }
     .lead{ font-size:18px; color:var(--muted); margin-bottom:22px; max-width:90ch; }
 
     .grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
@@ -50,8 +55,11 @@
       border:1px solid rgba(84,168,255,.15);
       padding:18px; box-shadow:var(--shadow);
       margin-bottom:18px;
+      overflow:hidden;
     }
-    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; }
+    .card h2, .card h3{ color:var(--accent-2); margin:0 0 10px; line-height:1.2; }
+
+    .muted{ color:var(--muted); }
 
     .list{ list-style:none; padding:0; margin:12px 0; }
     .list li{ margin:10px 0; }
@@ -60,30 +68,40 @@
     .divider{ height:1px; background:rgba(255,255,255,.06); margin:16px 0; }
 
     .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       border-top:1px solid rgba(255,255,255,.08);
       margin-top:14px; padding-top:14px;
+      flex-wrap:wrap;
     }
-    .price{ font-size:26px; font-weight:800; color:var(--accent-2); }
+    .price{ font-size:26px; font-weight:800; color:var(--accent-2); white-space:nowrap; }
+
+    .mini{ font-size:14px; color:var(--muted); }
 
     .btn{
       display:inline-flex; justify-content:center; align-items:center;
       background:linear-gradient(90deg, var(--accent), var(--accent-2));
       color:#0a0a0a; font-weight:800;
       border-radius:999px; padding:12px 18px; width:100%;
+      max-width:100%;
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
     }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.1); }
+
     .btn-secondary{
       display:inline-flex; justify-content:center; align-items:center;
       border:1px solid rgba(0,224,255,.35);
       border-radius:999px; padding:12px 18px; width:100%;
+      max-width:100%;
       margin-top:10px; color:var(--accent-2);
+      white-space:nowrap;
     }
 
     details{
       background:#0c1015; border:1px solid rgba(84,168,255,.18);
       border-radius:14px; padding:14px; margin:10px 0;
     }
-    summary{ cursor:pointer; font-weight:700; }
+    summary{ cursor:pointer; font-weight:700; color:var(--text); list-style:none; }
     summary::-webkit-details-marker{ display:none; }
     details p{ color:var(--muted); margin-top:10px; }
   </style>
@@ -94,36 +112,63 @@
 
   <section class="wrap">
     <span class="pill">🏋️ Formation à l’unité</span>
-    <h1>Sport — S’entraîner intelligemment</h1>
+    <h1>Sport — Structure & progression</h1>
     <p class="lead">
-      Le sport n’est pas une option. Mais mal s’entraîner est pire que ne rien faire.
-      Cette formation t’apprend à construire une pratique <strong>simple, progressive et durable</strong>,
-      sans te blesser ni abandonner.
+      Beaucoup de gens font du sport… sans progresser. Pas parce qu’ils sont “nuls”,
+      mais parce qu’ils n’ont <strong>aucun système</strong>.  
+      Ici, le sport est un <strong>outil</strong> : pour construire un corps solide, mais surtout de la
+      <strong>discipline</strong> et de la <strong>confiance</strong> qui se transfèrent dans le reste de ta vie.
+      Pas de programme miracle : un <strong>cadre simple</strong> pour tenir et progresser sur la durée,
+      et arrêter de repartir à zéro tous les 3 mois.
     </p>
 
     <div class="grid">
       <div>
         <div class="card">
-          <h2>✅ Ce que tu vas apprendre</h2>
+          <h2>📘 Ce que tu vas maîtriser</h2>
           <ul class="list">
-            <li><strong>Pourquoi la plupart abandonnent</strong> <span>→ surcharge, ego, manque de structure</span></li>
-            <li><strong>Construire un entraînement simple</strong> <span>→ adaptable à ton niveau</span></li>
-            <li><strong>Progresser sans te cramer</strong> <span>→ constance et récupération</span></li>
-            <li><strong>Lier sport & mental</strong> <span>→ énergie, confiance, discipline</span></li>
+            <li><strong>Pourquoi la majorité s’entraîne mal</strong> <span>→ 3 cas : sans programme / programme pas adapté / pas régulier</span></li>
+            <li><strong>Les erreurs qui ruinent tes progrès</strong> <span>→ ego, surcharge, incohérence, manque de continuité</span></li>
+            <li><strong>Deux cadres d’entraînement testés</strong> <span>→ “extrême” (rare) vs “progressif” (recommandé)</span></li>
+            <li><strong>La progression réelle</strong> <span>→ augmenter intelligemment, sans changer tout le temps</span></li>
+            <li><strong>Les 3 piliers</strong> <span>→ sommeil + alimentation/hydratation + discipline/régularité</span></li>
+            <li><strong>Tenir 30 jours minimum</strong> <span>→ planning, obligation, version minimale, gestion des baisses</span></li>
           </ul>
+
           <div class="divider"></div>
-          <p class="muted">Le sport soutient le cerveau. Mal géré, il devient un frein.</p>
+
+          <p class="mini">
+            L’objectif : choisir un cadre, l’exécuter <strong>30 jours</strong>, puis ajuster.  
+            “Pas parfait. Juste constant.”
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>🧠 Le principe KCI</h2>
+          <p class="muted" style="margin:0;">
+            La différence ne se joue pas sur les jours faciles, mais sur ceux où personne ne te regarde.
+            Tu ne cherches pas la séance parfaite : tu cherches la <strong>répétition</strong>.
+            Le sport devient une obligation, comme un rendez-vous.
+          </p>
         </div>
 
         <div class="card">
           <h2>❓ FAQ</h2>
           <details>
             <summary>Je débute totalement, c’est adapté ?</summary>
-            <p>Oui. On part de zéro, avec une approche progressive et réaliste.</p>
+            <p>Oui. Le programme “progressif” est fait pour démarrer proprement, éviter les blessures et construire une base solide.</p>
           </details>
           <details>
             <summary>Salle ou maison ?</summary>
-            <p>Les principes fonctionnent dans les deux cas. L’important est la constance.</p>
+            <p>Les principes sont les mêmes. L’important : un cadre clair, une régularité réelle, et une progression mesurable.</p>
+          </details>
+          <details>
+            <summary>Et si je rate une séance ?</summary>
+            <p>Tu ne “recommences pas lundi”. Tu fais la suivante. Le but, c’est de ne pas retomber à zéro.</p>
+          </details>
+          <details>
+            <summary>Ça parle aussi récupération / nutrition ?</summary>
+            <p>Oui. Sans sommeil + hydratation + minimum de nutrition correcte, tu stagnes ou tu te blesses.</p>
           </details>
         </div>
       </div>
@@ -131,19 +176,37 @@
       <div>
         <div class="card">
           <h3>🧾 Commander</h3>
+          <p class="muted">Paiement par Stripe (bientôt). La page est prête : tu remplaceras juste le lien.</p>
+
           <div class="price-row">
-            <span class="price">14,99 €</span>
+            <div class="mini">Prix</div>
+            <div class="price">14,99 €</div>
           </div>
+
           <a class="btn" href="LIEN_STRIPE_ICI">Acheter maintenant</a>
           <a class="btn-secondary" href="https://kciorganisation.github.io/KCIORGANISATION./#formations">Retour aux offres</a>
+
+          <p class="mini" style="margin-top:12px;">
+            Si problème d’accès : page <a href="merci.html">merci</a> + support.
+          </p>
         </div>
 
         <div class="card">
-          <h3>🎯 Pour qui ?</h3>
+          <h3>✅ Pour qui ?</h3>
           <ul class="list">
-            <li>Tu veux t’entraîner sans te détruire</li>
-            <li>Tu veux tenir sur le long terme</li>
-            <li>Tu veux utiliser le sport comme levier mental</li>
+            <li>Tu fais du sport mais tu stagnes <span>ou tu abandonnes par cycles</span></li>
+            <li>Tu veux une structure <span>simple et durable</span></li>
+            <li>Tu veux utiliser le sport comme <span>levier de discipline</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🎯 Résultat attendu</h3>
+          <ul class="list">
+            <li>Un cadre d’entraînement <span>adapté à toi</span></li>
+            <li>Plus de régularité <span>et moins de “repartir à zéro”</span></li>
+            <li>Progression mesurable <span>sans te cramer</span></li>
+            <li>Discipline transférable <span>au reste de ta vie</span></li>
           </ul>
         </div>
       </div>
