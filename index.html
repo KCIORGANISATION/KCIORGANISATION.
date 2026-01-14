@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" id="top">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -838,9 +838,12 @@
         #0c0f14;
       border:1px solid rgba(84,168,255,.18);
       box-shadow: 0 14px 46px rgba(0,0,0,.35);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
     .legal-card h3{
-      margin: 0 0 8px;
+      margin: 0;
       color: rgba(233,238,242,.94);
       font-size: 16px;
       font-weight: 950;
@@ -870,9 +873,37 @@
       color: rgba(233,238,242,.86);
       width: fit-content;
     }
-    .legal-mini{
-      margin-top: 10px;
+    .legal-links{
+      margin-top:auto;
       padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .legal-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(233,238,242,.88);
+      font-weight: 900;
+      font-size: 12px;
+      transition: transform .12s ease, border-color .15s ease, color .15s ease, background .15s ease;
+      white-space:nowrap;
+    }
+    .legal-link:hover{
+      transform: translateY(-1px);
+      border-color: rgba(0,224,255,.30);
+      color: var(--accent-2);
+      background: rgba(0,224,255,.06);
+    }
+    .legal-mini{
+      margin-top: 14px;
+      padding-top: 14px;
       border-top: 1px solid rgba(255,255,255,.06);
       font-size: 12px;
       color: rgba(166,176,187,.92);
@@ -903,6 +934,7 @@
         <a class="ghost" href="#about">Qui sommes-nous ?</a>
         <a class="ghost" href="#formations">Formations</a>
         <a class="ghost" href="#reseaux">Nos réseaux</a>
+        <a class="ghost" href="#legal">Légal</a>
         <a class="btn" href="#formations">Voir les offres</a>
       </nav>
     </div>
@@ -1373,171 +1405,54 @@
               <div class="legal-badge">🧾 Légal & informations</div>
               <h2 style="margin:10px 0 6px;">Mentions / Conditions / Données</h2>
               <p class="sub" style="margin:0;">
-                Transparence. Pas de piège. Ici tu as les infos essentielles : contact, paiements, produits numériques,
-                remboursements, données et responsabilité.
+                Transparence. Pas de piège. Ici : les infos essentielles + les pages détaillées.
               </p>
             </div>
             <a class="ghost" href="#formations">Retour aux offres</a>
           </div>
 
           <div class="legal-grid">
-            <!-- Identité -->
             <div class="legal-card reveal">
-              <h3>
-                Identité
-                <span class="legal-pill">Éditeur</span>
-              </h3>
+              <h3>Pages légales <span class="legal-pill">Liens</span></h3>
               <p>
-                Site : <strong>KCI Organisation</strong><br>
-                Nature : <strong>projet / collectif</strong> (en construction)<br>
-                Pays : <strong>Belgique</strong><br>
-                Contact : <strong>contact.kci@exemple.com</strong> (à remplacer)<br>
-                Réseaux : Instagram / TikTok / Discord (voir section réseaux)
+                Les documents officiels du site : conditions, données, cookies, mentions.
               </p>
-              <div class="legal-mini">
-                <span>Dernière mise à jour : <strong>2026</strong></span>
-                <a href="mailto:contact.kci@exemple.com">Écrire</a>
+              <div class="legal-links">
+                <a class="legal-link" href="mentions-legales.html">Mentions légales</a>
+                <a class="legal-link" href="cvg.html">CGV</a>
+                <a class="legal-link" href="confidentialite.html">Confidentialité</a>
+                <a class="legal-link" href="cookies.html">Cookies</a>
               </div>
             </div>
 
-            <!-- Produits & livraison -->
             <div class="legal-card reveal">
-              <h3>
-                Produits numériques
-                <span class="legal-pill">Accès</span>
-              </h3>
+              <h3>Paiements <span class="legal-pill">Stripe</span></h3>
               <p>
-                Les formations KCI sont des <strong>contenus numériques</strong> (PDF / ressources / accès Discord selon l’offre).<br>
-                L’accès est fourni <strong>après paiement</strong> (Stripe) et/ou instructions de livraison.<br>
-                Les mises à jour peuvent être ajoutées au fil du temps (selon l’offre).
+                Les paiements sont traités via <strong>Stripe</strong> (prestataire externe).
+                KCI ne stocke pas tes données bancaires.
               </p>
-              <div class="legal-mini">
-                <span>Format : <strong>digital</strong></span>
-                <span>Livraison : <strong>automatique</strong> (quand Stripe est actif)</span>
+              <div class="legal-links">
+                <a class="legal-link" href="cvg.html">Voir conditions</a>
+                <a class="legal-link" href="confidentialite.html">Données</a>
               </div>
             </div>
 
-            <!-- Paiement -->
             <div class="legal-card reveal">
-              <h3>
-                Paiements
-                <span class="legal-pill">Stripe</span>
-              </h3>
+              <h3>Contact <span class="legal-pill">Support</span></h3>
               <p>
-                Les paiements sont traités via <strong>Stripe</strong> (prestataire externe).<br>
-                KCI ne stocke pas tes données bancaires : Stripe gère la transaction.<br>
-                Les prix affichés sont en <strong>EUR</strong> et peuvent évoluer.
+                Problème d’accès, paiement, question : on répond via email et/ou Discord.
               </p>
-              <div class="legal-mini">
-                <span>Sécurité : <strong>Stripe</strong></span>
-                <span>Devise : <strong>€</strong></span>
-              </div>
-            </div>
-
-            <!-- Remboursements -->
-            <div class="legal-card reveal">
-              <h3>
-                Remboursements
-                <span class="legal-pill">Digital</span>
-              </h3>
-              <p>
-                Pour les contenus numériques, un remboursement dépend du <strong>niveau d’accès</strong> et de la situation.<br>
-                Si tu as un problème (accès, lien, erreur), on priorise une <strong>résolution rapide</strong>.<br>
-                Contacte-nous via <strong>contact.kci@exemple.com</strong> avec preuve d’achat.
-              </p>
-              <div class="legal-mini">
-                <span>Délai réponse : <strong>24–72h</strong> (objectif)</span>
-                <span>Support : <strong>email / Discord</strong></span>
-              </div>
-            </div>
-
-            <!-- Données -->
-            <div class="legal-card reveal">
-              <h3>
-                Données & confidentialité
-                <span class="legal-pill">Privacy</span>
-              </h3>
-              <p>
-                On collecte le minimum : infos nécessaires au support (ex : email) et statistiques basiques.<br>
-                Si des outils externes existent (Stripe, analytics), ils peuvent utiliser des cookies/identifiants.<br>
-                Tu peux demander suppression : <strong>contact.kci@exemple.com</strong>.
-              </p>
-              <div class="legal-mini">
-                <span>Principe : <strong>minimum</strong></span>
-                <span>Suppression : <strong>sur demande</strong></span>
-              </div>
-            </div>
-
-            <!-- Responsabilité -->
-            <div class="legal-card reveal">
-              <h3>
-                Responsabilité
-                <span class="legal-pill">Limites</span>
-              </h3>
-              <p>
-                Les contenus KCI sont éducatifs. Les résultats dépendent de l’<strong>application</strong> et de la régularité.<br>
-                KCI ne remplace pas un professionnel (santé / finance / juridique).<br>
-                En cas de doute : consulte un professionnel.
-              </p>
-              <div class="legal-mini">
-                <span>But : <strong>éducatif</strong></span>
-                <span>Résultats : <strong>variables</strong></span>
-              </div>
-            </div>
-
-            <!-- Propriété intellectuelle -->
-            <div class="legal-card reveal">
-              <h3>
-                Propriété intellectuelle
-                <span class="legal-pill">Copyright</span>
-              </h3>
-              <p>
-                Tous les contenus (textes, templates, modules) sont protégés.<br>
-                Interdit : revente, repost complet, partage public.<br>
-                Autorisé : usage personnel. Pour partenariat : <strong>contact.kci@exemple.com</strong>.
-              </p>
-              <div class="legal-mini">
-                <span>Usage : <strong>personnel</strong></span>
-                <span>Partage : <strong>interdit</strong></span>
-              </div>
-            </div>
-
-            <!-- Cookies -->
-            <div class="legal-card reveal">
-              <h3>
-                Cookies
-                <span class="legal-pill">Infos</span>
-              </h3>
-              <p>
-                Ce site peut utiliser des cookies/traceurs via des services externes (ex : paiement, analytics).<br>
-                Tu peux limiter via ton navigateur. Sans cookies, certaines fonctionnalités peuvent être réduites.
-              </p>
-              <div class="legal-mini">
-                <span>Contrôle : <strong>navigateur</strong></span>
-                <span>Impact : <strong>fonctionnalités</strong></span>
-              </div>
-            </div>
-
-            <!-- Contact -->
-            <div class="legal-card reveal">
-              <h3>
-                Contact
-                <span class="legal-pill">Support</span>
-              </h3>
-              <p>
-                Pour toute question : accès, paiement, bug, partenariat, remboursement.<br>
-                Email : <strong>contact.kci@exemple.com</strong> (à remplacer)<br>
-                Discord : via lien dans la section réseaux.
-              </p>
-              <div class="legal-mini">
-                <span>Canaux : <strong>Email / Discord</strong></span>
-                <a href="#reseaux">Réseaux</a>
+              <div class="legal-links">
+                <a class="legal-link" href="mailto:contact@kci-organisation.com">contact@kci-organisation.com</a>
+                <a class="legal-link" href="#reseaux">Réseaux</a>
               </div>
             </div>
           </div>
 
-          <div class="legal-mini" style="margin-top:14px;">
-            <span>En naviguant sur ce site, tu acceptes ces informations et l’usage des services externes nécessaires (ex : paiement).</span>
+          <div class="legal-mini">
+            <span>
+              Contenus éducatifs : les résultats dépendent de l’application. KCI ne remplace pas un professionnel.
+            </span>
             <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Remonter</a>
           </div>
         </div>
@@ -1546,7 +1461,6 @@
   </main>
 
   <script>
-    // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -1564,10 +1478,14 @@
         <span class="pill">KCI</span>
         <span class="tiny">© 2026. Tous droits réservés.</span>
       </div>
-      <div class="tiny">
-        <a class="ghost" href="#legal">Infos légales</a>
-        <span style="opacity:.7;">•</span>
-        <span>Contact : <strong>contact.kci@exemple.com</strong></span>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <a class="ghost" href="mentions-legales.html">Mentions</a>
+        <a class="ghost" href="cvg.html">CGV</a>
+        <a class="ghost" href="confidentialite.html">Confidentialité</a>
+        <a class="ghost" href="cookies.html">Cookies</a>
+        <span class="tiny" style="opacity:.7;">•</span>
+        <a class="ghost" href="mailto:contact@kci-organisation.com">Contact</a>
       </div>
     </div>
   </footer>
