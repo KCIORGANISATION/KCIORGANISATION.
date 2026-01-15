@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KCI • Orders</title>
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:#11131a;
+      --muted:#9aa3b2;
+      --text:#eef2f7;
+      --line:#1b1f2a;
+      --good:#3ddc97;
+      --warn:#ffcc66;
+      --chip:#151a24;
+      --shadow: 0 14px 50px rgba(0,0,0,.55);
+      --radius: 16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background: radial-gradient(900px 600px at 20% 0%, rgba(84,168,255,.14), transparent 55%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(0,224,255,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(145deg, rgba(84,168,255,.95), rgba(0,224,255,.75));
+      box-shadow: 0 10px 30px rgba(84,168,255,.20);
+      display:grid; place-items:center;
+      font-weight:800; letter-spacing:.5px; color:#041018;
+      user-select:none;
+    }
+    .title{line-height:1.1}
+    .title h1{margin:0;font-size:18px;font-weight:800}
+    .title p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .actions{display:flex; gap:10px; align-items:center}
+    button{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+      transition:.15s transform ease, .15s background ease;
+    }
+    button:hover{background: rgba(255,255,255,.06)}
+    button:active{transform: translateY(1px)}
+    .grid{
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      gap:16px;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:16px 16px 12px;
+      border-bottom:1px solid var(--line);
+      display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
+    }
+    .card .hd h2{margin:0;font-size:14px;font-weight:900}
+    .card .hd span{color:var(--muted);font-size:12px}
+    .card .bd{padding:16px}
+    .kpis{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .kpi{
+      background: var(--chip);
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:12px;
+    }
+    .kpi .label{color:var(--muted);font-size:12px;margin-bottom:6px}
+    .kpi .val{font-size:20px;font-weight:900}
+    .kpi .sub{color:var(--muted);font-size:12px;margin-top:4px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+      font-family: var(--mono);
+      white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:50%}
+    .dot.good{background:var(--good)}
+    .dot.warn{background:var(--warn)}
+    table{width:100%;border-collapse:collapse}
+    th, td{
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      text-align:left;
+      font-size:13px;
+      vertical-align:top;
+    }
+    th{color:var(--muted);font-weight:800;font-size:12px}
+    tr:hover td{background: rgba(255,255,255,.02)}
+    .mono{font-family: var(--mono)}
+    .amount{font-weight:900}
+    .status{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(61,220,151,.08);
+      color: #bff6de;
+      font-weight:800;
+      font-size:12px;
+    }
+    .status .dot{background: var(--good)}
+    .pill{
+      display:inline-flex;align-items:center;
+      padding:6px 10px;border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .row{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px
+    }
+    .hint{
+      margin-top:14px;
+      color: rgba(154,163,178,.7);
+      font-size:11px;
+      text-align:right;
+      user-select:none;
+    }
+    .tiny-demo{
+      position:fixed;
+      right:10px; bottom:10px;
+      font-size:10px;
+      color: rgba(154,163,178,.10);
+      letter-spacing:.14em;
+      user-select:none;
+      pointer-events:none;
+    }
+    .toast{
+      position:fixed;
+      top:18px; right:18px;
+      background: rgba(17,19,26,.92);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      box-shadow: var(--shadow);
+      display:flex; gap:10px; align-items:flex-start;
+      transform: translateY(-12px);
+      opacity:0;
+      transition: .22s ease;
+    }
+    .toast.show{transform: translateY(0); opacity:1;}
+    .toast .t1{font-weight:900;font-size:13px;margin:0}
+    .toast .t2{color:var(--muted);font-size:12px;margin:2px 0 0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo">KCI</div>
+        <div class="title">
+          <h1>Orders</h1>
+          <p>Dashboard interne • aperçu des paiements & livraisons</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btnNew">Simuler une nouvelle vente</button>
+        <button id="btnRefresh">Refresh</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="card">
+        <div class="hd">
+          <div>
+            <h2>Overview</h2>
+            <span id="range">Today • 09:30</span>
+          </div>
+          <span class="chip"><span class="dot good"></span>LIVE</span>
+        </div>
+        <div class="bd">
+          <div class="kpis">
+            <div class="kpi">
+              <div class="label">Revenue (today)</div>
+              <div class="val" id="revToday">$1,250.00</div>
+              <div class="sub">Gross • before fees</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Orders (today)</div>
+              <div class="val" id="ordersToday">1</div>
+              <div class="sub">Conversion up</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Pending delivery</div>
+              <div class="val" id="pending">0</div>
+              <div class="sub">Drive access • manual</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Refund risk</div>
+              <div class="val" id="risk">Low</div>
+              <div class="sub">No disputes</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="pill">Store: kci (beta)</span>
+            <span class="pill">Currency: USD</span>
+            <span class="pill">Payout: pending</span>
+          </div>
+
+          <div class="hint">Tip: double-click an order row to open details (fake)</div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="hd">
+          <div>
+            <h2>Recent orders</h2>
+            <span id="updated">Updated just now</span>
+          </div>
+          <span class="chip mono" id="sessionId">session_9f2a…</span>
+        </div>
+        <div class="bd" style="padding:0">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Status</th>
+                <th class="amount">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr>
+                <td class="mono" id="tTime">09:27</td>
+                <td>
+                  <div style="font-weight:900" id="tName">A. Martin</div>
+                  <div class="mono" style="color:var(--muted);font-size:12px" id="tEmail">a.martin@proton.me</div>
+                </td>
+                <td>
+                  <div style="font-weight:900" id="tProd">KCI • Global</div>
+                  <div style="color:var(--muted);font-size:12px" id="tMeta">Instant access • Drive</div>
+                </td>
+                <td><span class="status"><span class="dot"></span>PAID</span></td>
+                <td class="amount" id="tAmt">$1,250.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="dot good" style="margin-top:6px"></div>
+    <div>
+      <p class="t1" id="toastTitle">Payment received</p>
+      <p class="t2" id="toastSub">Order $1,250.00 • KCI • Global</p>
+    </div>
+  </div>
+
+  <!-- tiny hidden-ish demo tag -->
+  <div class="tiny-demo">DEMO</div>
+
+  <script>
+    // Helpers
+    const pad2 = (n) => String(n).padStart(2, "0");
+    const nowHM = () => {
+      const d = new Date();
+      return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+    };
+    const randHex = (len=8) => [...crypto.getRandomValues(new Uint8Array(len))]
+      .map(b => (b % 16).toString(16)).join("");
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    // Elements
+    const range = document.getElementById("range");
+    const updated = document.getElementById("updated");
+    const sessionId = document.getElementById("sessionId");
+
+    const revToday = document.getElementById("revToday");
+    const ordersToday = document.getElementById("ordersToday");
+    const pending = document.getElementById("pending");
+
+    const tTime = document.getElementById("tTime");
+    const tName = document.getElementById("tName");
+    const tEmail = document.getElementById("tEmail");
+    const tProd = document.getElementById("tProd");
+    const tMeta = document.getElementById("tMeta");
+    const tAmt = document.getElementById("tAmt");
+
+    const toast = document.getElementById("toast");
+    const toastTitle = document.getElementById("toastTitle");
+    const toastSub = document.getElementById("toastSub");
+
+    // Init
+    function init(){
+      range.textContent = `Today • ${nowHM()}`;
+      updated.textContent = "Updated just now";
+      sessionId.textContent = `session_${randHex(4)}…`;
+      // Double click fake details
+      document.getElementById("tbody").addEventListener("dblclick", () => {
+        alert("Order details\n\nStatus: PAID\nDelivery: Drive access (manual)\nNote: Internal preview");
+      });
+    }
+
+    // Fake sale generator
+    const names = ["A. Martin","S. Dubois","N. Laurent","M. Bernard","L. Simon","K. Moreau","T. Lefèvre"];
+    const emails = ["proton.me","gmail.com","icloud.com","outlook.com"];
+    const products = [
+      {name:"KCI • Global", meta:"Instant access • Drive"},
+      {name:"KCI • Pack A", meta:"Routine system • Drive"},
+      {name:"KCI • Pack B", meta:"Business system • Drive"},
+    ];
+    const amounts = ["$1,250.00", "$799.00", "$499.00", "$299.00", "$1,250.00"];
+
+    function showToast(title, sub){
+      toastTitle.textContent = title;
+      toastSub.textContent = sub;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    function newSale(){
+      const time = nowHM();
+      const name = pick(names);
+      const domain = pick(emails);
+      const email = `${name.replace(/[^a-z]/gi,"").toLowerCase().slice(0,1)}.${name.split(" ")[1].toLowerCase()}@${domain}`;
+      const prod = pick(products);
+      const amt = pick(amounts);
+
+      tTime.textContent = time;
+      tName.textContent = name;
+      tEmail.textContent = email;
+      tProd.textContent = prod.name;
+      tMeta.textContent = prod.meta;
+      tAmt.textContent = amt;
+
+      // KPI update (simple)
+      const currentOrders = parseInt(ordersToday.textContent, 10) || 0;
+      ordersToday.textContent = String(currentOrders + 1);
+      pending.textContent = String(Math.max(0, (parseInt(pending.textContent, 10)||0) + (Math.random() < 0.35 ? 1 : 0)));
+
+      // Revenue: if $1,250 show same; else rough add (keep believable)
+      const num = (s) => Number(s.replace(/[^0-9.]/g,""));
+      const rev = num(revToday.textContent);
+      const add = num(amt);
+      const next = (rev + add).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+      revToday.textContent = `$${next}`;
+
+      updated.textContent = `Updated • ${time}`;
+      sessionId.textContent = `session_${randHex(4)}…`;
+
+      showToast("Payment received", `Order ${amt} • ${prod.name}`);
+    }
+
+    document.getElementById("btnNew").addEventListener("click", newSale);
+    document.getElementById("btnRefresh").addEventListener("click", () => {
+      range.textContent = `Today • ${nowHM()}`;
+      updated.textContent = `Updated • ${nowHM()}`;
+      sessionId.textContent = `session_${randHex(4)}…`;
+      showToast("Synced", "Dashboard refreshed");
+    });
+
+    init();
+  </script>
+</body>
+</html>
