@@ -34,9 +34,7 @@
       display:flex; align-items:center; justify-content:space-between; gap:16px;
       margin-bottom:18px;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-    }
+    .brand{display:flex; align-items:center; gap:12px;}
     .logo{
       width:44px;height:44px;border-radius:14px;
       background: linear-gradient(145deg, rgba(84,168,255,.95), rgba(0,224,255,.75));
@@ -144,9 +142,7 @@
       font-size:12px;
       white-space:nowrap;
     }
-    .row{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px
-    }
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
     .hint{
       margin-top:14px;
       color: rgba(154,163,178,.7);
@@ -193,7 +189,6 @@
       </div>
 
       <div class="actions">
-        <button id="btnNew">Simuler une nouvelle vente</button>
         <button id="btnRefresh">Refresh</button>
       </div>
     </div>
@@ -263,18 +258,19 @@
               </tr>
             </thead>
             <tbody id="tbody">
+              <!-- Initial seed row -->
               <tr>
-                <td class="mono" id="tTime">09:27</td>
+                <td class="mono">09:27</td>
                 <td>
-                  <div style="font-weight:900" id="tName">A. Martin</div>
-                  <div class="mono" style="color:var(--muted);font-size:12px" id="tEmail">a.martin@proton.me</div>
+                  <div style="font-weight:900">A. Martin</div>
+                  <div class="mono" style="color:var(--muted);font-size:12px">a.martin+global.01@proton.me</div>
                 </td>
                 <td>
-                  <div style="font-weight:900" id="tProd">KCI • Global</div>
-                  <div style="color:var(--muted);font-size:12px" id="tMeta">Instant access • Drive</div>
+                  <div style="font-weight:900">KCI • Global</div>
+                  <div style="color:var(--muted);font-size:12px">Instant access • Drive</div>
                 </td>
                 <td><span class="status"><span class="dot"></span>PAID</span></td>
-                <td class="amount" id="tAmt">$1,250.00</td>
+                <td class="amount">$1,250.00</td>
               </tr>
             </tbody>
           </table>
@@ -304,47 +300,27 @@
     const randHex = (len=8) => [...crypto.getRandomValues(new Uint8Array(len))]
       .map(b => (b % 16).toString(16)).join("");
     const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+
+    function money(n){
+      return n.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+    }
+    function parseMoney(s){
+      return Number(String(s).replace(/[^0-9.]/g,"")) || 0;
+    }
 
     // Elements
     const range = document.getElementById("range");
     const updated = document.getElementById("updated");
     const sessionId = document.getElementById("sessionId");
-
     const revToday = document.getElementById("revToday");
     const ordersToday = document.getElementById("ordersToday");
     const pending = document.getElementById("pending");
-
-    const tTime = document.getElementById("tTime");
-    const tName = document.getElementById("tName");
-    const tEmail = document.getElementById("tEmail");
-    const tProd = document.getElementById("tProd");
-    const tMeta = document.getElementById("tMeta");
-    const tAmt = document.getElementById("tAmt");
+    const tbody = document.getElementById("tbody");
 
     const toast = document.getElementById("toast");
     const toastTitle = document.getElementById("toastTitle");
     const toastSub = document.getElementById("toastSub");
-
-    // Init
-    function init(){
-      range.textContent = `Today • ${nowHM()}`;
-      updated.textContent = "Updated just now";
-      sessionId.textContent = `session_${randHex(4)}…`;
-      // Double click fake details
-      document.getElementById("tbody").addEventListener("dblclick", () => {
-        alert("Order details\n\nStatus: PAID\nDelivery: Drive access (manual)\nNote: Internal preview");
-      });
-    }
-
-    // Fake sale generator
-    const names = ["A. Martin","S. Dubois","N. Laurent","M. Bernard","L. Simon","K. Moreau","T. Lefèvre"];
-    const emails = ["proton.me","gmail.com","icloud.com","outlook.com"];
-    const products = [
-      {name:"KCI • Global", meta:"Instant access • Drive"},
-      {name:"KCI • Pack A", meta:"Routine system • Drive"},
-      {name:"KCI • Pack B", meta:"Business system • Drive"},
-    ];
-    const amounts = ["$1,250.00", "$799.00", "$499.00", "$299.00", "$1,250.00"];
 
     function showToast(title, sub){
       toastTitle.textContent = title;
@@ -353,46 +329,147 @@
       setTimeout(() => toast.classList.remove("show"), 2600);
     }
 
-    function newSale(){
+    // Realistic-ish data
+    const firstNames = ["Adam","Lucas","Noah","Léo","Ethan","Milan","Nolan","Thomas","Hugo","Louis","Maxime","Arthur","Sami","Yanis","Nassim","Enzo","Jules"];
+    const lastNames  = ["Martin","Dubois","Durand","Moreau","Laurent","Bernard","Lefèvre","Simon","Petit","Roux","Garnier","Chevalier","Fournier","Lambert","Benoit","Marchand"];
+    const domains = [
+      "gmail.com","outlook.com","icloud.com","proton.me","protonmail.com",
+      "pm.me","yahoo.com","gmx.com","tutanota.com","fastmail.com"
+    ];
+    const plusTags = ["kci","order","global","packa","packb","checkout","receipt","trial","launch","member"];
+    const products = [
+      {name:"KCI • Global", meta:"Instant access • Drive"},
+      {name:"KCI • Pack A", meta:"Routine system • Drive"},
+      {name:"KCI • Pack B", meta:"Business system • Drive"},
+      {name:"KCI • Coaching (1:1)", meta:"Manual validation • Email"}
+    ];
+    // Keep it believable: mostly smaller amounts, rare $1250
+    const amounts = [49, 79, 99, 129, 149, 199, 249, 299, 399, 499, 799, 1250];
+
+    function makeEmail(fn, ln){
+      const base =
+        (fn + "." + ln)
+          .toLowerCase()
+          .replace(/[^a-z]/g,"");
+
+      const tag = pick(plusTags);
+      const num = Math.floor(Math.random()*900) + 100; // 100-999
+      const dotNum = Math.floor(Math.random()*90) + 10; // 10-99
+      const sep = pick([".", "_", ""]);
+      const extra = pick([
+        `${sep}${dotNum}`,
+        `${sep}${num}`,
+        `${sep}${dotNum}${pick(["", "x", "z"])}`,
+        `${sep}${pick(["dev","work","mail","main","alt"])}${Math.floor(Math.random()*9)}`
+      ]);
+
+      // plus addressing sometimes
+      const usePlus = Math.random() < 0.75;
+      const plus = usePlus ? `+${tag}.${dotNum}` : "";
+
+      return `${base}${extra}${plus}@${pick(domains)}`;
+    }
+
+    function makeCustomer(){
+      const fn = pick(firstNames);
+      const ln = pick(lastNames);
+      // dashboard "customer" display style: "A. Martin"
+      const display = `${fn[0]}. ${ln}`;
+      const email = makeEmail(fn, ln);
+      return { display, email };
+    }
+
+    function chooseAmount(prodName){
+      // Coaching tends to be higher
+      if (prodName.includes("Coaching")) return pick([499, 799, 1250]);
+      // Global slightly higher distribution
+      if (prodName.includes("Global")) return pick([199, 299, 499, 799, 1250]);
+      // Packs mid
+      return pick([79, 99, 129, 149, 199, 249, 299, 399, 499]);
+    }
+
+    function addOrderRow({time, customerName, customerEmail, productName, productMeta, amountStr}){
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="mono">${time}</td>
+        <td>
+          <div style="font-weight:900">${customerName}</div>
+          <div class="mono" style="color:var(--muted);font-size:12px">${customerEmail}</div>
+        </td>
+        <td>
+          <div style="font-weight:900">${productName}</div>
+          <div style="color:var(--muted);font-size:12px">${productMeta}</div>
+        </td>
+        <td><span class="status"><span class="dot"></span>PAID</span></td>
+        <td class="amount">${amountStr}</td>
+      `;
+      // prepend (newest at top)
+      tbody.insertBefore(tr, tbody.firstChild);
+
+      // keep history not infinite (looks realistic)
+      const MAX_ROWS = 25;
+      while (tbody.children.length > MAX_ROWS) tbody.removeChild(tbody.lastChild);
+    }
+
+    function init(){
+      range.textContent = `Today • ${nowHM()}`;
+      updated.textContent = "Updated just now";
+      sessionId.textContent = `session_${randHex(4)}…`;
+
+      tbody.addEventListener("dblclick", (e) => {
+        const row = e.target.closest("tr");
+        if (!row) return;
+        const amount = row.querySelector(".amount")?.textContent?.trim() || "$0.00";
+        const prod = row.children[2]?.querySelector("div")?.textContent?.trim() || "KCI";
+        alert(
+          "Order details\n\n" +
+          `Status: PAID\n` +
+          `Product: ${prod}\n` +
+          `Amount: ${amount}\n` +
+          `Delivery: Drive access (manual)\n\n` +
+          "Note: Internal preview"
+        );
+      });
+    }
+
+    function refreshAndNewSale(){
       const time = nowHM();
-      const name = pick(names);
-      const domain = pick(emails);
-      const email = `${name.replace(/[^a-z]/gi,"").toLowerCase().slice(0,1)}.${name.split(" ")[1].toLowerCase()}@${domain}`;
+      const cust = makeCustomer();
       const prod = pick(products);
-      const amt = pick(amounts);
+      const amtNum = chooseAmount(prod.name);
+      const amountStr = `$${money(amtNum)}`;
 
-      tTime.textContent = time;
-      tName.textContent = name;
-      tEmail.textContent = email;
-      tProd.textContent = prod.name;
-      tMeta.textContent = prod.meta;
-      tAmt.textContent = amt;
-
-      // KPI update (simple)
+      // Update KPIs
       const currentOrders = parseInt(ordersToday.textContent, 10) || 0;
       ordersToday.textContent = String(currentOrders + 1);
-      pending.textContent = String(Math.max(0, (parseInt(pending.textContent, 10)||0) + (Math.random() < 0.35 ? 1 : 0)));
 
-      // Revenue: if $1,250 show same; else rough add (keep believable)
-      const num = (s) => Number(s.replace(/[^0-9.]/g,""));
-      const rev = num(revToday.textContent);
-      const add = num(amt);
-      const next = (rev + add).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
-      revToday.textContent = `$${next}`;
+      const rev = parseMoney(revToday.textContent);
+      revToday.textContent = `$${money(rev + amtNum)}`;
 
+      // pending slightly random
+      const p = parseInt(pending.textContent, 10) || 0;
+      const addPending = Math.random() < 0.22 ? 1 : 0;
+      pending.textContent = String(clamp(p + addPending, 0, 9));
+
+      // Update headers
+      range.textContent = `Today • ${time}`;
       updated.textContent = `Updated • ${time}`;
       sessionId.textContent = `session_${randHex(4)}…`;
 
-      showToast("Payment received", `Order ${amt} • ${prod.name}`);
+      // Add row to history
+      addOrderRow({
+        time,
+        customerName: cust.display,
+        customerEmail: cust.email,
+        productName: prod.name,
+        productMeta: prod.meta,
+        amountStr
+      });
+
+      showToast("Payment received", `Order ${amountStr} • ${prod.name}`);
     }
 
-    document.getElementById("btnNew").addEventListener("click", newSale);
-    document.getElementById("btnRefresh").addEventListener("click", () => {
-      range.textContent = `Today • ${nowHM()}`;
-      updated.textContent = `Updated • ${nowHM()}`;
-      sessionId.textContent = `session_${randHex(4)}…`;
-      showToast("Synced", "Dashboard refreshed");
-    });
+    document.getElementById("btnRefresh").addEventListener("click", refreshAndNewSale);
 
     init();
   </script>
